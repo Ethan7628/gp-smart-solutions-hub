@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { Menu, X, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import logo from "@/assets/logo.png";
 
 const nav = [
   { to: "/", label: "Home" },
@@ -27,24 +28,19 @@ export function Navbar() {
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled ? "py-2" : "py-4"
+        scrolled ? "py-2" : "py-4",
       )}
     >
       <div className="container-app">
         <nav
           className={cn(
             "flex items-center justify-between rounded-2xl px-4 py-3 md:px-6 transition-all duration-300",
-            scrolled ? "glass shadow-soft" : "bg-transparent"
+            scrolled ? "glass shadow-soft" : "bg-transparent",
           )}
           aria-label="Primary"
         >
           <Link to="/" className="flex items-center gap-2 group">
-            <span className="relative flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
-              <Sparkles className="h-4.5 w-4.5" strokeWidth={2.5} />
-            </span>
-            <span className="font-bold text-base md:text-lg tracking-tight">
-              GP Smart <span className="gradient-text">Solutions</span>
-            </span>
+            <img src={logo} alt="GP Smart Solutions logo" className="h-10 w-18 " />
           </Link>
 
           <ul className="hidden lg:flex items-center gap-1">
