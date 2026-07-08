@@ -1,0 +1,104 @@
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { motion } from "framer-motion";
+import { ArrowRight, Scissors, Sparkles, Palette, Heart, Star, Clock, Calendar } from "lucide-react";
+import { SiteLayout } from "@/components/site/SiteLayout";
+import { Button } from "@/components/ui/button";
+import beautyImg from "@/assets/beauty-showcase.jpg";
+
+export const Route = createFileRoute("/beauty")({
+  head: () => ({
+    meta: [
+      { title: "Beauty & Salon — GP Smart Solutions" },
+      { name: "description", content: "Luxurious salon experience in Kampala: haircuts, styling, hair treatments, nail care, beard grooming, facials and premium cosmetics." },
+      { property: "og:title", content: "Beauty & Salon — GP Smart Solutions" },
+      { property: "og:description", content: "Haircuts, treatments, nails, beard grooming and premium cosmetics." },
+      { property: "og:url", content: "/beauty" },
+    ],
+    links: [{ rel: "canonical", href: "/beauty" }],
+  }),
+  component: BeautyPage,
+});
+
+const categories = [
+  { icon: Scissors, title: "Haircuts & Styling", desc: "Precision cuts, blow-dry, updos and event styling.", price: "from UGX 25,000" },
+  { icon: Sparkles, title: "Hair Treatment", desc: "Deep conditioning, keratin, scalp therapy, coloring.", price: "from UGX 60,000" },
+  { icon: Palette, title: "Nails & Pedicure", desc: "Manicure, pedicure, gel, acrylic and nail art.", price: "from UGX 30,000" },
+  { icon: Heart, title: "Beard Grooming", desc: "Sharp beard designs, hot towel and facial care.", price: "from UGX 20,000" },
+  { icon: Sparkles, title: "Facials & Skincare", desc: "Cleansing, exfoliation, masks and glow treatments.", price: "from UGX 45,000" },
+  { icon: Palette, title: "Cosmetics & Makeup", desc: "Bridal, event and everyday makeup by senior stylists.", price: "from UGX 80,000" },
+];
+
+export function BeautyPage() {
+  return (
+    <SiteLayout>
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 -z-10">
+          <img src={beautyImg} alt="" width={1400} height={1000} className="h-full w-full object-cover opacity-40" />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/85 to-background" />
+        </div>
+        <div className="container-app py-20 md:py-28">
+          <motion.div initial={{ opacity: 0, y: 24 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
+            <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium">
+              <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--beauty)" }} /> Beauty & Salon Division
+            </span>
+            <h1 className="mt-6 text-5xl md:text-6xl font-bold tracking-tight max-w-4xl">
+              A <span className="gradient-text-beauty">signature experience</span>, every visit.
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+              From precision haircuts to luxurious treatments, our senior stylists deliver a
+              premium salon experience tailored to how you want to look and feel.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-3">
+              <Button asChild size="lg" className="h-12 px-6 shadow-beauty text-white bg-gradient-beauty hover:opacity-95">
+                <Link to="/contact"><Calendar className="mr-2 h-4 w-4" /> Book Appointment</Link>
+              </Button>
+              <Button asChild size="lg" variant="outline" className="h-12 px-6 border-2">
+                <a href="https://wa.me/256789877929" target="_blank" rel="noopener">WhatsApp Us</a>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="container-app pb-16">
+        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+          {categories.map((c, i) => (
+            <motion.article key={c.title}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="group rounded-3xl bg-card p-7 shadow-soft hover:shadow-beauty hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-beauty text-white">
+                <c.icon className="h-5 w-5" />
+              </div>
+              <h3 className="mt-5 text-xl font-bold">{c.title}</h3>
+              <p className="mt-2 text-muted-foreground leading-relaxed">{c.desc}</p>
+              <div className="mt-5 flex items-center justify-between pt-5 border-t border-border">
+                <span className="text-sm font-semibold gradient-text-beauty">{c.price}</span>
+                <span className="inline-flex items-center gap-1 text-sm text-muted-foreground group-hover:text-foreground transition-colors">
+                  Book <ArrowRight className="h-3.5 w-3.5" />
+                </span>
+              </div>
+            </motion.article>
+          ))}
+        </div>
+      </section>
+
+      <section className="container-app pb-24">
+        <div className="grid gap-6 md:grid-cols-3">
+          {[
+            { icon: Star, title: "Senior Stylists", desc: "Trained professionals with years of styling experience." },
+            { icon: Clock, title: "On-Time Service", desc: "Punctual appointments — your time is respected." },
+            { icon: Sparkles, title: "Premium Products", desc: "Only trusted, professional-grade beauty products." },
+          ].map((f) => (
+            <div key={f.title} className="rounded-2xl border border-border bg-card p-7 shadow-soft">
+              <f.icon className="h-6 w-6" style={{ color: "var(--beauty)" }} />
+              <h3 className="mt-4 text-lg font-bold">{f.title}</h3>
+              <p className="mt-2 text-muted-foreground">{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </SiteLayout>
+  );
+}
