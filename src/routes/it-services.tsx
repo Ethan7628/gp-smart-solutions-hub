@@ -4,8 +4,8 @@ import { ArrowRight, Camera, Wifi, Cable, Server, Lock, Cpu, Shield, HeadphonesI
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import itImg from "@/assets/it-showcase.jpg";
-import itPoster from "@/assets/it-services-poster.jpg.asset.json";
-import wifiInstall from "@/assets/wifi-install.jpg.asset.json";
+import itPoster from "@/assets/it-services-poster.jpg";
+import wifiInstall from "@/assets/wifi-install.jpg";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -98,7 +98,7 @@ export function ITServicesPage() {
             className="relative overflow-hidden rounded-3xl shadow-elegant"
           >
             <img
-              src={wifiInstall.url}
+              src={wifiInstall}
               alt="GP Smart Solutions technician installing reliable WiFi access point at a real estate office"
               width={1080} height={1350} loading="lazy"
               className="w-full h-full object-cover"
@@ -139,7 +139,7 @@ export function ITServicesPage() {
           className="mt-20 relative overflow-hidden rounded-3xl border border-border shadow-elegant"
         >
           <img
-            src={itPoster.url}
+            src={itPoster}
             alt="Range of security and networking equipment installed by GP Smart Solutions: Hikvision CCTV cameras, biometric access control, IP PBX phones, WiFi routers and network cabling"
             width={1280} height={720} loading="lazy"
             className="w-full h-auto object-cover"

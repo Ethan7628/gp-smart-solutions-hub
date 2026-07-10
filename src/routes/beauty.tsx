@@ -4,7 +4,7 @@ import { ArrowRight, Scissors, Sparkles, Palette, Heart, Star, Clock, Calendar }
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import beautyImg from "@/assets/beauty-showcase.jpg";
-import salonPoster from "@/assets/salon-poster.jpg.asset.json";
+import salonPoster from "@/assets/salon-poster.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -109,7 +109,7 @@ export function BeautyPage() {
           className="mt-8 overflow-hidden rounded-3xl shadow-beauty border border-border"
         >
           <img
-            src={salonPoster.url}
+            src={salonPoster}
             alt="God's Plan Unisex Salon showcase: professional haircuts, beard trimming, ladies hair styling, nail cutting and cosmetics"
             width={1600} height={900} loading="lazy"
             className="w-full h-auto object-cover"
