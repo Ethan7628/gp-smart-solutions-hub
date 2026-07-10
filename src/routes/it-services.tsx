@@ -4,6 +4,8 @@ import { ArrowRight, Camera, Wifi, Cable, Server, Lock, Cpu, Shield, HeadphonesI
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import itImg from "@/assets/it-showcase.jpg";
+import itPoster from "@/assets/it-services-poster.jpg.asset.json";
+import wifiInstall from "@/assets/wifi-install.jpg.asset.json";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
