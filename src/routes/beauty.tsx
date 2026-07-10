@@ -4,7 +4,7 @@ import { ArrowRight, Scissors, Sparkles, Palette, Heart, Star, Clock, Calendar }
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import beautyImg from "@/assets/beauty-showcase.jpg";
-import salonPoster from "@/assets/salon-poster.jpg.asset.json";
+import salonPoster from "@/assets/salon-poster.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
