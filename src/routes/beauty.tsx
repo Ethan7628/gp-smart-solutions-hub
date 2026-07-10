@@ -109,7 +109,7 @@ export function BeautyPage() {
           className="mt-8 overflow-hidden rounded-3xl shadow-beauty border border-border"
         >
           <img
-            src={salonPoster.url}
+            src={salonPoster}
             alt="God's Plan Unisex Salon showcase: professional haircuts, beard trimming, ladies hair styling, nail cutting and cosmetics"
             width={1600} height={900} loading="lazy"
             className="w-full h-auto object-cover"
