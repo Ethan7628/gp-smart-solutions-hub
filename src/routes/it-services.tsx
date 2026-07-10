@@ -98,7 +98,7 @@ export function ITServicesPage() {
             className="relative overflow-hidden rounded-3xl shadow-elegant"
           >
             <img
-              src={wifiInstall.url}
+              src={wifiInstall}
               alt="GP Smart Solutions technician installing reliable WiFi access point at a real estate office"
               width={1080} height={1350} loading="lazy"
               className="w-full h-full object-cover"
