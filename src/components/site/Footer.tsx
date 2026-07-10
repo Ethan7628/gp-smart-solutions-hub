@@ -1,5 +1,5 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Phone, Mail, MapPin, Facebook, Instagram, Twitter, Linkedin } from "lucide-react";
+import { Sparkles, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 
 const columns = [
   {
@@ -35,6 +35,23 @@ const columns = [
   },
 ];
 
+// Simple TikTok glyph (lucide has no TikTok icon)
+function TiktokIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5.8 20.1a6.34 6.34 0 0 0 10.86-4.43V9.01a8.16 8.16 0 0 0 4.77 1.52V7.09a4.85 4.85 0 0 1-1.84-.4Z" />
+    </svg>
+  );
+}
+
+const socials = [
+  { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/1935f6zmN6/" },
+  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/katongole2204?igsh=aXEwNjZqZjF5YmZl" },
+  { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/emmanuel-katongole-a062633ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+  { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@GpsmartsolutionsLimited" },
+  { Icon: TiktokIcon, label: "TikTok", href: "https://tiktok.com/@gpsmartsolutions" },
+];
+
 export function Footer() {
   return (
     <footer className="mt-24 border-t border-border/60 bg-dark text-white/80">
@@ -54,14 +71,20 @@ export function Footer() {
 
             <ul className="mt-6 space-y-3 text-sm">
               <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-brand-glow" /> +256 789 877 929</li>
-              <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-brand-glow" /> hello@gpsmartsolutions.com</li>
+              <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-brand-glow" /> gpsmartsolutions9@gmail.com</li>
               <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-brand-glow" /> Kampala, Uganda</li>
             </ul>
 
             <div className="mt-6 flex gap-3">
-              {[Facebook, Instagram, Twitter, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" aria-label="Social link"
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 transition">
+              {socials.map(({ Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 transition"
+                >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
