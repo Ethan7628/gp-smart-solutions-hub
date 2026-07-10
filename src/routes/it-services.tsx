@@ -139,7 +139,7 @@ export function ITServicesPage() {
           className="mt-20 relative overflow-hidden rounded-3xl border border-border shadow-elegant"
         >
           <img
-            src={itPoster.url}
+            src={itPoster}
             alt="Range of security and networking equipment installed by GP Smart Solutions: Hikvision CCTV cameras, biometric access control, IP PBX phones, WiFi routers and network cabling"
             width={1280} height={720} loading="lazy"
             className="w-full h-auto object-cover"
