@@ -4,6 +4,7 @@ import { ArrowRight, Scissors, Sparkles, Palette, Heart, Star, Clock, Calendar }
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import beautyImg from "@/assets/beauty-showcase.jpg";
+import salonPoster from "@/assets/salon-poster.jpg.asset.json";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -84,7 +85,40 @@ export function BeautyPage() {
         </div>
       </section>
 
+      {/* Style gallery / poster */}
+      <section className="container-app pb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.6 }}
+          className="max-w-2xl"
+        >
+          <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--beauty)" }}>
+            Style Gallery
+          </p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+            Aura. Style. Confidence.
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            A glimpse of the cuts, styles and finishes crafted by our senior stylists — for men,
+            women and kids. Home service is available on request.
+          </p>
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.6 }}
+          className="mt-8 overflow-hidden rounded-3xl shadow-beauty border border-border"
+        >
+          <img
+            src={salonPoster.url}
+            alt="God's Plan Unisex Salon showcase: professional haircuts, beard trimming, ladies hair styling, nail cutting and cosmetics"
+            width={1600} height={900} loading="lazy"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+      </section>
+
       <section className="container-app pb-24">
+
         <div className="grid gap-6 md:grid-cols-3">
           {[
             { icon: Star, title: "Senior Stylists", desc: "Trained professionals with years of styling experience." },
