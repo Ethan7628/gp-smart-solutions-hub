@@ -4,6 +4,8 @@ import { ArrowRight, Camera, Wifi, Cable, Server, Lock, Cpu, Shield, HeadphonesI
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import itImg from "@/assets/it-showcase.jpg";
+import itPoster from "@/assets/it-services-poster.jpg.asset.json";
+import wifiInstall from "@/assets/wifi-install.jpg.asset.json";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -87,6 +89,64 @@ export function ITServicesPage() {
             </motion.article>
           ))}
         </div>
+
+        {/* Featured project / equipment showcase */}
+        <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl shadow-elegant"
+          >
+            <img
+              src={wifiInstall.url}
+              alt="GP Smart Solutions technician installing reliable WiFi access point at a real estate office"
+              width={1080} height={1350} loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+          >
+            <p className="text-sm font-semibold uppercase tracking-wider text-brand">Featured Installation</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              Reliable WiFi for real estate offices
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Fast, secure, professional. Our certified technicians survey, cable and configure
+              enterprise-grade access points for uninterrupted coverage across your workspace.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {["On-site survey & signal mapping", "Enterprise access points & mesh", "Secure VLAN & guest network setup", "Ongoing maintenance & support"].map((it) => (
+                <li key={it} className="flex items-start gap-3 text-foreground/90">
+                  <Check className="h-5 w-5 text-success mt-0.5 shrink-0" />
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+                <Link to="/contact">Request a Site Survey <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Equipment we install */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }} transition={{ duration: 0.6 }}
+          className="mt-20 relative overflow-hidden rounded-3xl border border-border shadow-elegant"
+        >
+          <img
+            src={itPoster.url}
+            alt="Range of security and networking equipment installed by GP Smart Solutions: Hikvision CCTV cameras, biometric access control, IP PBX phones, WiFi routers and network cabling"
+            width={1280} height={720} loading="lazy"
+            className="w-full h-auto object-cover"
+          />
+        </motion.div>
+
+
 
         <div className="mt-16 rounded-3xl bg-gradient-brand p-10 md:p-14 text-white shadow-elegant">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">

@@ -67,7 +67,7 @@ function ContactPage() {
             {[
               { icon: Phone, title: "Call us", value: "+256 789 877 929", href: "tel:+256789877929" },
               { icon: MessageCircle, title: "WhatsApp", value: "Chat with our team", href: "https://wa.me/256789877929" },
-              { icon: Mail, title: "Email", value: "hello@gpsmartsolutions.com", href: "mailto:hello@gpsmartsolutions.com" },
+              { icon: Mail, title: "Email", value: "gpsmartsolutions9@gmail.com", href: "mailto:gpsmartsolutions9@gmail.com" },
               { icon: MapPin, title: "Location", value: "Kampala, Uganda" },
               { icon: Clock, title: "Hours", value: "Mon–Sat · 8:00 AM – 8:00 PM" },
             ].map((c) => {
