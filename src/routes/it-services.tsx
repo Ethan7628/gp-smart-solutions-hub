@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import itImg from "@/assets/it-showcase.jpg";
 import itPoster from "@/assets/it-services-poster.jpg";
 import wifiInstall from "@/assets/wifi-install.jpg";
+import teamAntenna from "@/assets/team-antenna.jpg";
+import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
+import servicesFlyer from "@/assets/services-flyer.jpg";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
