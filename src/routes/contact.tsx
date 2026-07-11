@@ -39,11 +39,35 @@ function ContactPage() {
   });
 
   const onSubmit = async (values: FormValues) => {
-    await new Promise((r) => setTimeout(r, 700));
-    toast.success("Message sent!", {
-      description: `Thanks ${values.name}, our team will reach out shortly.`,
-    });
-    reset();
+    try {
+      const formData = new FormData();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("phone", values.phone);
+      formData.append("subject", values.subject);
+      formData.append("message", values.message);
+      // FormSubmit config
+      formData.append("_subject", `New enquiry: ${values.subject}`);
+      formData.append("_template", "table");
+      formData.append("_captcha", "false");
+      formData.append("_replyto", values.email);
+
+      const res = await fetch("https://formsubmit.co/ajax/gpsmartsolutions9@gmail.com", {
+        method: "POST",
+        headers: { Accept: "application/json" },
+        body: formData,
+      });
+      if (!res.ok) throw new Error("Request failed");
+
+      toast.success("Message sent!", {
+        description: `Thanks ${values.name}, our team will reach out shortly.`,
+      });
+      reset();
+    } catch {
+      toast.error("Couldn't send your message", {
+        description: "Please try again, or reach us on WhatsApp at +256 789 877 929.",
+      });
+    }
   };
 
   return (
