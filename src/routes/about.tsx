@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { Target, Eye, Award, Users, Trophy, Clock, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import engineerDesk from "@/assets/it-engineer-desk.jpg";
+import teamOffice from "@/assets/team-office.jpg";
+import salonTeam from "@/assets/salon-team.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
