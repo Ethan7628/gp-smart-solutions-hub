@@ -5,6 +5,8 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import beautyImg from "@/assets/beauty-showcase.jpg";
 import salonPoster from "@/assets/salon-poster.jpg";
+import salonTeam from "@/assets/salon-team.jpg";
+import salonTeamBack from "@/assets/salon-team-back.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
