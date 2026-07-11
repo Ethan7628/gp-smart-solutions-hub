@@ -3,6 +3,9 @@ import { motion } from "framer-motion";
 import { Target, Eye, Award, Users, Trophy, Clock, ArrowRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import engineerDesk from "@/assets/it-engineer-desk.jpg";
+import teamOffice from "@/assets/team-office.jpg";
+import salonTeam from "@/assets/salon-team.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -53,6 +56,37 @@ function AboutPage() {
               <h3 className="mt-5 text-xl font-bold">{c.title}</h3>
               <p className="mt-3 text-muted-foreground leading-relaxed">{c.body}</p>
             </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Meet the team */}
+      <section className="container-app pb-16">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand">Our People</p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">The team behind the brand.</h2>
+          <p className="mt-4 text-muted-foreground">
+            Certified IT engineers and senior stylists working under one roof — united by a shared
+            standard of quality, courtesy and craft.
+          </p>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-3">
+          {[
+            { src: engineerDesk, alt: "GP Smart Solutions IT engineer at workstation with CCTV monitoring wall", tag: "IT Engineering" },
+            { src: teamOffice, alt: "GP Smart Solutions IT department staff member at Kampala office", tag: "IT Support" },
+            { src: salonTeam, alt: "GP Unisex Salon stylists serving clients", tag: "Salon Team" },
+          ].map((p, i) => (
+            <motion.figure key={i}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="group relative overflow-hidden rounded-3xl border border-border shadow-soft hover:shadow-elegant transition"
+            >
+              <img src={p.src} alt={p.alt} width={800} height={1000} loading="lazy"
+                className="h-80 w-full object-cover group-hover:scale-105 transition duration-500" />
+              <figcaption className="absolute bottom-4 left-4 rounded-full glass px-3 py-1 text-xs font-semibold">
+                {p.tag}
+              </figcaption>
+            </motion.figure>
           ))}
         </div>
       </section>

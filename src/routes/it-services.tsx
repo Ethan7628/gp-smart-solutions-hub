@@ -6,6 +6,9 @@ import { Button } from "@/components/ui/button";
 import itImg from "@/assets/it-showcase.jpg";
 import itPoster from "@/assets/it-services-poster.jpg";
 import wifiInstall from "@/assets/wifi-install.jpg";
+import teamAntenna from "@/assets/team-antenna.jpg";
+import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
+import servicesFlyer from "@/assets/services-flyer.jpg";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -145,6 +148,75 @@ export function ITServicesPage() {
             className="w-full h-auto object-cover"
           />
         </motion.div>
+
+        {/* Field team + Client testimonial */}
+        <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:items-stretch">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="rounded-3xl overflow-hidden shadow-elegant border border-border bg-card"
+          >
+            <img src={teamAntenna} alt="GP Smart Solutions field engineers installing a rooftop antenna and network equipment in Kampala"
+              width={1320} height={780} loading="lazy" className="w-full h-64 object-cover" />
+            <div className="p-7">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand">On the ground</p>
+              <h3 className="mt-2 text-2xl font-bold">Certified engineers, safety-first installs</h3>
+              <p className="mt-3 text-muted-foreground">
+                Our uniformed team handles rooftop antenna mounts, ISP links, CCTV rigging and
+                structured cabling with full safety gear — from survey to sign-off.
+              </p>
+            </div>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6, delay: 0.1 }}
+            className="rounded-3xl overflow-hidden shadow-elegant border border-border bg-card"
+          >
+            <img src={cctvMonitoring} alt="Client reviewing multi-camera CCTV monitoring dashboard installed by GP Smart Solutions"
+              width={1320} height={780} loading="lazy" className="w-full h-64 object-cover" />
+            <div className="p-7">
+              <p className="text-sm font-semibold uppercase tracking-wider text-brand">Client feedback</p>
+              <h3 className="mt-2 text-2xl font-bold">“Excellent CCTV installation work.”</h3>
+              <p className="mt-3 text-muted-foreground">
+                Businesses across Kampala rely on our CCTV & remote-viewing setups for round-the-clock
+                visibility of their premises — configured for phone, tablet and control room.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+
+        {/* Services flyer */}
+        <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+          >
+            <p className="text-sm font-semibold uppercase tracking-wider text-brand">Our Services</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              One call. Every smart-office service.
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              CCTV cameras, smart door locks, Airtel & MTN internet connections, attendance system
+              configuration and password reset, PABX systems, POS machines and full IT support —
+              delivered by one accountable team.
+            </p>
+            <div className="mt-6">
+              <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+                <a href="tel:+256789877929"><Phone className="mr-2 h-4 w-4" /> Call +256 789 877 929</a>
+              </Button>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="rounded-3xl overflow-hidden shadow-elegant border border-border"
+          >
+            <img src={servicesFlyer} alt="GP Smart Solutions services flyer: CCTV, smart door locks, Airtel & MTN internet, attendance, PABX, POS and IT support"
+              width={1400} height={900} loading="lazy" className="w-full h-auto object-cover" />
+          </motion.div>
+        </div>
+
 
 
 

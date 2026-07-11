@@ -5,6 +5,8 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import beautyImg from "@/assets/beauty-showcase.jpg";
 import salonPoster from "@/assets/salon-poster.jpg";
+import salonTeam from "@/assets/salon-team.jpg";
+import salonTeamBack from "@/assets/salon-team-back.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -115,7 +117,24 @@ export function BeautyPage() {
             className="w-full h-auto object-cover"
           />
         </motion.div>
+
+        <div className="mt-10 grid gap-6 md:grid-cols-2">
+          {[
+            { src: salonTeam, alt: "GP Unisex Salon stylists working on clients — barbering, braiding and blow-dry" },
+            { src: salonTeamBack, alt: "GP Unisex Salon team wearing branded uniforms — GP Unisex Saloon 0784 084301" },
+          ].map((p, i) => (
+            <motion.figure key={i}
+              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}
+              className="overflow-hidden rounded-3xl border border-border shadow-beauty"
+            >
+              <img src={p.src} alt={p.alt} width={1400} height={800} loading="lazy"
+                className="w-full h-72 md:h-80 object-cover" />
+            </motion.figure>
+          ))}
+        </div>
       </section>
+
 
       <section className="container-app pb-24">
 
