@@ -84,7 +84,7 @@ function LandingPage() {
             <h1 className="mt-6 text-5xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
               Smart <span className="gradient-text">Technology.</span>
               <br />
-              Professional <span className="gradient-text-beauty">Beauty.</span>
+              Beauty <span className="gradient-text-beauty">Professionals.</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
               One trusted brand delivering enterprise-grade IT infrastructure and a luxurious
