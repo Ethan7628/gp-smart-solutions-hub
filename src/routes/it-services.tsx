@@ -9,6 +9,7 @@ import wifiInstall from "@/assets/wifi-install.jpg";
 import teamAntenna from "@/assets/team-antenna.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import servicesFlyer from "@/assets/services-flyer.jpg";
+import itEngineerOffice from "@/assets/it-engineer-office.jpg.asset.json";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
