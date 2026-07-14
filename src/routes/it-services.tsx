@@ -9,7 +9,7 @@ import wifiInstall from "@/assets/wifi-install.jpg";
 import teamAntenna from "@/assets/team-antenna.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import servicesFlyer from "@/assets/services-flyer.jpg";
-import itEngineerOffice from "@/assets/it-engineer-office.jpg.asset.json";
+import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -195,7 +195,7 @@ export function ITServicesPage() {
             className="relative overflow-hidden rounded-3xl shadow-elegant border border-border"
           >
             <img
-              src={itEngineerOffice.url}
+              src={itEngineerOffice}
               alt="GP Smart Solutions IT Engineer at the branded technical department — CCTV monitoring, networking rack, coding workstation and certified IT & network solutions expert"
               width={1200} height={1400} loading="lazy"
               className="w-full h-full object-cover"
