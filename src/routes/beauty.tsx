@@ -7,6 +7,7 @@ import beautyImg from "@/assets/beauty-showcase.jpg";
 import salonPoster from "@/assets/salon-poster.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
 import salonTeamBack from "@/assets/salon-team-back.jpg";
+import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg.asset.json";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
