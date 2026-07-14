@@ -7,7 +7,7 @@ import beautyImg from "@/assets/beauty-showcase.jpg";
 import salonPoster from "@/assets/salon-poster.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
 import salonTeamBack from "@/assets/salon-team-back.jpg";
-import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg.asset.json";
+import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -145,7 +145,7 @@ export function BeautyPage() {
             className="overflow-hidden rounded-3xl shadow-beauty border border-border"
           >
             <img
-              src={gpUnixesManicure.url}
+              src={gpUnixesManicure}
               alt="GP Unixes Saloon professional performing a precision manicure with black gloves and branded apron in a luxury salon setting"
               width={1200} height={1500} loading="lazy"
               className="w-full h-full object-cover"
