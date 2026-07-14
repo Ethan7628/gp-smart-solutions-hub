@@ -9,6 +9,7 @@ import wifiInstall from "@/assets/wifi-install.jpg";
 import teamAntenna from "@/assets/team-antenna.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import servicesFlyer from "@/assets/services-flyer.jpg";
+import itEngineerOffice from "@/assets/it-engineer-office.jpg.asset.json";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -185,6 +186,56 @@ export function ITServicesPage() {
             </div>
           </motion.div>
         </div>
+
+        {/* IT Engineer feature */}
+        <div className="mt-20 grid gap-10 lg:grid-cols-2 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="relative overflow-hidden rounded-3xl shadow-elegant border border-border"
+          >
+            <img
+              src={itEngineerOffice.url}
+              alt="GP Smart Solutions IT Engineer at the branded technical department — CCTV monitoring, networking rack, coding workstation and certified IT & network solutions expert"
+              width={1200} height={1400} loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+          >
+            <p className="text-sm font-semibold uppercase tracking-wider text-brand">Meet the Engineer</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              Certified expertise behind every deployment
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Our Technical Department is led by certified IT & Network Solutions engineers with
+              deep hands-on experience across CCTV, structured networking, fiber optic, IT support
+              and smart-office infrastructure. Every project is scoped, deployed and monitored by a
+              named engineer — so you always know who owns the uptime of your systems.
+            </p>
+            <ul className="mt-6 space-y-3">
+              {[
+                "Certified IT & Network Solutions Expert",
+                "Live CCTV monitoring & multi-site visibility",
+                "Enterprise networking, servers and racks",
+                "Professional on-site & remote IT support",
+              ].map((it) => (
+                <li key={it} className="flex items-start gap-3 text-foreground/90">
+                  <Check className="h-5 w-5 text-success mt-0.5 shrink-0" />
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+                <Link to="/contact">Talk to an Engineer <ArrowRight className="ml-1 h-4 w-4" /></Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+
 
         {/* Services flyer */}
         <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:items-center">

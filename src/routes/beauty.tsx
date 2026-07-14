@@ -7,6 +7,7 @@ import beautyImg from "@/assets/beauty-showcase.jpg";
 import salonPoster from "@/assets/salon-poster.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
 import salonTeamBack from "@/assets/salon-team-back.jpg";
+import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg.asset.json";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -134,6 +135,61 @@ export function BeautyPage() {
           ))}
         </div>
       </section>
+
+      {/* GP Unixes Saloon feature */}
+      <section className="container-app pb-16">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="overflow-hidden rounded-3xl shadow-beauty border border-border"
+          >
+            <img
+              src={gpUnixesManicure.url}
+              alt="GP Unixes Saloon professional performing a precision manicure with black gloves and branded apron in a luxury salon setting"
+              width={1200} height={1500} loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+          >
+            <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--beauty)" }}>
+              Precision. Hygiene. Elegance.
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              A luxury nail experience by <span className="gradient-text-beauty">GP Unixes Saloon</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Our senior nail technicians deliver flawless manicures, pedicures, gel and acrylic
+              finishes in a spotless, high-end studio. Every appointment uses sterilized tools,
+              premium products and single-use gloves — because your beauty deserves the highest
+              standard of care.
+            </p>
+            <ul className="mt-6 space-y-3 text-foreground/90">
+              {[
+                "Certified senior nail technicians",
+                "Sterilized tools & single-use gloves",
+                "Premium gel, acrylic & nail art finishes",
+                "Relaxing, appointment-based service",
+              ].map((it) => (
+                <li key={it} className="flex items-start gap-3">
+                  <Sparkles className="h-5 w-5 mt-0.5 shrink-0" style={{ color: "var(--beauty)" }} />
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button asChild size="lg" className="h-12 px-6 shadow-beauty text-white bg-gradient-beauty hover:opacity-95">
+                <Link to="/contact"><Calendar className="mr-2 h-4 w-4" /> Book Your Appointment</Link>
+              </Button>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+
 
 
       <section className="container-app pb-24">
