@@ -45,7 +45,7 @@ const productCategories = [
       { src: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&h=600&fit=crop&auto=format&q=80", alt: "Modern outdoor CCTV bullet camera mounted on a building wall" },
       { src: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=800&h=600&fit=crop&auto=format&q=80", alt: "Dome CCTV security camera installed on a ceiling" },
       { src: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop&auto=format&q=80", alt: "Multi-screen CCTV monitoring wall in a security control room" },
-      { src: "https://images.unsplash.com/photo-1614064548237-096d7f4c1f14?w=800&h=600&fit=crop&auto=format&q=80", alt: "PTZ camera pointing across a corporate parking lot at night" },
+      { src: "https://images.unsplash.com/photo-1626618012641-bfbca5a31239?w=800&h=600&fit=crop&auto=format&q=80", alt: "High-resolution PTZ security camera monitoring an outdoor area" },
     ],
   },
   {
@@ -54,7 +54,7 @@ const productCategories = [
     items: [
       { src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&auto=format&q=80", alt: "Rack-mounted network video recorder units in a server room" },
       { src: "https://images.unsplash.com/photo-1601737487795-dab272f52420?w=800&h=600&fit=crop&auto=format&q=80", alt: "Surveillance-grade hard drives stacked for NVR deployment" },
-      { src: "https://images.unsplash.com/photo-1580983230786-9bb1a4c3c67c?w=800&h=600&fit=crop&auto=format&q=80", alt: "Enterprise storage array powering cloud surveillance recording" },
+      { src: "https://images.unsplash.com/photo-1580894732444-8ecded7900cd?w=800&h=600&fit=crop&auto=format&q=80", alt: "Enterprise storage array powering cloud surveillance recording" },
     ],
   },
   {
@@ -62,7 +62,7 @@ const productCategories = [
     desc: "WiFi routers, mesh systems, PoE and managed switches, firewalls, patch panels, fiber optic runs, SFP modules and structured cabling accessories.",
     items: [
       { src: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop&auto=format&q=80", alt: "Neatly organized network patch panel with color-coded ethernet cables" },
-      { src: "https://images.unsplash.com/photo-1606904825846-f6eb4d21e0b0?w=800&h=600&fit=crop&auto=format&q=80", alt: "Enterprise WiFi router with multiple antennas on an office desk" },
+      { src: "https://images.unsplash.com/photo-1591370874773-6702e8f12fd8?w=800&h=600&fit=crop&auto=format&q=80", alt: "Enterprise WiFi router with multiple antennas on an office desk" },
       { src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&auto=format&q=80", alt: "Rows of managed network switches glowing inside a data center" },
       { src: "https://images.unsplash.com/photo-1544890225-2f3faec4cd60?w=800&h=600&fit=crop&auto=format&q=80", alt: "Fiber optic cables terminating into a patch panel with lit connectors" },
     ],
