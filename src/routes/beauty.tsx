@@ -8,6 +8,7 @@ import salonPoster from "@/assets/salon-poster.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
 import salonTeamBack from "@/assets/salon-team-back.jpg";
 import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg";
+import gpUnixesManicure2 from "@/assets/gp-unixes-manicure-2.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
