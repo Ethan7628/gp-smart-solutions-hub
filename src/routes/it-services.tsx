@@ -154,7 +154,54 @@ export function ITServicesPage() {
           ))}
         </div>
 
-        {/* Featured project / equipment showcase */}
+        {/* Equipment & product gallery */}
+        <div className="mt-24">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-brand">Equipment & Products</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              Everything we supply & install
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              A curated look at the categories we deploy across Uganda — from surveillance and
+              networking to smart access, telephony and structured cabling.
+            </p>
+          </div>
+          <div className="mt-10 space-y-14">
+            {productCategories.map((cat, ci) => (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: ci * 0.05 }}
+              >
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <h3 className="text-2xl font-bold">{cat.title}</h3>
+                    <p className="mt-2 max-w-3xl text-muted-foreground">{cat.desc}</p>
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {cat.items.map((it, i) => (
+                    <figure
+                      key={i}
+                      className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <img
+                        src={it.src}
+                        alt={it.alt}
+                        loading="lazy"
+                        width={800}
+                        height={600}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+
         <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
