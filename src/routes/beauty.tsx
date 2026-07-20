@@ -8,6 +8,7 @@ import salonPoster from "@/assets/salon-poster.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
 import salonTeamBack from "@/assets/salon-team-back.jpg";
 import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg";
+import gpUnixesManicure2 from "@/assets/gp-unixes-manicure-2.jpg";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -189,10 +190,60 @@ export function BeautyPage() {
         </div>
       </section>
 
-
-
+      {/* Second manicure feature — reversed layout */}
+      <section className="container-app pb-16">
+        <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+          >
+            <p className="text-sm font-semibold uppercase tracking-wider" style={{ color: "var(--beauty)" }}>
+              Signature Nail Care
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              Detail-driven finishes at <span className="gradient-text-beauty">GP Unixes Saloon</span>
+            </h2>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Every appointment is handled by a branded, uniformed technician working under studio
+              lighting with sterilized tools and premium products — so every finish looks flawless,
+              lasts longer and feels genuinely luxurious.
+            </p>
+            <ul className="mt-6 space-y-3 text-foreground/90">
+              {[
+                "Uniformed, professionally trained team",
+                "Hygienic setup with single-use gloves",
+                "Long-lasting gel & acrylic finishes",
+                "Personalized styling in a relaxing studio",
+              ].map((it) => (
+                <li key={it} className="flex items-start gap-3">
+                  <Sparkles className="h-5 w-5 mt-0.5 shrink-0" style={{ color: "var(--beauty)" }} />
+                  <span>{it}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-8">
+              <Button asChild size="lg" className="h-12 px-6 shadow-beauty text-white bg-gradient-beauty hover:opacity-95">
+                <Link to="/contact"><Calendar className="mr-2 h-4 w-4" /> Book Your Appointment</Link>
+              </Button>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }} transition={{ duration: 0.6 }}
+            className="overflow-hidden rounded-3xl shadow-beauty border border-border"
+          >
+            <img
+              src={gpUnixesManicure2}
+              alt="GP Unixes Saloon technician performing a precision manicure with black gloves and branded apron under studio lighting"
+              width={1200} height={1500} loading="lazy"
+              className="w-full h-full object-cover"
+            />
+          </motion.div>
+        </div>
+      </section>
 
       <section className="container-app pb-24">
+
 
         <div className="grid gap-6 md:grid-cols-3">
           {[

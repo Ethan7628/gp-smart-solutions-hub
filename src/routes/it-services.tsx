@@ -37,6 +37,66 @@ const services = [
   { icon: HeadphonesIcon, title: "IT Support", items: ["Home & office support", "Remote troubleshooting", "Maintenance contracts", "Hardware & software"] },
 ];
 
+const productCategories = [
+  {
+    title: "CCTV & Surveillance",
+    desc: "Dome, bullet, PTZ, turret, IP, thermal, ANPR, AI smart cameras and floodlight cameras for residential, commercial, industrial and retail sites.",
+    items: [
+      { src: "https://images.unsplash.com/photo-1557597774-9d273605dfa9?w=800&h=600&fit=crop&auto=format&q=80", alt: "Modern outdoor CCTV bullet camera mounted on a building wall" },
+      { src: "https://images.unsplash.com/photo-1584433144859-1fc3ab64a957?w=800&h=600&fit=crop&auto=format&q=80", alt: "Dome CCTV security camera installed on a ceiling" },
+      { src: "https://images.unsplash.com/photo-1573164713714-d95e436ab8d6?w=800&h=600&fit=crop&auto=format&q=80", alt: "Multi-screen CCTV monitoring wall in a security control room" },
+      { src: "https://images.unsplash.com/photo-1614064548237-096d7f4c1f14?w=800&h=600&fit=crop&auto=format&q=80", alt: "PTZ camera pointing across a corporate parking lot at night" },
+    ],
+  },
+  {
+    title: "Recording & Storage",
+    desc: "DVR, NVR and hybrid recorders, surveillance-grade hard drives, rack-mounted recorders and cloud surveillance systems.",
+    items: [
+      { src: "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?w=800&h=600&fit=crop&auto=format&q=80", alt: "Rack-mounted network video recorder units in a server room" },
+      { src: "https://images.unsplash.com/photo-1601737487795-dab272f52420?w=800&h=600&fit=crop&auto=format&q=80", alt: "Surveillance-grade hard drives stacked for NVR deployment" },
+      { src: "https://images.unsplash.com/photo-1580983230786-9bb1a4c3c67c?w=800&h=600&fit=crop&auto=format&q=80", alt: "Enterprise storage array powering cloud surveillance recording" },
+    ],
+  },
+  {
+    title: "Networking Equipment",
+    desc: "WiFi routers, mesh systems, PoE and managed switches, firewalls, patch panels, fiber optic runs, SFP modules and structured cabling accessories.",
+    items: [
+      { src: "https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=600&fit=crop&auto=format&q=80", alt: "Neatly organized network patch panel with color-coded ethernet cables" },
+      { src: "https://images.unsplash.com/photo-1606904825846-f6eb4d21e0b0?w=800&h=600&fit=crop&auto=format&q=80", alt: "Enterprise WiFi router with multiple antennas on an office desk" },
+      { src: "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800&h=600&fit=crop&auto=format&q=80", alt: "Rows of managed network switches glowing inside a data center" },
+      { src: "https://images.unsplash.com/photo-1544890225-2f3faec4cd60?w=800&h=600&fit=crop&auto=format&q=80", alt: "Fiber optic cables terminating into a patch panel with lit connectors" },
+    ],
+  },
+  {
+    title: "Smart Home & Access Control",
+    desc: "Smart door locks, fingerprint and face-recognition access, RFID card systems, video doorbells, motion detectors and smart alarms.",
+    items: [
+      { src: "https://images.unsplash.com/photo-1558002038-1055907df827?w=800&h=600&fit=crop&auto=format&q=80", alt: "Smart fingerprint door lock installed on a modern office door" },
+      { src: "https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=800&h=600&fit=crop&auto=format&q=80", alt: "Video doorbell with high-definition camera mounted at an entrance" },
+      { src: "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800&h=600&fit=crop&auto=format&q=80", alt: "Smart home security alarm control panel on an interior wall" },
+    ],
+  },
+  {
+    title: "Telephony & Communication",
+    desc: "PABX systems, IP and VoIP phones, office desk phones, conference phones, telephone switchboards and full call-center setups.",
+    items: [
+      { src: "https://images.unsplash.com/photo-1587560699334-cc4ff634909a?w=800&h=600&fit=crop&auto=format&q=80", alt: "IP desk phone on a clean modern office desk" },
+      { src: "https://images.unsplash.com/photo-1560264280-88b68371db39?w=800&h=600&fit=crop&auto=format&q=80", alt: "Conference room speakerphone on a boardroom table" },
+      { src: "https://images.unsplash.com/photo-1553877522-43269d4ea984?w=800&h=600&fit=crop&auto=format&q=80", alt: "Call center workstation with headset and dual monitors" },
+    ],
+  },
+  {
+    title: "Installation & Field Services",
+    desc: "Certified technicians handling cabling, fiber installs, router configuration, access point mounting, smart lock deployment and network troubleshooting.",
+    items: [
+      { src: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&h=600&fit=crop&auto=format&q=80", alt: "IT technician configuring a network switch in a server room" },
+      { src: "https://images.unsplash.com/photo-1518770660439-4636190af475?w=800&h=600&fit=crop&auto=format&q=80", alt: "Structured network cabling terminated inside a wall-mounted cabinet" },
+      { src: "https://images.unsplash.com/photo-1573164574572-cb89e39749b4?w=800&h=600&fit=crop&auto=format&q=80", alt: "Engineer testing ethernet connections with a professional cable tester" },
+      { src: "https://images.unsplash.com/photo-1573883431205-98b5f10aaedb?w=800&h=600&fit=crop&auto=format&q=80", alt: "Field technician mounting a wireless access point on an office ceiling" },
+    ],
+  },
+];
+
 export function ITServicesPage() {
   return (
     <SiteLayout>
@@ -94,7 +154,54 @@ export function ITServicesPage() {
           ))}
         </div>
 
-        {/* Featured project / equipment showcase */}
+        {/* Equipment & product gallery */}
+        <div className="mt-24">
+          <div className="max-w-2xl">
+            <p className="text-sm font-semibold uppercase tracking-wider text-brand">Equipment & Products</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              Everything we supply & install
+            </h2>
+            <p className="mt-4 text-muted-foreground">
+              A curated look at the categories we deploy across Uganda — from surveillance and
+              networking to smart access, telephony and structured cabling.
+            </p>
+          </div>
+          <div className="mt-10 space-y-14">
+            {productCategories.map((cat, ci) => (
+              <motion.div
+                key={cat.title}
+                initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }} transition={{ duration: 0.5, delay: ci * 0.05 }}
+              >
+                <div className="flex flex-wrap items-end justify-between gap-3">
+                  <div>
+                    <h3 className="text-2xl font-bold">{cat.title}</h3>
+                    <p className="mt-2 max-w-3xl text-muted-foreground">{cat.desc}</p>
+                  </div>
+                </div>
+                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                  {cat.items.map((it, i) => (
+                    <figure
+                      key={i}
+                      className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <img
+                        src={it.src}
+                        alt={it.alt}
+                        loading="lazy"
+                        width={800}
+                        height={600}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
+                      />
+                    </figure>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+
         <div className="mt-20 grid gap-8 lg:grid-cols-2 lg:items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }}
