@@ -117,27 +117,35 @@ export function ITServicesPage() {
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {productCategories.map((cat, ci) => (
-              <motion.article
+              <motion.div
                 key={cat.title}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: ci * 0.05 }}
-                className="group overflow-hidden rounded-3xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="overflow-hidden">
-                  <img
-                    src={cat.image}
-                    alt={cat.alt}
-                    loading="lazy"
-                    width={1200}
-                    height={800}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold">{cat.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
-                </div>
-              </motion.article>
+                <Link
+                  to="/it-services/$category"
+                  params={{ category: cat.slug }}
+                  className="group block h-full overflow-hidden rounded-3xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="overflow-hidden">
+                    <img
+                      src={cat.image}
+                      alt={cat.alt}
+                      loading="lazy"
+                      width={1200}
+                      height={800}
+                      className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold group-hover:text-brand transition">{cat.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                      View equipment <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
