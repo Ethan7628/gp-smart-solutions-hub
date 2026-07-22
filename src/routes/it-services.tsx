@@ -10,12 +10,7 @@ import teamAntenna from "@/assets/team-antenna.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import servicesFlyer from "@/assets/services-flyer.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
-import catCctv from "@/assets/cat-cctv.jpg";
-import catStorage from "@/assets/cat-storage.jpg";
-import catNetworking from "@/assets/cat-networking.jpg";
-import catAccess from "@/assets/cat-access.jpg";
-import catTelephony from "@/assets/cat-telephony.jpg";
-import catInstall from "@/assets/cat-install.jpg";
+import { itCategories } from "@/lib/it-categories";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -43,44 +38,13 @@ const services = [
   { icon: HeadphonesIcon, title: "IT Support", items: ["Home & office support", "Remote troubleshooting", "Maintenance contracts", "Hardware & software"] },
 ];
 
-const productCategories = [
-  {
-    title: "CCTV & Surveillance",
-    desc: "Dome, bullet, PTZ, turret, IP, thermal, ANPR, AI smart cameras and floodlight cameras for residential, commercial, industrial and retail sites.",
-    image: catCctv,
-    alt: "Professional outdoor CCTV bullet camera installed on a modern office building",
-  },
-  {
-    title: "Recording & Storage",
-    desc: "DVR, NVR and hybrid recorders, surveillance-grade hard drives, rack-mounted recorders and cloud surveillance systems.",
-    image: catStorage,
-    alt: "Rack-mounted network video recorders and surveillance storage in a data center",
-  },
-  {
-    title: "Networking & Fiber",
-    desc: "WiFi routers, mesh systems, PoE and managed switches, firewalls, patch panels, fiber optic runs, SFP modules and structured cabling accessories.",
-    image: catNetworking,
-    alt: "Neatly organized network patch panel with color-coded ethernet cables in a data center rack",
-  },
-  {
-    title: "Smart Access Control",
-    desc: "Smart door locks, fingerprint and face-recognition access, RFID card systems, video doorbells, motion detectors and smart alarms.",
-    image: catAccess,
-    alt: "Modern smart fingerprint biometric door lock installed on a sleek glass office door",
-  },
-  {
-    title: "Telephony & Communication",
-    desc: "PABX systems, IP and VoIP phones, office desk phones, conference phones, telephone switchboards and full call-center setups.",
-    image: catTelephony,
-    alt: "Professional IP desk phones and PABX telephony system on a modern office desk",
-  },
-  {
-    title: "Installation & Field Services",
-    desc: "Certified technicians handling cabling, fiber installs, router configuration, access point mounting, smart lock deployment and network troubleshooting.",
-    image: catInstall,
-    alt: "GP Smart Solutions technician in uniform installing a WiFi access point on an office ceiling",
-  },
-];
+const productCategories = itCategories.map((c) => ({
+  slug: c.slug,
+  title: c.title,
+  desc: c.shortDesc,
+  image: c.image,
+  alt: c.alt,
+}));
 
 export function ITServicesPage() {
   return (
@@ -153,27 +117,35 @@ export function ITServicesPage() {
           </div>
           <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {productCategories.map((cat, ci) => (
-              <motion.article
+              <motion.div
                 key={cat.title}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: ci * 0.05 }}
-                className="group overflow-hidden rounded-3xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="overflow-hidden">
-                  <img
-                    src={cat.image}
-                    alt={cat.alt}
-                    loading="lazy"
-                    width={1200}
-                    height={800}
-                    className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
-                  />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-xl font-bold">{cat.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
-                </div>
-              </motion.article>
+                <Link
+                  to="/it-services/$category"
+                  params={{ category: cat.slug }}
+                  className="group block h-full overflow-hidden rounded-3xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+                >
+                  <div className="overflow-hidden">
+                    <img
+                      src={cat.image}
+                      alt={cat.alt}
+                      loading="lazy"
+                      width={1200}
+                      height={800}
+                      className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold group-hover:text-brand transition">{cat.title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
+                    <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                      View equipment <ArrowRight className="h-4 w-4" />
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
             ))}
           </div>
         </div>
