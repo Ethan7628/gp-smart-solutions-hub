@@ -9,6 +9,7 @@ import {
   Star,
   Clock,
   Calendar,
+  ChevronRight,
 } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
@@ -17,6 +18,7 @@ import salonPoster from "@/assets/salon-poster.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
 import salonTeamBack from "@/assets/salon-team-back.jpg";
 import gpUnixesManicure from "@/assets/gp-unixes-manicure.jpg";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/beauty")({
   head: () => ({
@@ -49,6 +51,17 @@ export const Route = createFileRoute("/beauty")({
       },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/beauty" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Beauty & Salon", path: "/beauty" },
+          ]),
+        ),
+      },
+    ],
   }),
   component: BeautyPage,
 });
@@ -107,10 +120,22 @@ export function BeautyPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-background/60 via-background/85 to-background" />
         </div>
         <div className="container-app py-20 md:py-28">
+          {/* Breadcrumbs */}
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground"
+          >
+            <Link to="/" className="hover:text-brand transition">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-foreground font-medium">Beauty & Salon</span>
+          </nav>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="mt-6"
           >
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium">
               <Sparkles className="h-3.5 w-3.5" style={{ color: "var(--beauty)" }} /> Beauty & Salon

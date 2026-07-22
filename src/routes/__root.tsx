@@ -12,7 +12,13 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "sonner";
-import { SITE_URL, localBusinessJsonLd } from "@/lib/seo";
+import {
+  SITE_URL,
+  SITEMAP_PATH,
+  localBusinessJsonLd,
+  websiteJsonLd,
+  organizationJsonLd,
+} from "@/lib/seo";
 
 function NotFoundComponent() {
   return (
@@ -116,11 +122,20 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "canonical", href: SITE_URL },
+      { rel: "sitemap", type: "application/xml", href: SITEMAP_PATH },
     ],
     scripts: [
       {
         type: "application/ld+json",
         children: JSON.stringify(localBusinessJsonLd),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(websiteJsonLd),
+      },
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(organizationJsonLd),
       },
     ],
   }),

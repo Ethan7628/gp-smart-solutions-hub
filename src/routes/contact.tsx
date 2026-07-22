@@ -1,11 +1,12 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { Phone, Mail, MapPin, MessageCircle, Send, Clock } from "lucide-react";
+import { Phone, Mail, MapPin, MessageCircle, Send, Clock, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
+import { breadcrumbJsonLd } from "@/lib/seo";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -43,6 +44,17 @@ export const Route = createFileRoute("/contact")({
       },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/contact" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        ),
+      },
+    ],
   }),
   component: ContactPage,
 });
@@ -53,6 +65,8 @@ const schema = z.object({
   phone: z.string().trim().min(7, "Enter a valid phone number").max(20),
   subject: z.string().trim().min(3, "Add a short subject").max(120),
   message: z.string().trim().min(10, "Tell us a bit more").max(2000),
+  // Honeypot field — must be empty for legitimate submissions
+  company: z.string().max(0, "Spam detected").optional(),
 });
 type FormValues = z.infer<typeof schema>;
 
@@ -74,7 +88,6 @@ function ContactPage() {
       formData.append("phone", values.phone);
       formData.append("subject", values.subject);
       formData.append("message", values.message);
-      // FormSubmit config
       formData.append("_subject", `New enquiry: ${values.subject}`);
       formData.append("_template", "table");
       formData.append("_captcha", "false");
@@ -101,11 +114,22 @@ function ContactPage() {
   return (
     <SiteLayout>
       <section className="container-app py-16 md:py-24">
+        {/* Breadcrumbs */}
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-1.5 text-sm text-muted-foreground"
+        >
+          <Link to="/" className="hover:text-brand transition">
+            Home
+          </Link>
+          <ChevronRight className="h-3.5 w-3.5" />
+          <span className="text-foreground font-medium">Contact</span>
+        </nav>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl"
+          className="mt-6 max-w-3xl"
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">Contact</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
@@ -175,9 +199,24 @@ function ContactPage() {
             transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3 rounded-3xl border border-border bg-card p-8 md:p-10 shadow-soft"
             noValidate
+            aria-label="Contact form"
           >
             <h2 className="text-2xl font-bold">Send a message</h2>
-            <p className="mt-1 text-sm text-muted-foreground">We reply within one business hour.</p>
+            <p className="mt-1 text-sm text-muted-foreground" id="form-desc">
+              We reply within one business hour.
+            </p>
+
+            {/* Honeypot field — visually hidden, accessible to screen readers */}
+            <div className="sr-only" aria-hidden="true">
+              <label htmlFor="company">Company (leave blank)</label>
+              <input
+                id="company"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+                {...register("company")}
+              />
+            </div>
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <div className="space-y-1.5">
@@ -185,10 +224,15 @@ function ContactPage() {
                 <Input
                   id="name"
                   placeholder="Jane Doe"
-                  {...register("name")}
                   aria-invalid={!!errors.name}
+                  aria-describedby={errors.name ? "name-error" : undefined}
+                  {...register("name")}
                 />
-                {errors.name && <p className="text-xs text-danger">{errors.name.message}</p>}
+                {errors.name && (
+                  <p id="name-error" className="text-xs text-danger" role="alert">
+                    {errors.name.message}
+                  </p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="email">Email</Label>
@@ -196,30 +240,45 @@ function ContactPage() {
                   id="email"
                   type="email"
                   placeholder="you@company.com"
-                  {...register("email")}
                   aria-invalid={!!errors.email}
+                  aria-describedby={errors.email ? "email-error" : undefined}
+                  {...register("email")}
                 />
-                {errors.email && <p className="text-xs text-danger">{errors.email.message}</p>}
+                {errors.email && (
+                  <p id="email-error" className="text-xs text-danger" role="alert">
+                    {errors.email.message}
+                  </p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="phone">Phone</Label>
                 <Input
                   id="phone"
                   placeholder="+256 700 000 000"
-                  {...register("phone")}
                   aria-invalid={!!errors.phone}
+                  aria-describedby={errors.phone ? "phone-error" : undefined}
+                  {...register("phone")}
                 />
-                {errors.phone && <p className="text-xs text-danger">{errors.phone.message}</p>}
+                {errors.phone && (
+                  <p id="phone-error" className="text-xs text-danger" role="alert">
+                    {errors.phone.message}
+                  </p>
+                )}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
                   placeholder="CCTV quote / Salon booking / …"
-                  {...register("subject")}
                   aria-invalid={!!errors.subject}
+                  aria-describedby={errors.subject ? "subject-error" : undefined}
+                  {...register("subject")}
                 />
-                {errors.subject && <p className="text-xs text-danger">{errors.subject.message}</p>}
+                {errors.subject && (
+                  <p id="subject-error" className="text-xs text-danger" role="alert">
+                    {errors.subject.message}
+                  </p>
+                )}
               </div>
             </div>
 
@@ -229,10 +288,15 @@ function ContactPage() {
                 id="message"
                 rows={5}
                 placeholder="Tell us about your project or the service you'd like to book…"
-                {...register("message")}
                 aria-invalid={!!errors.message}
+                aria-describedby={errors.message ? "message-error" : undefined}
+                {...register("message")}
               />
-              {errors.message && <p className="text-xs text-danger">{errors.message.message}</p>}
+              {errors.message && (
+                <p id="message-error" className="text-xs text-danger" role="alert">
+                  {errors.message.message}
+                </p>
+              )}
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">

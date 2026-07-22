@@ -1,6 +1,19 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Camera, Wifi, Cable, Server, Lock, Cpu, Shield, Headphones as HeadphonesIcon, Check, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Camera,
+  Wifi,
+  Cable,
+  Server,
+  Lock,
+  Cpu,
+  Shield,
+  Headphones as HeadphonesIcon,
+  Check,
+  Phone,
+  ChevronRight,
+} from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import itImg from "@/assets/it-showcase.jpg";
@@ -11,6 +24,7 @@ import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import servicesFlyer from "@/assets/services-flyer.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import { itCategories } from "@/lib/it-categories";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/it-services")({
   head: () => ({
@@ -43,6 +57,17 @@ export const Route = createFileRoute("/it-services")({
       },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/it-services" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "IT Services", path: "/it-services" },
+          ]),
+        ),
+      },
+    ],
   }),
   component: ITServicesPage,
 });
@@ -154,10 +179,22 @@ export function ITServicesPage() {
           <div className="absolute inset-0 bg-mesh" />
         </div>
         <div className="container-app py-20 md:py-28">
+          {/* Breadcrumbs */}
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground"
+          >
+            <Link to="/" className="hover:text-brand transition">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-foreground font-medium">IT Services</span>
+          </nav>
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
+            className="mt-6"
           >
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium">
               <Cpu className="h-3.5 w-3.5 text-brand" /> IT & Technology Division
@@ -176,7 +213,7 @@ export function ITServicesPage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-6 border-2">
-                <a href="tel:+256789877929">
+                <a href="tel:+256789877929" aria-label="Call +256 789 877 929">
                   <Phone className="mr-2 h-4 w-4" /> +256 789 877 929
                 </a>
               </Button>

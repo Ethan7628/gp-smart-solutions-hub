@@ -1,6 +1,26 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Camera, Wifi, Cable, Server, Lock, Cpu, Headphones as HeadphonesIcon, Scissors, Sparkles, Palette, Heart, Star, CircleCheck as CheckCircle2, Users, Clock, Trophy, Phone } from "lucide-react";
+import {
+  ArrowRight,
+  Shield,
+  Camera,
+  Wifi,
+  Cable,
+  Server,
+  Lock,
+  Cpu,
+  Headphones as HeadphonesIcon,
+  Scissors,
+  Sparkles,
+  Palette,
+  Heart,
+  Star,
+  CircleCheck as CheckCircle2,
+  Users,
+  Clock,
+  Trophy,
+  Phone,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-fusion.jpg";

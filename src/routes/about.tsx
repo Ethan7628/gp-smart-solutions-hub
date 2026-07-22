@@ -1,11 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { Target, Eye, Award, Users, Trophy, Clock, ArrowRight } from "lucide-react";
+import { Target, Eye, Award, Users, Trophy, Clock, ArrowRight, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import engineerDesk from "@/assets/it-engineer-desk.jpg";
 import teamOffice from "@/assets/team-office.jpg";
 import salonTeam from "@/assets/salon-team.jpg";
+import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -39,6 +40,17 @@ export const Route = createFileRoute("/about")({
       },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/about" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify(
+          breadcrumbJsonLd([
+            { name: "Home", path: "/" },
+            { name: "About", path: "/about" },
+          ]),
+        ),
+      },
+    ],
   }),
   component: AboutPage,
 });
@@ -47,11 +59,22 @@ function AboutPage() {
   return (
     <SiteLayout>
       <section className="container-app py-16 md:py-24">
+        {/* Breadcrumbs */}
+        <nav
+          aria-label="Breadcrumb"
+          className="flex items-center gap-1.5 text-sm text-muted-foreground"
+        >
+          <Link to="/" className="hover:text-brand transition">
+            Home
+          </Link>
+          <ChevronRight className="h-3.5 w-3.5" />
+          <span className="text-foreground font-medium">About</span>
+        </nav>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="max-w-3xl"
+          className="mt-6 max-w-3xl"
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">About Us</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">

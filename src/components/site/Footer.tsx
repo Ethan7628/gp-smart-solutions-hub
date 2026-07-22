@@ -1,50 +1,25 @@
 import { Link } from "@tanstack/react-router";
-import {
-  Sparkles,
-  Phone,
-  Mail,
-  MapPin,
-  Facebook,
-  Instagram,
-  Linkedin,
-  Youtube,
-} from "lucide-react";
+import { Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { itCategories } from "@/lib/it-categories";
+import { BUSINESS_EMAIL, BUSINESS_PHONE_DISPLAY, BUSINESS_WHATSAPP } from "@/lib/seo";
+import logo from "@/assets/logo.png";
 
-const columns = [
-  {
-    title: "IT Services",
-    links: [
-      { to: "/it-services", label: "Overview" },
-      { to: "/it-services", label: "CCTV Installation" },
-      { to: "/it-services", label: "Networking & WiFi" },
-      { to: "/it-services", label: "PABX & Telephony" },
-      { to: "/it-services", label: "Access Control" },
-      { to: "/it-services", label: "IT Support" },
-    ],
-  },
-  {
-    title: "Beauty & Salon",
-    links: [
-      { to: "/beauty", label: "Overview" },
-      { to: "/beauty", label: "Haircuts & Styling" },
-      { to: "/beauty", label: "Hair Treatment" },
-      { to: "/beauty", label: "Nails & Pedicure" },
-      { to: "/beauty", label: "Beard Grooming" },
-      { to: "/beauty", label: "Cosmetics" },
-    ],
-  },
-  {
-    title: "Company",
-    links: [
-      { to: "/about", label: "About Us" },
-      { to: "/contact", label: "Contact" },
-      { to: "/contact", label: "Get a Quote" },
-      { to: "/beauty", label: "Book Appointment" },
-    ],
-  },
-];
+const beautyLinks = [
+  { to: "/beauty", label: "Overview" },
+  { to: "/beauty", label: "Haircuts & Styling" },
+  { to: "/beauty", label: "Hair Treatment" },
+  { to: "/beauty", label: "Nails & Pedicure" },
+  { to: "/beauty", label: "Beard Grooming" },
+  { to: "/beauty", label: "Cosmetics & Makeup" },
+] as const;
 
-// Simple TikTok glyph (lucide has no TikTok icon)
+const companyLinks = [
+  { to: "/about", label: "About Us" },
+  { to: "/contact", label: "Contact" },
+  { to: "/contact", label: "Get a Quote" },
+  { to: "/beauty", label: "Book Appointment" },
+] as const;
+
 function TiktokIcon({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
@@ -70,15 +45,15 @@ const socials = [
 ];
 
 export function Footer() {
+  const year = new Date().getFullYear();
+
   return (
     <footer className="mt-24 border-t border-border/60 bg-dark text-white/80">
       <div className="container-app py-16">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2">
-              <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-brand shadow-glow">
-                <Sparkles className="h-5 w-5" strokeWidth={2.5} />
-              </span>
+            <Link to="/" className="flex items-center gap-2" aria-label="GP Smart Solutions home">
+              <img src={logo} alt="GP Smart Solutions logo" className="h-10 w-18" />
               <span className="text-white font-bold text-lg">GP Smart Solutions</span>
             </Link>
             <p className="mt-4 text-sm text-white/60 max-w-sm">
@@ -87,61 +62,102 @@ export function Footer() {
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">
-              <li className="flex items-center gap-3">
-                <Phone className="h-4 w-4 text-brand-glow" /> +256 789 877 929
+              <li>
+                <a
+                  href={`tel:+${BUSINESS_WHATSAPP}`}
+                  className="flex items-center gap-3 hover:text-white transition"
+                >
+                  <Phone className="h-4 w-4 text-brand-glow" /> {BUSINESS_PHONE_DISPLAY}
+                </a>
               </li>
-              <li className="flex items-center gap-3">
-                <Mail className="h-4 w-4 text-brand-glow" /> gpsmartsolutions9@gmail.com
+              <li>
+                <a
+                  href={`mailto:${BUSINESS_EMAIL}`}
+                  className="flex items-center gap-3 hover:text-white transition"
+                >
+                  <Mail className="h-4 w-4 text-brand-glow" /> {BUSINESS_EMAIL}
+                </a>
               </li>
               <li className="flex items-center gap-3">
                 <MapPin className="h-4 w-4 text-brand-glow" /> Kampala, Uganda
               </li>
             </ul>
 
-            <div className="mt-6 flex gap-3">
+            <nav className="mt-6 flex gap-3" aria-label="Social media">
               {socials.map(({ Icon, label, href }) => (
                 <a
                   key={label}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label={label}
+                  aria-label={`Visit GP Smart Solutions on ${label}`}
                   className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 transition"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
-            </div>
+            </nav>
           </div>
 
-          {columns.map((c) => (
-            <div key={c.title}>
-              <h3 className="text-white font-semibold text-sm tracking-wide uppercase">
-                {c.title}
-              </h3>
-              <ul className="mt-4 space-y-2.5">
-                {c.links.map((l, i) => (
-                  <li key={i}>
-                    <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          <nav aria-label="IT services navigation">
+            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">
+              IT Services
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              <li>
+                <Link
+                  to="/it-services"
+                  className="text-sm text-white/60 hover:text-white transition"
+                >
+                  Overview
+                </Link>
+              </li>
+              {itCategories.map((c) => (
+                <li key={c.slug}>
+                  <Link
+                    to="/it-services/$category"
+                    params={{ category: c.slug }}
+                    className="text-sm text-white/60 hover:text-white transition"
+                  >
+                    {c.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Beauty and salon navigation">
+            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">
+              Beauty &amp; Salon
+            </h3>
+            <ul className="mt-4 space-y-2.5">
+              {beautyLinks.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="Company navigation">
+            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">Company</h3>
+            <ul className="mt-4 space-y-2.5">
+              {companyLinks.map((l) => (
+                <li key={l.label}>
+                  <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </nav>
         </div>
 
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
-          <p>© {new Date().getFullYear()} GP Smart Solutions Limited. All rights reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-white">
-              Privacy Policy
-            </a>
-            <a href="#" className="hover:text-white">
-              Terms of Service
-            </a>
-          </div>
+          <p>&copy; {year} GP Smart Solutions Limited. All rights reserved.</p>
+          <p>Smart Technology. Professional Beauty.</p>
         </div>
       </div>
     </footer>

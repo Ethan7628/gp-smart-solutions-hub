@@ -1,9 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Phone } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Phone, ChevronRight, Circle as HelpCircle, Building2, Rocket, TrendingUp } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
+import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/it-services/$category")({
   loader: ({ params }) => {
@@ -23,6 +24,19 @@ export const Route = createFileRoute("/it-services/$category")({
     const { category } = loaderData;
     const title = `${category.title} — GP Smart Solutions`;
     const canonicalUrl = `https://gpsmartsolutions.co.ug/it-services/${category.slug}`;
+
+    const breadcrumbLd = breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "IT Services", path: "/it-services" },
+      { name: category.title, path: `/it-services/${category.slug}` },
+    ]);
+    const serviceLd = serviceJsonLd({
+      name: category.title,
+      description: category.shortDesc,
+      path: `/it-services/${category.slug}`,
+    });
+    const faqLd = faqJsonLd(category.faqs);
+
     return {
       meta: [
         { title },
@@ -38,6 +52,11 @@ export const Route = createFileRoute("/it-services/$category")({
         { name: "twitter:description", content: category.shortDesc },
       ],
       links: [{ rel: "canonical", href: canonicalUrl }],
+      scripts: [
+        { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
+        { type: "application/ld+json", children: JSON.stringify(serviceLd) },
+        { type: "application/ld+json", children: JSON.stringify(faqLd) },
+      ],
     };
   },
   component: CategoryPage,
@@ -86,12 +105,22 @@ function CategoryPage() {
           <div className="absolute inset-0 bg-mesh" />
         </div>
         <div className="container-app py-16 md:py-24">
-          <Link
-            to="/it-services"
-            className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-brand transition"
+          {/* Breadcrumbs */}
+          <nav
+            aria-label="Breadcrumb"
+            className="flex items-center gap-1.5 text-sm text-muted-foreground"
           >
-            <ArrowLeft className="h-4 w-4" /> All IT services
-          </Link>
+            <Link to="/" className="hover:text-brand transition">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <Link to="/it-services" className="hover:text-brand transition">
+              IT Services
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-foreground font-medium">{category.title}</span>
+          </nav>
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,7 +141,7 @@ function CategoryPage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-6 border-2">
-                <a href="tel:+256789877929">
+                <a href="tel:+256789877929" aria-label="Call +256 789 877 929">
                   <Phone className="mr-2 h-4 w-4" /> +256 789 877 929
                 </a>
               </Button>
@@ -121,8 +150,66 @@ function CategoryPage() {
         </div>
       </section>
 
+      {/* Benefits */}
+      <section className="container-app py-16 md:py-20">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand">
+            Why choose our {category.title.toLowerCase()}
+          </p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+            Benefits that matter to your business
+          </h2>
+        </div>
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {category.benefits.map((benefit, i) => (
+            <motion.div
+              key={benefit}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.05 }}
+              className="flex items-start gap-3 rounded-2xl border border-border bg-card p-6 shadow-soft"
+            >
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground">
+                <TrendingUp className="h-5 w-5" />
+              </div>
+              <p className="text-sm text-foreground/90 leading-relaxed pt-2">{benefit}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* Process */}
+      <section className="container-app py-16 md:py-20">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand">How we work</p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+            Our installation process
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            A proven, transparent workflow — from first site visit to final handover.
+          </p>
+        </div>
+        <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+          {category.process.map((p, i) => (
+            <motion.div
+              key={p.step}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
+              className="relative rounded-3xl border border-border bg-card p-6 shadow-soft"
+            >
+              <div className="text-4xl font-bold gradient-text">{p.step}</div>
+              <h3 className="mt-3 text-lg font-bold">{p.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* Equipment grid */}
-      <section className="container-app pb-24">
+      <section className="container-app py-16 md:py-20">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">
             Equipment we supply & install
@@ -166,12 +253,82 @@ function CategoryPage() {
             </motion.article>
           ))}
         </div>
+      </section>
 
-        {/* CTA */}
-        <div className="mt-16 rounded-3xl bg-gradient-brand p-10 md:p-14 text-white shadow-elegant">
+      {/* Industries served */}
+      <section className="container-app py-16 md:py-20">
+        <div className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand">
+            Industries we serve
+          </p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+            Trusted across sectors
+          </h2>
+          <p className="mt-4 text-muted-foreground">
+            From retail to manufacturing, we tailor {category.title.toLowerCase()} solutions to your
+            industry's specific requirements.
+          </p>
+        </div>
+        <div className="mt-8 flex flex-wrap gap-3">
+          {category.industries.map((industry, i) => (
+            <motion.span
+              key={industry}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.3, delay: i * 0.03 }}
+              className="inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-2 text-sm font-medium shadow-soft"
+            >
+              <Building2 className="h-4 w-4 text-brand" />
+              {industry}
+            </motion.span>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="container-app py-16 md:py-20">
+        <div className="max-w-3xl mx-auto">
+          <div className="text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-brand">
+              Frequently Asked Questions
+            </p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+              Got questions? We've got answers.
+            </h2>
+          </div>
+          <div className="mt-10 space-y-4">
+            {category.faqs.map((faq, i) => (
+              <motion.div
+                key={faq.question}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="rounded-2xl border border-border bg-card p-6 shadow-soft"
+              >
+                <div className="flex items-start gap-3">
+                  <HelpCircle className="h-5 w-5 text-brand shrink-0 mt-0.5" />
+                  <div>
+                    <h3 className="font-bold text-lg">{faq.question}</h3>
+                    <p className="mt-2 text-muted-foreground leading-relaxed">{faq.answer}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="container-app pb-8">
+        <div className="rounded-3xl bg-gradient-brand p-10 md:p-14 text-white shadow-elegant">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold">Need something specific?</h2>
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium">
+                <Rocket className="h-3.5 w-3.5" /> Ready to deploy?
+              </div>
+              <h2 className="mt-4 text-3xl md:text-4xl font-bold">Need something specific?</h2>
               <p className="mt-3 text-white/85 max-w-md">
                 Tell us your site, budget and timeline — we'll return a scoped quote with equipment
                 recommendations.
@@ -182,44 +339,49 @@ function CategoryPage() {
                 <Link to="/contact">Get a Quote</Link>
               </Button>
               <Button asChild size="lg" className="h-12 px-6 bg-white text-brand hover:bg-white/90">
-                <a href="https://wa.me/256789877929" target="_blank" rel="noopener">
+                <a
+                  href="https://wa.me/256789877929"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Chat with us on WhatsApp"
+                >
                   WhatsApp Us
                 </a>
               </Button>
             </div>
           </div>
         </div>
+      </section>
 
-        {/* Other categories */}
-        <div className="mt-20">
-          <h2 className="text-2xl md:text-3xl font-bold tracking-tight">
-            Explore other categories
-          </h2>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {others.map((c) => (
-              <Link
-                key={c.slug}
-                to="/it-services/$category"
-                params={{ category: c.slug }}
-                className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
-              >
-                <div className="overflow-hidden">
-                  <img
-                    src={c.image}
-                    alt={c.alt}
-                    loading="lazy"
-                    className="w-full h-40 object-cover group-hover:scale-105 transition duration-500"
-                  />
-                </div>
-                <div className="p-5">
-                  <h3 className="text-lg font-bold group-hover:text-brand transition">{c.title}</h3>
-                  <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{c.shortDesc}</p>
-                </div>
-              </Link>
-            ))}
-          </div>
+      {/* Other categories */}
+      <section className="container-app pb-24">
+        <h2 className="text-2xl md:text-3xl font-bold tracking-tight">Explore other categories</h2>
+        <div className="mt-8 grid gap-6 md:grid-cols-3">
+          {others.map((c) => (
+            <Link
+              key={c.slug}
+              to="/it-services/$category"
+              params={{ category: c.slug }}
+              className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="overflow-hidden">
+                <img
+                  src={c.image}
+                  alt={c.alt}
+                  loading="lazy"
+                  className="w-full h-40 object-cover group-hover:scale-105 transition duration-500"
+                />
+              </div>
+              <div className="p-5">
+                <h3 className="text-lg font-bold group-hover:text-brand transition">{c.title}</h3>
+                <p className="mt-1 text-sm text-muted-foreground line-clamp-2">{c.shortDesc}</p>
+              </div>
+            </Link>
+          ))}
         </div>
       </section>
     </SiteLayout>
   );
 }
+
+export { SITE_URL };

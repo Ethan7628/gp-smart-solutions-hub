@@ -10,23 +10,20 @@ export const BUSINESS_ADDRESS_COUNTRY = "UG";
 export const BUSINESS_LAT = 0.3476;
 export const BUSINESS_LNG = 32.5825;
 
-export const ROUTES = [
-  { path: "/", priority: "1.0", changefreq: "weekly" },
-  { path: "/it-services", priority: "0.9", changefreq: "monthly" },
-  { path: "/beauty", priority: "0.9", changefreq: "monthly" },
-  { path: "/about", priority: "0.7", changefreq: "monthly" },
-  { path: "/contact", priority: "0.8", changefreq: "monthly" },
-  { path: "/it-services/cctv-surveillance", priority: "0.8", changefreq: "monthly" },
-  { path: "/it-services/recording-storage", priority: "0.8", changefreq: "monthly" },
-  { path: "/it-services/networking-fiber", priority: "0.8", changefreq: "monthly" },
-  { path: "/it-services/smart-access", priority: "0.8", changefreq: "monthly" },
-  { path: "/it-services/telephony", priority: "0.8", changefreq: "monthly" },
-  { path: "/it-services/installation-services", priority: "0.8", changefreq: "monthly" },
-];
+export const SITEMAP_PATH = "/sitemap.xml";
+
+export const NAV_LINKS = [
+  { to: "/", label: "Home" },
+  { to: "/it-services", label: "IT Services" },
+  { to: "/beauty", label: "Beauty & Salon" },
+  { to: "/about", label: "About" },
+  { to: "/contact", label: "Contact" },
+] as const;
 
 export const localBusinessJsonLd = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
+  "@id": `${SITE_URL}#business`,
   name: SITE_NAME,
   description:
     "Premium IT services and luxurious salon experiences under one trusted brand in Kampala, Uganda. CCTV, networking, PABX, access control, fiber optics, plus haircuts, nails, and beauty treatments.",
@@ -35,6 +32,8 @@ export const localBusinessJsonLd = {
   telephone: BUSINESS_PHONE,
   image: `${SITE_URL}/assets/hero-fusion.jpg`,
   logo: `${SITE_URL}/favicon.ico`,
+  priceRange: "$$",
+  areaServed: "Uganda",
   address: {
     "@type": "PostalAddress",
     addressLocality: BUSINESS_ADDRESS_LOCALITY,
@@ -45,9 +44,12 @@ export const localBusinessJsonLd = {
     latitude: BUSINESS_LAT,
     longitude: BUSINESS_LNG,
   },
-  openingHours: "Mo-Sa 08:00-20:00",
-  areaServed: "Uganda",
-  priceRange: "$$",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    opens: "08:00",
+    closes: "20:00",
+  },
   sameAs: [
     "https://www.facebook.com/share/1935f6zmN6/",
     "https://www.instagram.com/katongole2204",
@@ -73,7 +75,95 @@ export const localBusinessJsonLd = {
   ],
 };
 
-export function buildPageMeta({
+export const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${SITE_URL}#website`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  publisher: { "@id": `${SITE_URL}#business` },
+  potentialAction: {
+    "@type": "SearchAction",
+    target: `${SITE_URL}/contact`,
+    "query-input": "required name=search_term_string",
+  },
+};
+
+export const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": `${SITE_URL}#organization`,
+  name: SITE_NAME,
+  url: SITE_URL,
+  logo: `${SITE_URL}/favicon.ico`,
+  email: BUSINESS_EMAIL,
+  telephone: BUSINESS_PHONE,
+  contactPoint: {
+    "@type": "ContactPoint",
+    contactType: "customer service",
+    telephone: BUSINESS_PHONE,
+    email: BUSINESS_EMAIL,
+    areaServed: "Uganda",
+    availableLanguage: "English",
+  },
+  sameAs: [
+    "https://www.facebook.com/share/1935f6zmN6/",
+    "https://www.instagram.com/katongole2204",
+    "https://www.linkedin.com/in/emmanuel-katongole-a062633ab",
+    "https://www.youtube.com/@GpsmartsolutionsLimited",
+    "https://tiktok.com/@gpsmartsolutions",
+  ],
+};
+
+export function breadcrumbJsonLd(items: { name: string; path: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.path}`,
+    })),
+  };
+}
+
+export function serviceJsonLd({
+  name,
+  description,
+  path,
+}: {
+  name: string;
+  description: string;
+  path: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name,
+    description,
+    url: `${SITE_URL}${path}`,
+    provider: { "@id": `${SITE_URL}#business` },
+    areaServed: "Uganda",
+  };
+}
+
+export function faqJsonLd(faqs: { question: string; answer: string }[]) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: f.answer,
+      },
+    })),
+  };
+}
+
+export function pageMeta({
   title,
   description,
   path,
