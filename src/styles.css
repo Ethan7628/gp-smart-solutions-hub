@@ -52,11 +52,11 @@
   --radius: 1rem;
 
   /* Brand palette — Royal Blue / Sky / Cyan */
-  --brand: oklch(0.55 0.22 260);        /* #2563EB */
-  --brand-glow: oklch(0.78 0.15 232);   /* #38BDF8 */
+  --brand: oklch(0.55 0.22 260); /* #2563EB */
+  --brand-glow: oklch(0.78 0.15 232); /* #38BDF8 */
   --brand-accent: oklch(0.72 0.14 210); /* #06B6D4 */
-  --beauty: oklch(0.72 0.18 15);        /* rose */
-  --beauty-glow: oklch(0.82 0.11 60);   /* champagne */
+  --beauty: oklch(0.72 0.18 15); /* rose */
+  --beauty-glow: oklch(0.82 0.11 60); /* champagne */
 
   --dark: oklch(0.2 0.04 265);
   --success: oklch(0.72 0.18 145);
@@ -87,9 +87,10 @@
   --gradient-brand: linear-gradient(135deg, oklch(0.55 0.22 260), oklch(0.72 0.14 210));
   --gradient-hero: linear-gradient(120deg, oklch(0.55 0.22 260 / 0.9), oklch(0.72 0.18 15 / 0.85));
   --gradient-beauty: linear-gradient(135deg, oklch(0.72 0.18 15), oklch(0.82 0.11 60));
-  --gradient-mesh: radial-gradient(at 20% 20%, oklch(0.55 0.22 260 / 0.25), transparent 60%),
-                   radial-gradient(at 80% 30%, oklch(0.72 0.14 210 / 0.22), transparent 55%),
-                   radial-gradient(at 60% 90%, oklch(0.72 0.18 15 / 0.18), transparent 55%);
+  --gradient-mesh:
+    radial-gradient(at 20% 20%, oklch(0.55 0.22 260 / 0.25), transparent 60%),
+    radial-gradient(at 80% 30%, oklch(0.72 0.14 210 / 0.22), transparent 55%),
+    radial-gradient(at 60% 90%, oklch(0.72 0.18 15 / 0.18), transparent 55%);
   --shadow-elegant: 0 20px 50px -20px oklch(0.55 0.22 260 / 0.35);
   --shadow-soft: 0 10px 30px -12px oklch(0.2 0.04 265 / 0.12);
   --shadow-glow: 0 0 60px oklch(0.72 0.14 210 / 0.35);
@@ -130,7 +131,10 @@
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
-  h1, h2, h3, h4 {
+  h1,
+  h2,
+  h3,
+  h4 {
     font-family: var(--font-display);
     letter-spacing: -0.02em;
   }
@@ -141,7 +145,9 @@
   margin-inline: auto;
   padding-inline: 1.25rem;
   max-width: 80rem;
-  @media (min-width: 768px) { padding-inline: 2rem; }
+  @media (min-width: 768px) {
+    padding-inline: 2rem;
+  }
 }
 
 @utility gradient-text {
@@ -196,14 +202,23 @@
 }
 
 @keyframes float-slow {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-14px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-14px);
+  }
 }
 @utility animate-float {
   animation: float-slow 6s ease-in-out infinite;
 }
 
 @keyframes shimmer {
-  0% { background-position: -1000px 0; }
-  100% { background-position: 1000px 0; }
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
 }

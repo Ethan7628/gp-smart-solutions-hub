@@ -11,11 +11,34 @@ export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
       { title: "About Us — GP Smart Solutions" },
-      { name: "description", content: "GP Smart Solutions Limited unites premium IT services and a luxurious salon experience under one trusted brand serving Uganda." },
-      { property: "og:title", content: "About — GP Smart Solutions" },
-      { property: "og:url", content: "/about" },
+      {
+        name: "description",
+        content:
+          "GP Smart Solutions Limited unites premium IT services and a luxurious salon experience under one trusted brand serving Uganda. Meet our certified engineers and senior stylists.",
+      },
+      { name: "robots", content: "index, follow" },
+      {
+        name: "keywords",
+        content:
+          "GP Smart Solutions, about us, IT company Uganda, salon Kampala, certified IT engineers, senior stylists, Uganda technology company",
+      },
+      { property: "og:title", content: "About Us — GP Smart Solutions" },
+      {
+        property: "og:description",
+        content:
+          "Premium IT services and luxurious salon experiences under one trusted brand in Uganda.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://gpsmartsolutions.co.ug/about" },
+      { property: "og:site_name", content: "GP Smart Solutions" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About Us — GP Smart Solutions" },
+      {
+        name: "twitter:description",
+        content: "One trusted brand delivering premium IT and luxury salon services in Uganda.",
+      },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/about" }],
   }),
   component: AboutPage,
 });
@@ -24,8 +47,12 @@ function AboutPage() {
   return (
     <SiteLayout>
       <section className="container-app py-16 md:py-24">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-          className="max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">About Us</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
             One brand. <span className="gradient-text">Two crafts.</span> <br />
@@ -34,20 +61,35 @@ function AboutPage() {
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
             GP Smart Solutions Limited is a Uganda-based company that brings enterprise IT
             infrastructure and a luxurious salon experience under one trusted roof. We built the
-            business on the belief that whether you're securing an office network or booking a
-            hair treatment, you deserve the same level of care, precision and professionalism.
+            business on the belief that whether you're securing an office network or booking a hair
+            treatment, you deserve the same level of care, precision and professionalism.
           </p>
         </motion.div>
 
         <div className="mt-16 grid gap-6 md:grid-cols-3">
           {[
-            { icon: Target, title: "Mission", body: "Deliver smart, reliable technology and premium beauty experiences that elevate everyday life for businesses and individuals." },
-            { icon: Eye, title: "Vision", body: "To be East Africa's most trusted dual-service brand — where enterprise IT and luxury salon craftsmanship live under one standard." },
-            { icon: Award, title: "Values", body: "Quality first, transparent pricing, punctual delivery, honest advice, and long-term partnerships with every client we serve." },
+            {
+              icon: Target,
+              title: "Mission",
+              body: "Deliver smart, reliable technology and premium beauty experiences that elevate everyday life for businesses and individuals.",
+            },
+            {
+              icon: Eye,
+              title: "Vision",
+              body: "To be East Africa's most trusted dual-service brand — where enterprise IT and luxury salon craftsmanship live under one standard.",
+            },
+            {
+              icon: Award,
+              title: "Values",
+              body: "Quality first, transparent pricing, punctual delivery, honest advice, and long-term partnerships with every client we serve.",
+            },
           ].map((c, i) => (
-            <motion.div key={c.title}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.1 }}
+            <motion.div
+              key={c.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1 }}
               className="rounded-3xl border border-border bg-card p-8 shadow-soft"
             >
               <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
@@ -64,7 +106,9 @@ function AboutPage() {
       <section className="container-app pb-16">
         <div className="max-w-2xl">
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">Our People</p>
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">The team behind the brand.</h2>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+            The team behind the brand.
+          </h2>
           <p className="mt-4 text-muted-foreground">
             Certified IT engineers and senior stylists working under one roof — united by a shared
             standard of quality, courtesy and craft.
@@ -72,17 +116,34 @@ function AboutPage() {
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
-            { src: engineerDesk, alt: "GP Smart Solutions IT engineer at workstation with CCTV monitoring wall", tag: "IT Engineering" },
-            { src: teamOffice, alt: "GP Smart Solutions IT department staff member at Kampala office", tag: "IT Support" },
+            {
+              src: engineerDesk,
+              alt: "GP Smart Solutions IT engineer at workstation with CCTV monitoring wall",
+              tag: "IT Engineering",
+            },
+            {
+              src: teamOffice,
+              alt: "GP Smart Solutions IT department staff member at Kampala office",
+              tag: "IT Support",
+            },
             { src: salonTeam, alt: "GP Unisex Salon stylists serving clients", tag: "Salon Team" },
           ].map((p, i) => (
-            <motion.figure key={i}
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }} transition={{ duration: 0.5, delay: i * 0.08 }}
+            <motion.figure
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.08 }}
               className="group relative overflow-hidden rounded-3xl border border-border shadow-soft hover:shadow-elegant transition"
             >
-              <img src={p.src} alt={p.alt} width={800} height={1000} loading="lazy"
-                className="h-80 w-full object-cover group-hover:scale-105 transition duration-500" />
+              <img
+                src={p.src}
+                alt={p.alt}
+                width={800}
+                height={1000}
+                loading="lazy"
+                className="h-80 w-full object-cover group-hover:scale-105 transition duration-500"
+              />
               <figcaption className="absolute bottom-4 left-4 rounded-full glass px-3 py-1 text-xs font-semibold">
                 {p.tag}
               </figcaption>
@@ -111,7 +172,9 @@ function AboutPage() {
 
         <div className="mt-12 flex flex-wrap gap-3">
           <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
-            <Link to="/contact">Work With Us <ArrowRight className="ml-1 h-4 w-4" /></Link>
+            <Link to="/contact">
+              Work With Us <ArrowRight className="ml-1 h-4 w-4" />
+            </Link>
           </Button>
           <Button asChild size="lg" variant="outline" className="h-12 px-6 border-2">
             <Link to="/it-services">Explore Services</Link>

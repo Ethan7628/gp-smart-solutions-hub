@@ -15,11 +15,34 @@ export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
       { title: "Contact — GP Smart Solutions" },
-      { name: "description", content: "Get in touch with GP Smart Solutions Limited. Request a quote, book a salon appointment or reach us on WhatsApp at +256 789 877 929." },
+      {
+        name: "description",
+        content:
+          "Get in touch with GP Smart Solutions Limited. Request a quote, book a salon appointment or reach us on WhatsApp at +256 789 877 929.",
+      },
+      { name: "robots", content: "index, follow" },
+      {
+        name: "keywords",
+        content:
+          "contact GP Smart Solutions, IT quote Uganda, salon appointment Kampala, WhatsApp, CCTV quote, book salon",
+      },
       { property: "og:title", content: "Contact — GP Smart Solutions" },
-      { property: "og:url", content: "/contact" },
+      {
+        property: "og:description",
+        content:
+          "Request an IT quote, book a salon appointment, or reach us on WhatsApp at +256 789 877 929.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://gpsmartsolutions.co.ug/contact" },
+      { property: "og:site_name", content: "GP Smart Solutions" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Contact — GP Smart Solutions" },
+      {
+        name: "twitter:description",
+        content: "Request a quote or book a salon appointment. WhatsApp +256 789 877 929.",
+      },
     ],
-    links: [{ rel: "canonical", href: "/contact" }],
+    links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/contact" }],
   }),
   component: ContactPage,
 });
@@ -34,7 +57,12 @@ const schema = z.object({
 type FormValues = z.infer<typeof schema>;
 
 function ContactPage() {
-  const { register, handleSubmit, reset, formState: { errors, isSubmitting } } = useForm<FormValues>({
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isSubmitting },
+  } = useForm<FormValues>({
     resolver: zodResolver(schema),
   });
 
@@ -73,15 +101,19 @@ function ContactPage() {
   return (
     <SiteLayout>
       <section className="container-app py-16 md:py-24">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}
-          className="max-w-3xl">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl"
+        >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">Contact</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
             Let's <span className="gradient-text">build</span> something great.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
-            Request an IT quote, book a salon appointment, or ask us anything — we typically
-            respond within minutes on WhatsApp.
+            Request an IT quote, book a salon appointment, or ask us anything — we typically respond
+            within minutes on WhatsApp.
           </p>
         </motion.div>
 
@@ -89,15 +121,38 @@ function ContactPage() {
           {/* Contact Info */}
           <div className="lg:col-span-2 space-y-4">
             {[
-              { icon: Phone, title: "Call us", value: "+256 789 877 929", href: "tel:+256789877929" },
-              { icon: MessageCircle, title: "WhatsApp", value: "Chat with our team", href: "https://wa.me/256789877929" },
-              { icon: Mail, title: "Email", value: "gpsmartsolutions9@gmail.com", href: "mailto:gpsmartsolutions9@gmail.com" },
+              {
+                icon: Phone,
+                title: "Call us",
+                value: "+256 789 877 929",
+                href: "tel:+256789877929",
+              },
+              {
+                icon: MessageCircle,
+                title: "WhatsApp",
+                value: "Chat with our team",
+                href: "https://wa.me/256789877929",
+              },
+              {
+                icon: Mail,
+                title: "Email",
+                value: "gpsmartsolutions9@gmail.com",
+                href: "mailto:gpsmartsolutions9@gmail.com",
+              },
               { icon: MapPin, title: "Location", value: "Kampala, Uganda" },
               { icon: Clock, title: "Hours", value: "Mon–Sat · 8:00 AM – 8:00 PM" },
             ].map((c) => {
               const Comp = c.href ? "a" : "div";
               return (
-                <Comp key={c.title} {...(c.href ? { href: c.href, target: c.href.startsWith("http") ? "_blank" : undefined, rel: "noopener" } : {})}
+                <Comp
+                  key={c.title}
+                  {...(c.href
+                    ? {
+                        href: c.href,
+                        target: c.href.startsWith("http") ? "_blank" : undefined,
+                        rel: "noopener",
+                      }
+                    : {})}
                   className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft hover:shadow-elegant transition-all"
                 >
                   <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow shrink-0">
@@ -115,7 +170,9 @@ function ContactPage() {
           {/* Form */}
           <motion.form
             onSubmit={handleSubmit(onSubmit)}
-            initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1 }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
             className="lg:col-span-3 rounded-3xl border border-border bg-card p-8 md:p-10 shadow-soft"
             noValidate
           >
@@ -125,37 +182,81 @@ function ContactPage() {
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <div className="space-y-1.5">
                 <Label htmlFor="name">Full name</Label>
-                <Input id="name" placeholder="Jane Doe" {...register("name")} aria-invalid={!!errors.name} />
+                <Input
+                  id="name"
+                  placeholder="Jane Doe"
+                  {...register("name")}
+                  aria-invalid={!!errors.name}
+                />
                 {errors.name && <p className="text-xs text-danger">{errors.name.message}</p>}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="email">Email</Label>
-                <Input id="email" type="email" placeholder="you@company.com" {...register("email")} aria-invalid={!!errors.email} />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="you@company.com"
+                  {...register("email")}
+                  aria-invalid={!!errors.email}
+                />
                 {errors.email && <p className="text-xs text-danger">{errors.email.message}</p>}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="phone">Phone</Label>
-                <Input id="phone" placeholder="+256 700 000 000" {...register("phone")} aria-invalid={!!errors.phone} />
+                <Input
+                  id="phone"
+                  placeholder="+256 700 000 000"
+                  {...register("phone")}
+                  aria-invalid={!!errors.phone}
+                />
                 {errors.phone && <p className="text-xs text-danger">{errors.phone.message}</p>}
               </div>
               <div className="space-y-1.5">
                 <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" placeholder="CCTV quote / Salon booking / …" {...register("subject")} aria-invalid={!!errors.subject} />
+                <Input
+                  id="subject"
+                  placeholder="CCTV quote / Salon booking / …"
+                  {...register("subject")}
+                  aria-invalid={!!errors.subject}
+                />
                 {errors.subject && <p className="text-xs text-danger">{errors.subject.message}</p>}
               </div>
             </div>
 
             <div className="mt-5 space-y-1.5">
               <Label htmlFor="message">Message</Label>
-              <Textarea id="message" rows={5} placeholder="Tell us about your project or the service you'd like to book…" {...register("message")} aria-invalid={!!errors.message} />
+              <Textarea
+                id="message"
+                rows={5}
+                placeholder="Tell us about your project or the service you'd like to book…"
+                {...register("message")}
+                aria-invalid={!!errors.message}
+              />
               {errors.message && <p className="text-xs text-danger">{errors.message.message}</p>}
             </div>
 
             <div className="mt-6 flex flex-wrap gap-3">
-              <Button type="submit" size="lg" disabled={isSubmitting} className="bg-gradient-brand h-12 px-6 shadow-elegant">
-                {isSubmitting ? "Sending…" : (<><Send className="mr-2 h-4 w-4" /> Send message</>)}
+              <Button
+                type="submit"
+                size="lg"
+                disabled={isSubmitting}
+                className="bg-gradient-brand h-12 px-6 shadow-elegant"
+              >
+                {isSubmitting ? (
+                  "Sending…"
+                ) : (
+                  <>
+                    <Send className="mr-2 h-4 w-4" /> Send message
+                  </>
+                )}
               </Button>
-              <Button asChild type="button" size="lg" variant="outline" className="h-12 px-6 border-2">
+              <Button
+                asChild
+                type="button"
+                size="lg"
+                variant="outline"
+                className="h-12 px-6 border-2"
+              >
                 <a href="https://wa.me/256789877929" target="_blank" rel="noopener">
                   <MessageCircle className="mr-2 h-4 w-4" /> WhatsApp instead
                 </a>

@@ -1,5 +1,14 @@
 import { Link } from "@tanstack/react-router";
-import { Sparkles, Phone, Mail, MapPin, Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import {
+  Sparkles,
+  Phone,
+  Mail,
+  MapPin,
+  Facebook,
+  Instagram,
+  Linkedin,
+  Youtube,
+} from "lucide-react";
 
 const columns = [
   {
@@ -46,8 +55,16 @@ function TiktokIcon({ className }: { className?: string }) {
 
 const socials = [
   { Icon: Facebook, label: "Facebook", href: "https://www.facebook.com/share/1935f6zmN6/" },
-  { Icon: Instagram, label: "Instagram", href: "https://www.instagram.com/katongole2204?igsh=aXEwNjZqZjF5YmZl" },
-  { Icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/emmanuel-katongole-a062633ab?utm_source=share_via&utm_content=profile&utm_medium=member_android" },
+  {
+    Icon: Instagram,
+    label: "Instagram",
+    href: "https://www.instagram.com/katongole2204?igsh=aXEwNjZqZjF5YmZl",
+  },
+  {
+    Icon: Linkedin,
+    label: "LinkedIn",
+    href: "https://www.linkedin.com/in/emmanuel-katongole-a062633ab?utm_source=share_via&utm_content=profile&utm_medium=member_android",
+  },
   { Icon: Youtube, label: "YouTube", href: "https://www.youtube.com/@GpsmartsolutionsLimited" },
   { Icon: TiktokIcon, label: "TikTok", href: "https://tiktok.com/@gpsmartsolutions" },
 ];
@@ -70,9 +87,15 @@ export function Footer() {
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">
-              <li className="flex items-center gap-3"><Phone className="h-4 w-4 text-brand-glow" /> +256 789 877 929</li>
-              <li className="flex items-center gap-3"><Mail className="h-4 w-4 text-brand-glow" /> gpsmartsolutions9@gmail.com</li>
-              <li className="flex items-center gap-3"><MapPin className="h-4 w-4 text-brand-glow" /> Kampala, Uganda</li>
+              <li className="flex items-center gap-3">
+                <Phone className="h-4 w-4 text-brand-glow" /> +256 789 877 929
+              </li>
+              <li className="flex items-center gap-3">
+                <Mail className="h-4 w-4 text-brand-glow" /> gpsmartsolutions9@gmail.com
+              </li>
+              <li className="flex items-center gap-3">
+                <MapPin className="h-4 w-4 text-brand-glow" /> Kampala, Uganda
+              </li>
             </ul>
 
             <div className="mt-6 flex gap-3">
@@ -93,11 +116,15 @@ export function Footer() {
 
           {columns.map((c) => (
             <div key={c.title}>
-              <h3 className="text-white font-semibold text-sm tracking-wide uppercase">{c.title}</h3>
+              <h3 className="text-white font-semibold text-sm tracking-wide uppercase">
+                {c.title}
+              </h3>
               <ul className="mt-4 space-y-2.5">
                 {c.links.map((l, i) => (
                   <li key={i}>
-                    <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">{l.label}</Link>
+                    <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
+                      {l.label}
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -108,8 +135,12 @@ export function Footer() {
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
           <p>© {new Date().getFullYear()} GP Smart Solutions Limited. All rights reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
-            <a href="#" className="hover:text-white">Terms of Service</a>
+            <a href="#" className="hover:text-white">
+              Privacy Policy
+            </a>
+            <a href="#" className="hover:text-white">
+              Terms of Service
+            </a>
           </div>
         </div>
       </div>

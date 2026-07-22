@@ -62,10 +62,30 @@ export const itCategories: ITCategory[] = [
     intro:
       "We supply, install and maintain a full range of surveillance cameras — from single-camera residential setups to multi-site enterprise CCTV networks with remote viewing, motion analytics and AI intrusion detection.",
     equipment: [
-      { name: "Indoor Dome Cameras", image: cctvDome, alt: "White dome CCTV camera mounted on an office ceiling", desc: "Discreet ceiling-mounted dome cameras with IR night vision, ideal for offices, retail floors, hotels and reception areas." },
-      { name: "Outdoor Bullet Cameras", image: cctvBullet, alt: "Weatherproof bullet CCTV camera mounted on a building wall", desc: "Weatherproof IP66 bullet cameras with long-range IR, perfect for perimeters, entrances, gates and outdoor car parks." },
-      { name: "PTZ Zoom Cameras", image: cctvPtz, alt: "Pan-tilt-zoom PTZ CCTV surveillance camera product shot", desc: "Pan-tilt-zoom cameras with optical zoom and preset patrols — deployed for warehouses, stadiums and large compounds." },
-      { name: "AI & Thermal Cameras", image: cctvThermal, alt: "AI thermal CCTV camera with sleek metallic housing", desc: "Smart AI cameras with people/vehicle detection, license plate recognition (ANPR) and thermal imaging for critical sites." },
+      {
+        name: "Indoor Dome Cameras",
+        image: cctvDome,
+        alt: "White dome CCTV camera mounted on an office ceiling",
+        desc: "Discreet ceiling-mounted dome cameras with IR night vision, ideal for offices, retail floors, hotels and reception areas.",
+      },
+      {
+        name: "Outdoor Bullet Cameras",
+        image: cctvBullet,
+        alt: "Weatherproof bullet CCTV camera mounted on a building wall",
+        desc: "Weatherproof IP66 bullet cameras with long-range IR, perfect for perimeters, entrances, gates and outdoor car parks.",
+      },
+      {
+        name: "PTZ Zoom Cameras",
+        image: cctvPtz,
+        alt: "Pan-tilt-zoom PTZ CCTV surveillance camera product shot",
+        desc: "Pan-tilt-zoom cameras with optical zoom and preset patrols — deployed for warehouses, stadiums and large compounds.",
+      },
+      {
+        name: "AI & Thermal Cameras",
+        image: cctvThermal,
+        alt: "AI thermal CCTV camera with sleek metallic housing",
+        desc: "Smart AI cameras with people/vehicle detection, license plate recognition (ANPR) and thermal imaging for critical sites.",
+      },
     ],
   },
   {
@@ -79,10 +99,30 @@ export const itCategories: ITCategory[] = [
     intro:
       "Every camera system needs reliable recording. We size, supply and configure DVR/NVR appliances, surveillance-grade storage and cloud backup so your footage is always available when you need it.",
     equipment: [
-      { name: "DVR Systems (4/8/16/32 CH)", image: storeDvr, alt: "16-channel DVR digital video recorder", desc: "Digital video recorders for analog HD (TVI/CVI/AHD) camera systems with local playback and mobile viewing." },
-      { name: "NVR Systems (IP)", image: storeNvr, alt: "32-channel NVR network video recorder", desc: "Network video recorders for IP cameras with PoE ports, 4K support, smart search and multi-site management." },
-      { name: "Surveillance Hard Drives", image: storeHdd, alt: "Purple surveillance grade WD hard drive", desc: "Purple-label 24/7 surveillance HDDs (1TB–18TB) engineered for continuous CCTV write cycles." },
-      { name: "Cloud & Rack Storage", image: storeCloud, alt: "Data center racks with blue LED lights", desc: "Rack-mounted NVR arrays and cloud video storage with encrypted off-site backup for multi-branch businesses." },
+      {
+        name: "DVR Systems (4/8/16/32 CH)",
+        image: storeDvr,
+        alt: "16-channel DVR digital video recorder",
+        desc: "Digital video recorders for analog HD (TVI/CVI/AHD) camera systems with local playback and mobile viewing.",
+      },
+      {
+        name: "NVR Systems (IP)",
+        image: storeNvr,
+        alt: "32-channel NVR network video recorder",
+        desc: "Network video recorders for IP cameras with PoE ports, 4K support, smart search and multi-site management.",
+      },
+      {
+        name: "Surveillance Hard Drives",
+        image: storeHdd,
+        alt: "Purple surveillance grade WD hard drive",
+        desc: "Purple-label 24/7 surveillance HDDs (1TB–18TB) engineered for continuous CCTV write cycles.",
+      },
+      {
+        name: "Cloud & Rack Storage",
+        image: storeCloud,
+        alt: "Data center racks with blue LED lights",
+        desc: "Rack-mounted NVR arrays and cloud video storage with encrypted off-site backup for multi-branch businesses.",
+      },
     ],
   },
   {
@@ -96,10 +136,30 @@ export const itCategories: ITCategory[] = [
     intro:
       "From single-office WiFi to campus-wide fiber backbones — we design and build networks that are fast, secure and easy to manage, with vendor-neutral hardware and clean structured cabling.",
     equipment: [
-      { name: "Enterprise WiFi Access Points", image: netAp, alt: "Ceiling-mounted WiFi access point in an office", desc: "Ubiquiti / TP-Link Omada / Ruijie enterprise access points and mesh systems with seamless roaming and VLANs." },
-      { name: "PoE & Managed Switches", image: netSwitch, alt: "48-port PoE managed network switch with cables", desc: "8 to 48-port PoE and managed L2/L3 switches for IP cameras, phones and access points — with VLAN and QoS." },
-      { name: "Fiber Optic Cabling", image: netFiber, alt: "Fiber optic cables glowing yellow and blue macro shot", desc: "Single-mode and multi-mode fiber runs, splicing, OTDR testing, patch panels and SFP modules for long-distance links." },
-      { name: "Firewalls & Routers", image: netFirewall, alt: "Rack-mounted enterprise firewall appliance", desc: "Business firewalls, VPN routers and gateway appliances with content filtering, guest networks and site-to-site VPN." },
+      {
+        name: "Enterprise WiFi Access Points",
+        image: netAp,
+        alt: "Ceiling-mounted WiFi access point in an office",
+        desc: "Ubiquiti / TP-Link Omada / Ruijie enterprise access points and mesh systems with seamless roaming and VLANs.",
+      },
+      {
+        name: "PoE & Managed Switches",
+        image: netSwitch,
+        alt: "48-port PoE managed network switch with cables",
+        desc: "8 to 48-port PoE and managed L2/L3 switches for IP cameras, phones and access points — with VLAN and QoS.",
+      },
+      {
+        name: "Fiber Optic Cabling",
+        image: netFiber,
+        alt: "Fiber optic cables glowing yellow and blue macro shot",
+        desc: "Single-mode and multi-mode fiber runs, splicing, OTDR testing, patch panels and SFP modules for long-distance links.",
+      },
+      {
+        name: "Firewalls & Routers",
+        image: netFirewall,
+        alt: "Rack-mounted enterprise firewall appliance",
+        desc: "Business firewalls, VPN routers and gateway appliances with content filtering, guest networks and site-to-site VPN.",
+      },
     ],
   },
   {
@@ -113,10 +173,30 @@ export const itCategories: ITCategory[] = [
     intro:
       "Control who enters your premises — and when. We install biometric, card and mobile access systems that integrate with your attendance records and CCTV.",
     equipment: [
-      { name: "Fingerprint Smart Locks", image: accFingerprint, alt: "Smart fingerprint biometric door lock on a glass office door", desc: "Keypad + fingerprint smart locks with mobile app control, temporary PINs and audit logs for offices and homes." },
-      { name: "Face Recognition Terminals", image: accFace, alt: "Face recognition access terminal mounted next to office door", desc: "Face-recognition access and attendance terminals with mask detection and temperature sensing options." },
-      { name: "RFID Card Access", image: accRfid, alt: "RFID card access reader with a hand tapping a keycard", desc: "RFID / MIFARE card readers, electric strikes and magnetic locks integrated with staff attendance software." },
-      { name: "Video Doorbells & Alarms", image: accDoorbell, alt: "Smart video doorbell mounted next to a residential front door", desc: "Smart video doorbells, motion detectors, glass-break sensors and wireless alarm panels with mobile alerts." },
+      {
+        name: "Fingerprint Smart Locks",
+        image: accFingerprint,
+        alt: "Smart fingerprint biometric door lock on a glass office door",
+        desc: "Keypad + fingerprint smart locks with mobile app control, temporary PINs and audit logs for offices and homes.",
+      },
+      {
+        name: "Face Recognition Terminals",
+        image: accFace,
+        alt: "Face recognition access terminal mounted next to office door",
+        desc: "Face-recognition access and attendance terminals with mask detection and temperature sensing options.",
+      },
+      {
+        name: "RFID Card Access",
+        image: accRfid,
+        alt: "RFID card access reader with a hand tapping a keycard",
+        desc: "RFID / MIFARE card readers, electric strikes and magnetic locks integrated with staff attendance software.",
+      },
+      {
+        name: "Video Doorbells & Alarms",
+        image: accDoorbell,
+        alt: "Smart video doorbell mounted next to a residential front door",
+        desc: "Smart video doorbells, motion detectors, glass-break sensors and wireless alarm panels with mobile alerts.",
+      },
     ],
   },
   {
@@ -130,10 +210,30 @@ export const itCategories: ITCategory[] = [
     intro:
       "Modern office telephony without the guesswork. We deploy PABX and IP-PBX systems, wire the extensions, port your numbers and train your team.",
     equipment: [
-      { name: "PABX & IP-PBX Systems", image: telPabx, alt: "Rack-mounted PABX telephone exchange system", desc: "Grandstream / Yeastar / Panasonic PABX and IP-PBX systems supporting analog, SIP and mobile extensions." },
-      { name: "IP Desk Phones", image: telIpphone, alt: "Yealink IP desk phone on an office desk", desc: "Yealink and Fanvil IP desk phones with HD voice, multiple line keys, Bluetooth headsets and BLF." },
-      { name: "Conference Phones", image: telConf, alt: "Modern conference speakerphone on a boardroom table", desc: "360° conference speakerphones with echo cancellation for boardrooms and hybrid-meeting rooms." },
-      { name: "VoIP Gateways", image: telVoip, alt: "Small VoIP gateway device with FXS and ethernet ports", desc: "FXS / FXO VoIP gateways that bridge legacy analog phones and lines into your new IP-PBX." },
+      {
+        name: "PABX & IP-PBX Systems",
+        image: telPabx,
+        alt: "Rack-mounted PABX telephone exchange system",
+        desc: "Grandstream / Yeastar / Panasonic PABX and IP-PBX systems supporting analog, SIP and mobile extensions.",
+      },
+      {
+        name: "IP Desk Phones",
+        image: telIpphone,
+        alt: "Yealink IP desk phone on an office desk",
+        desc: "Yealink and Fanvil IP desk phones with HD voice, multiple line keys, Bluetooth headsets and BLF.",
+      },
+      {
+        name: "Conference Phones",
+        image: telConf,
+        alt: "Modern conference speakerphone on a boardroom table",
+        desc: "360° conference speakerphones with echo cancellation for boardrooms and hybrid-meeting rooms.",
+      },
+      {
+        name: "VoIP Gateways",
+        image: telVoip,
+        alt: "Small VoIP gateway device with FXS and ethernet ports",
+        desc: "FXS / FXO VoIP gateways that bridge legacy analog phones and lines into your new IP-PBX.",
+      },
     ],
   },
   {
@@ -147,10 +247,30 @@ export const itCategories: ITCategory[] = [
     intro:
       "Products are only half the story. Our uniformed field engineers handle the physical install, cable management, testing and documentation — so your systems look tidy and stay up.",
     equipment: [
-      { name: "Structured Cabling", image: instCabling, alt: "Technician running blue ethernet cabling through an office ceiling", desc: "CAT6 / CAT6A structured cabling, cable trays, containment and labeled patch panels certified with Fluke testing." },
-      { name: "Server Rack Installation", image: instRack, alt: "Technician installing equipment in a server rack", desc: "Server, network and CCTV cabinet installation with power distribution, cable management arms and thermal planning." },
-      { name: "Antenna & Rooftop Work", image: instAntenna, alt: "Technician installing a rooftop dish antenna with safety harness", desc: "Rooftop antenna, dish, wireless bridge and lightning-arrestor installs — completed with full safety gear and PPE." },
-      { name: "Site Surveys & Support", image: instSurvey, alt: "IT engineers conducting a site survey in an empty office", desc: "On-site surveys, signal mapping, BOQ scoping, commissioning and preventive maintenance contracts." },
+      {
+        name: "Structured Cabling",
+        image: instCabling,
+        alt: "Technician running blue ethernet cabling through an office ceiling",
+        desc: "CAT6 / CAT6A structured cabling, cable trays, containment and labeled patch panels certified with Fluke testing.",
+      },
+      {
+        name: "Server Rack Installation",
+        image: instRack,
+        alt: "Technician installing equipment in a server rack",
+        desc: "Server, network and CCTV cabinet installation with power distribution, cable management arms and thermal planning.",
+      },
+      {
+        name: "Antenna & Rooftop Work",
+        image: instAntenna,
+        alt: "Technician installing a rooftop dish antenna with safety harness",
+        desc: "Rooftop antenna, dish, wireless bridge and lightning-arrestor installs — completed with full safety gear and PPE.",
+      },
+      {
+        name: "Site Surveys & Support",
+        image: instSurvey,
+        alt: "IT engineers conducting a site survey in an empty office",
+        desc: "On-site surveys, signal mapping, BOQ scoping, commissioning and preventive maintenance contracts.",
+      },
     ],
   },
 ];
