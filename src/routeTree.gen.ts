@@ -14,6 +14,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BeautyRouteImport } from './routes/beauty'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ItServicesCategoryRouteImport } from './routes/it-services.$category'
 
 const ItServicesRoute = ItServicesRouteImport.update({
   id: '/it-services',
@@ -40,20 +41,27 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ItServicesCategoryRoute = ItServicesCategoryRouteImport.update({
+  id: '/$category',
+  path: '/$category',
+  getParentRoute: () => ItServicesRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/beauty': typeof BeautyRoute
   '/contact': typeof ContactRoute
-  '/it-services': typeof ItServicesRoute
+  '/it-services': typeof ItServicesRouteWithChildren
+  '/it-services/$category': typeof ItServicesCategoryRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/beauty': typeof BeautyRoute
   '/contact': typeof ContactRoute
-  '/it-services': typeof ItServicesRoute
+  '/it-services': typeof ItServicesRouteWithChildren
+  '/it-services/$category': typeof ItServicesCategoryRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -61,14 +69,34 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/beauty': typeof BeautyRoute
   '/contact': typeof ContactRoute
-  '/it-services': typeof ItServicesRoute
+  '/it-services': typeof ItServicesRouteWithChildren
+  '/it-services/$category': typeof ItServicesCategoryRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/beauty' | '/contact' | '/it-services'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/beauty'
+    | '/contact'
+    | '/it-services'
+    | '/it-services/$category'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/beauty' | '/contact' | '/it-services'
-  id: '__root__' | '/' | '/about' | '/beauty' | '/contact' | '/it-services'
+  to:
+    | '/'
+    | '/about'
+    | '/beauty'
+    | '/contact'
+    | '/it-services'
+    | '/it-services/$category'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/beauty'
+    | '/contact'
+    | '/it-services'
+    | '/it-services/$category'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -76,7 +104,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BeautyRoute: typeof BeautyRoute
   ContactRoute: typeof ContactRoute
-  ItServicesRoute: typeof ItServicesRoute
+  ItServicesRoute: typeof ItServicesRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
@@ -116,15 +144,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/it-services/$category': {
+      id: '/it-services/$category'
+      path: '/$category'
+      fullPath: '/it-services/$category'
+      preLoaderRoute: typeof ItServicesCategoryRouteImport
+      parentRoute: typeof ItServicesRoute
+    }
   }
 }
+
+interface ItServicesRouteChildren {
+  ItServicesCategoryRoute: typeof ItServicesCategoryRoute
+}
+
+const ItServicesRouteChildren: ItServicesRouteChildren = {
+  ItServicesCategoryRoute: ItServicesCategoryRoute,
+}
+
+const ItServicesRouteWithChildren = ItServicesRoute._addFileChildren(
+  ItServicesRouteChildren,
+)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   BeautyRoute: BeautyRoute,
   ContactRoute: ContactRoute,
-  ItServicesRoute: ItServicesRoute,
+  ItServicesRoute: ItServicesRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { ArrowLeft, ArrowRight, Check, Phone } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { getCategory, itCategories } from "@/lib/it-categories";
+import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
 
 export const Route = createFileRoute("/it-services/$category")({
   loader: ({ params }) => {
@@ -61,7 +61,7 @@ function CategoryNotFound() {
 }
 
 function CategoryPage() {
-  const { category } = Route.useLoaderData();
+  const { category } = Route.useLoaderData() as { category: ITCategory };
   const Icon = category.icon;
   const others = itCategories.filter((c) => c.slug !== category.slug).slice(0, 3);
 
