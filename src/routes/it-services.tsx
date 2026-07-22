@@ -151,37 +151,29 @@ export function ITServicesPage() {
               networking to smart access, telephony and structured cabling.
             </p>
           </div>
-          <div className="mt-10 space-y-14">
+          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {productCategories.map((cat, ci) => (
-              <motion.div
+              <motion.article
                 key={cat.title}
                 initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }} transition={{ duration: 0.5, delay: ci * 0.05 }}
+                className="group overflow-hidden rounded-3xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="flex flex-wrap items-end justify-between gap-3">
-                  <div>
-                    <h3 className="text-2xl font-bold">{cat.title}</h3>
-                    <p className="mt-2 max-w-3xl text-muted-foreground">{cat.desc}</p>
-                  </div>
+                <div className="overflow-hidden">
+                  <img
+                    src={cat.image}
+                    alt={cat.alt}
+                    loading="lazy"
+                    width={1200}
+                    height={800}
+                    className="w-full h-56 object-cover group-hover:scale-105 transition duration-500"
+                  />
                 </div>
-                <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                  {cat.items.map((it, i) => (
-                    <figure
-                      key={i}
-                      className="group overflow-hidden rounded-2xl border border-border bg-card shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
-                    >
-                      <img
-                        src={it.src}
-                        alt={it.alt}
-                        loading="lazy"
-                        width={800}
-                        height={600}
-                        className="w-full h-48 object-cover group-hover:scale-105 transition duration-500"
-                      />
-                    </figure>
-                  ))}
+                <div className="p-6">
+                  <h3 className="text-xl font-bold">{cat.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{cat.desc}</p>
                 </div>
-              </motion.div>
+              </motion.article>
             ))}
           </div>
         </div>
