@@ -1,6 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, Check, Phone, ChevronRight, Circle as HelpCircle, Building2, Rocket, TrendingUp } from "lucide-react";
+import {
+  ArrowLeft,
+  ArrowRight,
+  Check,
+  Phone,
+  ChevronRight,
+  Circle as HelpCircle,
+  Building2,
+  Rocket,
+  TrendingUp,
+} from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
@@ -24,6 +34,7 @@ export const Route = createFileRoute("/it-services/$category")({
     const { category } = loaderData;
     const title = `${category.title} — GP Smart Solutions`;
     const canonicalUrl = `https://gpsmartsolutions.co.ug/it-services/${category.slug}`;
+    const ogImage = `https://gpsmartsolutions.co.ug${category.image.startsWith("/") ? "" : "/"}${category.image}`;
 
     const breadcrumbLd = breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -41,15 +52,20 @@ export const Route = createFileRoute("/it-services/$category")({
       meta: [
         { title },
         { name: "description", content: category.shortDesc },
+        { name: "keywords", content: category.keywords.join(", ") },
         { name: "robots", content: "index, follow" },
+        { name: "author", content: "GP Smart Solutions" },
         { property: "og:title", content: title },
         { property: "og:description", content: category.shortDesc },
         { property: "og:type", content: "website" },
         { property: "og:url", content: canonicalUrl },
         { property: "og:site_name", content: "GP Smart Solutions" },
+        { property: "og:locale", content: "en_UG" },
+        { property: "og:image", content: ogImage },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: category.shortDesc },
+        { name: "twitter:image", content: ogImage },
       ],
       links: [{ rel: "canonical", href: canonicalUrl }],
       scripts: [

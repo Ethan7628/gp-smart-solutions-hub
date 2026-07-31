@@ -49,12 +49,15 @@ export const Route = createFileRoute("/it-services")({
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://gpsmartsolutions.co.ug/it-services" },
       { property: "og:site_name", content: "GP Smart Solutions" },
+      { property: "og:locale", content: "en_UG" },
+      { property: "og:image", content: "https://gpsmartsolutions.co.ug/og-image.jpg" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: "IT Services — GP Smart Solutions" },
       {
         name: "twitter:description",
         content: "Enterprise IT solutions: CCTV, networking, PABX, access control in Uganda.",
       },
+      { name: "twitter:image", content: "https://gpsmartsolutions.co.ug/og-image.jpg" },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/it-services" }],
     scripts: [
@@ -76,6 +79,7 @@ const services = [
   {
     icon: Camera,
     title: "CCTV Camera Installation",
+    slug: "cctv-surveillance",
     items: [
       "Indoor & outdoor cameras",
       "IP cameras, DVR & NVR setup",
@@ -86,6 +90,7 @@ const services = [
   {
     icon: Lock,
     title: "Access Control & Attendance",
+    slug: "smart-access",
     items: [
       "Biometric & fingerprint",
       "Face recognition",
@@ -96,6 +101,7 @@ const services = [
   {
     icon: Shield,
     title: "Smart Door Locks",
+    slug: "smart-access",
     items: [
       "Installation & configuration",
       "Mobile app setup",
@@ -106,6 +112,7 @@ const services = [
   {
     icon: Wifi,
     title: "Networking & WiFi",
+    slug: "networking-fiber",
     items: [
       "WiFi installation & mesh",
       "Access points & extenders",
@@ -116,6 +123,7 @@ const services = [
   {
     icon: Cable,
     title: "Optical Fiber",
+    slug: "networking-fiber",
     items: [
       "Fiber pulling & splicing",
       "OTDR testing",
@@ -126,11 +134,13 @@ const services = [
   {
     icon: Server,
     title: "PABX & Telephony",
+    slug: "telephony",
     items: ["PABX & IP PBX", "VoIP & extensions", "Office telephony", "Configuration & support"],
   },
   {
     icon: Cpu,
     title: "Full Office Setup",
+    slug: "installation-services",
     items: [
       "Structured cabling",
       "Server & rack installation",
@@ -141,11 +151,13 @@ const services = [
   {
     icon: Shield,
     title: "Software Installation",
+    slug: "installation-services",
     items: ["Windows & Office", "Drivers & antivirus", "Utility software", "System optimization"],
   },
   {
     icon: HeadphonesIcon,
     title: "IT Support",
+    slug: "installation-services",
     items: [
       "Home & office support",
       "Remote troubleshooting",
@@ -225,27 +237,37 @@ export function ITServicesPage() {
       <section className="container-app pb-24">
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => (
-            <motion.article
+            <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.4, delay: i * 0.05 }}
-              className="rounded-2xl border border-border bg-card p-7 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
-                <s.icon className="h-5 w-5" />
-              </div>
-              <h3 className="mt-5 text-xl font-bold">{s.title}</h3>
-              <ul className="mt-4 space-y-2">
-                {s.items.map((it) => (
-                  <li key={it} className="flex items-start gap-2 text-sm text-muted-foreground">
-                    <Check className="h-4 w-4 text-success mt-0.5 shrink-0" />
-                    <span>{it}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.article>
+              <Link
+                to="/it-services/$category"
+                params={{ category: s.slug }}
+                className="group block h-full rounded-2xl border border-border bg-card p-7 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
+              >
+                <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+                  <s.icon className="h-5 w-5" />
+                </div>
+                <h3 className="mt-5 text-xl font-bold group-hover:text-brand transition">
+                  {s.title}
+                </h3>
+                <ul className="mt-4 space-y-2">
+                  {s.items.map((it) => (
+                    <li key={it} className="flex items-start gap-2 text-sm text-muted-foreground">
+                      <Check className="h-4 w-4 text-success mt-0.5 shrink-0" />
+                      <span>{it}</span>
+                    </li>
+                  ))}
+                </ul>
+                <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-brand">
+                  Learn more <ArrowRight className="h-4 w-4" />
+                </span>
+              </Link>
+            </motion.div>
           ))}
         </div>
 

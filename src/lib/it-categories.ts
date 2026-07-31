@@ -57,6 +57,7 @@ export type ITCategory = {
   process: { step: string; title: string; desc: string }[];
   industries: string[];
   faqs: FaqItem[];
+  keywords: string[];
 };
 
 export const itCategories: ITCategory[] = [
@@ -157,6 +158,18 @@ export const itCategories: ITCategory[] = [
           "Yes. We provide 12 months warranty on installation workmanship and offer optional maintenance contracts covering camera cleaning, firmware updates, storage health checks and prompt on-site callouts.",
       },
     ],
+    keywords: [
+      "CCTV installation Uganda",
+      "security cameras Kampala",
+      "Hikvision dealer Uganda",
+      "surveillance systems Uganda",
+      "IP cameras Kampala",
+      "dome camera installation",
+      "NVR setup Uganda",
+      "remote viewing CCTV",
+      "ANPR cameras Uganda",
+      "security camera repair Kampala",
+    ],
   },
   {
     slug: "recording-storage",
@@ -254,6 +267,18 @@ export const itCategories: ITCategory[] = [
         answer:
           "Surveillance drives are rated for 24/7 operation, but failures can occur. We offer maintenance contracts with proactive health checks, and all drives we supply come with a manufacturer warranty of up to 3 years.",
       },
+    ],
+    keywords: [
+      "DVR installation Uganda",
+      "NVR systems Kampala",
+      "surveillance hard drives Uganda",
+      "CCTV storage solutions",
+      "video recorder Uganda",
+      "cloud CCTV backup",
+      "surveillance storage Kampala",
+      "16-channel DVR Uganda",
+      "CCTV hard drive upgrade",
+      "footage retention systems",
     ],
   },
   {
@@ -353,6 +378,18 @@ export const itCategories: ITCategory[] = [
           "Absolutely. We audit your current setup, identify bottlenecks and recommend upgrades — whether that's new access points, a managed switch, fiber backbone or a replacement firewall.",
       },
     ],
+    keywords: [
+      "WiFi installation Uganda",
+      "business networking Kampala",
+      "fiber optic cabling Uganda",
+      "enterprise WiFi Kampala",
+      "managed switches Uganda",
+      "network firewall Uganda",
+      "structured cabling Kampala",
+      "PoE switch Uganda",
+      "VPN setup Kampala",
+      "fiber splicing Uganda",
+    ],
   },
   {
     slug: "smart-access",
@@ -450,6 +487,18 @@ export const itCategories: ITCategory[] = [
         answer:
           "Yes. You can issue temporary PINs, time-limited RFID cards or mobile-app unlock permissions for visitors, contractors and guests — all logged with date and time.",
       },
+    ],
+    keywords: [
+      "biometric access control Uganda",
+      "fingerprint door lock Kampala",
+      "face recognition Uganda",
+      "RFID card access Kampala",
+      "smart door locks Uganda",
+      "access control systems Kampala",
+      "staff attendance system Uganda",
+      "video doorbell Uganda",
+      "magnetic lock Kampala",
+      "office access control Uganda",
     ],
   },
   {
@@ -549,6 +598,18 @@ export const itCategories: ITCategory[] = [
           "Yes. IP phones and softphone apps allow staff to make and receive office calls from home or any location with internet, appearing as if they're at their desk extension.",
       },
     ],
+    keywords: [
+      "PABX installation Uganda",
+      "VoIP systems Kampala",
+      "IP phones Uganda",
+      "office telephony Kampala",
+      "telephone switchboard Uganda",
+      "IP-PBX Uganda",
+      "conference phones Kampala",
+      "VoIP gateway Uganda",
+      "business phone systems Kampala",
+      "call center setup Uganda",
+    ],
   },
   {
     slug: "installation-services",
@@ -646,6 +707,18 @@ export const itCategories: ITCategory[] = [
         answer:
           "Absolutely. We schedule installations after hours, on weekends or during shutdowns to minimize disruption to your operations. Just let us know your preferred times during the site survey.",
       },
+    ],
+    keywords: [
+      "network cabling Uganda",
+      "CAT6 cabling Kampala",
+      "server rack installation Uganda",
+      "fiber installation Kampala",
+      "site survey Uganda",
+      "structured cabling Kampala",
+      "antenna installation Uganda",
+      "IT installation services Kampala",
+      "cable management Uganda",
+      "field services Uganda",
     ],
   },
 ];
