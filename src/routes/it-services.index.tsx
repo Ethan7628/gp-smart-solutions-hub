@@ -26,7 +26,7 @@ import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import { itCategories } from "@/lib/it-categories";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
-export const Route = createFileRoute("/it-services")({
+export const Route = createFileRoute("/it-services/")({
   head: () => ({
     meta: [
       { title: "IT Services — GP Smart Solutions" },
