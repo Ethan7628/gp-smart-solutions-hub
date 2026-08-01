@@ -16,6 +16,21 @@ import { Button } from "@/components/ui/button";
 import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
 import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
 
+const categoryMetaDescriptions: Record<string, string> = {
+  "cctv-surveillance":
+    "CCTV installation in Uganda: dome, bullet, PTZ, IP, thermal, ANPR and AI cameras for homes, offices, retail and industrial sites.",
+  "recording-storage":
+    "DVR, NVR, surveillance hard drives and cloud CCTV storage in Uganda, professionally sized, installed and configured for reliable footage retention.",
+  "networking-fiber":
+    "Business WiFi, managed switches, firewalls, fiber optic cabling and structured networks professionally designed and installed across Uganda.",
+  "smart-access":
+    "Biometric access control, smart locks, face recognition, RFID attendance and video doorbells professionally installed for Ugandan premises.",
+  telephony:
+    "PABX, IP-PBX, VoIP phones, conference systems and office telephony professionally supplied, configured and supported across Uganda.",
+  "installation-services":
+    "Certified IT field services in Uganda: structured cabling, server racks, antennas, site surveys, testing and professional system installation.",
+};
+
 export const Route = createFileRoute("/it-services/$category")({
   loader: ({ params }) => {
     const category = getCategory(params.category);
@@ -32,7 +47,8 @@ export const Route = createFileRoute("/it-services/$category")({
       };
     }
     const { category } = loaderData;
-    const title = `${category.title} — GP Smart Solutions`;
+    const title = `${category.title} Uganda — GP Smart Solutions`;
+    const description = categoryMetaDescriptions[category.slug] ?? category.shortDesc;
     const canonicalUrl = `https://gpsmartsolutions.co.ug/it-services/${category.slug}`;
     const ogImage = `https://gpsmartsolutions.co.ug${category.image.startsWith("/") ? "" : "/"}${category.image}`;
 
@@ -41,22 +57,38 @@ export const Route = createFileRoute("/it-services/$category")({
       { name: "IT Services", path: "/it-services" },
       { name: category.title, path: `/it-services/${category.slug}` },
     ]);
-    const serviceLd = serviceJsonLd({
-      name: category.title,
-      description: category.shortDesc,
-      path: `/it-services/${category.slug}`,
-    });
+    const serviceLd = {
+      ...serviceJsonLd({
+        name: category.title,
+        description,
+        path: `/it-services/${category.slug}`,
+      }),
+      image: ogImage,
+      serviceType: category.title,
+      hasOfferCatalog: {
+        "@type": "OfferCatalog",
+        name: `${category.title} equipment and services`,
+        itemListElement: category.equipment.map((item) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: item.name,
+            description: item.desc,
+          },
+        })),
+      },
+    };
     const faqLd = faqJsonLd(category.faqs);
 
     return {
       meta: [
         { title },
-        { name: "description", content: category.shortDesc },
+        { name: "description", content: description },
         { name: "keywords", content: category.keywords.join(", ") },
         { name: "robots", content: "index, follow" },
         { name: "author", content: "GP Smart Solutions" },
         { property: "og:title", content: title },
-        { property: "og:description", content: category.shortDesc },
+        { property: "og:description", content: description },
         { property: "og:type", content: "website" },
         { property: "og:url", content: canonicalUrl },
         { property: "og:site_name", content: "GP Smart Solutions" },
@@ -64,7 +96,7 @@ export const Route = createFileRoute("/it-services/$category")({
         { property: "og:image", content: ogImage },
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
-        { name: "twitter:description", content: category.shortDesc },
+        { name: "twitter:description", content: description },
         { name: "twitter:image", content: ogImage },
       ],
       links: [{ rel: "canonical", href: canonicalUrl }],
