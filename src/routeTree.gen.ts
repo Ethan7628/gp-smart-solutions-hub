@@ -14,6 +14,7 @@ import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BeautyRouteImport } from './routes/beauty'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ItServicesIndexRouteImport } from './routes/it-services.index'
 import { Route as ItServicesCategoryRouteImport } from './routes/it-services.$category'
 
 const ItServicesRoute = ItServicesRouteImport.update({
@@ -41,6 +42,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ItServicesIndexRoute = ItServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ItServicesRoute,
+} as any)
 const ItServicesCategoryRoute = ItServicesCategoryRouteImport.update({
   id: '/$category',
   path: '/$category',
@@ -54,14 +60,15 @@ export interface FileRoutesByFullPath {
   '/contact': typeof ContactRoute
   '/it-services': typeof ItServicesRouteWithChildren
   '/it-services/$category': typeof ItServicesCategoryRoute
+  '/it-services/': typeof ItServicesIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/beauty': typeof BeautyRoute
   '/contact': typeof ContactRoute
-  '/it-services': typeof ItServicesRouteWithChildren
   '/it-services/$category': typeof ItServicesCategoryRoute
+  '/it-services': typeof ItServicesIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -71,6 +78,7 @@ export interface FileRoutesById {
   '/contact': typeof ContactRoute
   '/it-services': typeof ItServicesRouteWithChildren
   '/it-services/$category': typeof ItServicesCategoryRoute
+  '/it-services/': typeof ItServicesIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -81,14 +89,15 @@ export interface FileRouteTypes {
     | '/contact'
     | '/it-services'
     | '/it-services/$category'
+    | '/it-services/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
     | '/beauty'
     | '/contact'
-    | '/it-services'
     | '/it-services/$category'
+    | '/it-services'
   id:
     | '__root__'
     | '/'
@@ -97,6 +106,7 @@ export interface FileRouteTypes {
     | '/contact'
     | '/it-services'
     | '/it-services/$category'
+    | '/it-services/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -144,6 +154,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/it-services/': {
+      id: '/it-services/'
+      path: '/'
+      fullPath: '/it-services/'
+      preLoaderRoute: typeof ItServicesIndexRouteImport
+      parentRoute: typeof ItServicesRoute
+    }
     '/it-services/$category': {
       id: '/it-services/$category'
       path: '/$category'
@@ -156,10 +173,12 @@ declare module '@tanstack/react-router' {
 
 interface ItServicesRouteChildren {
   ItServicesCategoryRoute: typeof ItServicesCategoryRoute
+  ItServicesIndexRoute: typeof ItServicesIndexRoute
 }
 
 const ItServicesRouteChildren: ItServicesRouteChildren = {
   ItServicesCategoryRoute: ItServicesCategoryRoute,
+  ItServicesIndexRoute: ItServicesIndexRoute,
 }
 
 const ItServicesRouteWithChildren = ItServicesRoute._addFileChildren(
@@ -176,13 +195,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
