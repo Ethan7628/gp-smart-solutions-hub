@@ -86,23 +86,24 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GP Smart Solutions Limited" },
+      { title: "GP Smart Solutions Limited — IT, CCTV & Security Solutions" },
       {
         name: "description",
         content:
-          "Smart Technology. Professional Beauty. One trusted brand — premium IT services and luxury salon experiences in Uganda.",
+          "Professional IT and security solutions in Uganda — CCTV installation, Wi-Fi, structured cabling, fiber, smart access control, PABX and office IT support.",
       },
       { name: "robots", content: "index, follow" },
       { name: "author", content: "GP Smart Solutions Limited" },
       {
         name: "keywords",
         content:
-          "IT services Uganda, CCTV installation Kampala, networking, PABX, access control, fiber optics, salon Kampala, haircuts, nails, beauty, GP Smart Solutions",
+          "CCTV Installation, CCTV Supply, Security Cameras, Wi-Fi Installation, Wi-Fi Hotspot Solutions, Network Cabling, Structured Cabling, Fiber Installation, Smart Door Locks, PABX Systems, Office IT Setup, Network Solutions, IT Support, Security Solutions, GP Smart Solutions",
       },
-      { property: "og:title", content: "GP Smart Solutions Limited" },
+      { property: "og:title", content: "GP Smart Solutions Limited — IT, CCTV & Security Solutions" },
       {
         property: "og:description",
-        content: "Smart Technology. Professional Beauty. One trusted brand.",
+        content:
+          "CCTV, networking, Wi-Fi, cabling, smart access control and IT support across Uganda.",
       },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "GP Smart Solutions" },

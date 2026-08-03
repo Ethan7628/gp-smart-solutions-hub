@@ -19,19 +19,19 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Get in touch with GP Smart Solutions Limited. Request a quote, book a salon appointment or reach us on WhatsApp at +256 789 877 929.",
+          "Talk to GP Smart Solutions Limited about CCTV installation, Wi-Fi, structured cabling, smart locks, PABX and office IT support. Request a free quote or reach us on WhatsApp at +256 789 877 929.",
       },
       { name: "robots", content: "index, follow" },
       {
         name: "keywords",
         content:
-          "contact GP Smart Solutions, IT quote Uganda, salon appointment Kampala, WhatsApp, CCTV quote, book salon",
+          "contact GP Smart Solutions, IT quote Uganda, CCTV quote Kampala, WiFi installation quote, network cabling quote, IT support Uganda",
       },
       { property: "og:title", content: "Contact — GP Smart Solutions" },
       {
         property: "og:description",
         content:
-          "Request an IT quote, book a salon appointment, or reach us on WhatsApp at +256 789 877 929.",
+          "Request a free IT and security quote, or reach us on WhatsApp at +256 789 877 929.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://gpsmartsolutions.co.ug/contact" },
@@ -40,7 +40,7 @@ export const Route = createFileRoute("/contact")({
       { name: "twitter:title", content: "Contact — GP Smart Solutions" },
       {
         name: "twitter:description",
-        content: "Request a quote or book a salon appointment. WhatsApp +256 789 877 929.",
+        content: "Request a free IT and security quote. WhatsApp +256 789 877 929.",
       },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/contact" }],
@@ -136,8 +136,8 @@ function ContactPage() {
             Let's <span className="gradient-text">build</span> something great.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
-            Request an IT quote, book a salon appointment, or ask us anything — we typically respond
-            within minutes on WhatsApp.
+            Request a free consultation, get a quote for CCTV, Wi-Fi, cabling or IT support, or talk to
+            an IT expert — we typically respond within minutes on WhatsApp.
           </p>
         </motion.div>
 
@@ -269,7 +269,7 @@ function ContactPage() {
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
-                  placeholder="CCTV quote / Salon booking / …"
+                  placeholder="CCTV quote / Wi-Fi installation / IT support / …"
                   aria-invalid={!!errors.subject}
                   aria-describedby={errors.subject ? "subject-error" : undefined}
                   {...register("subject")}

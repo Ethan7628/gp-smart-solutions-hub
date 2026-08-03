@@ -1,6 +1,6 @@
 export const SITE_URL = "https://gpsmartsolutions.co.ug";
 export const SITE_NAME = "GP Smart Solutions Limited";
-export const SITE_TAGLINE = "Smart Technology. Professional Beauty.";
+export const SITE_TAGLINE = "Professional IT & Security Solutions.";
 export const BUSINESS_EMAIL = "gpsmartsolutions9@gmail.com";
 export const BUSINESS_PHONE = "+256789877929";
 export const BUSINESS_PHONE_DISPLAY = "+256 789 877 929";
@@ -15,7 +15,6 @@ export const SITEMAP_PATH = "/sitemap.xml";
 export const NAV_LINKS = [
   { to: "/", label: "Home" },
   { to: "/it-services", label: "IT Services" },
-  { to: "/beauty", label: "Beauty & Salon" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ] as const;
@@ -26,11 +25,11 @@ export const localBusinessJsonLd = {
   "@id": `${SITE_URL}#business`,
   name: SITE_NAME,
   description:
-    "Premium IT services and luxurious salon experiences under one trusted brand in Kampala, Uganda. CCTV, networking, PABX, access control, fiber optics, plus haircuts, nails, and beauty treatments.",
+    "Professional IT and security solutions in Kampala, Uganda: CCTV supply and installation, IP cameras, Wi-Fi and hotspot setup, structured cabling, fiber optics, smart door locks, access control, PABX systems, servers and office IT support.",
   url: SITE_URL,
   email: BUSINESS_EMAIL,
   telephone: BUSINESS_PHONE,
-  image: `${SITE_URL}/assets/hero-fusion.jpg`,
+  image: `${SITE_URL}/assets/hero-it.jpg`,
   logo: `${SITE_URL}/favicon.ico`,
   priceRange: "$$",
   areaServed: "Uganda",
@@ -60,18 +59,27 @@ export const localBusinessJsonLd = {
   department: [
     {
       "@type": "ProfessionalService",
-      name: "IT & Technology Division",
+      name: "IT & Security Division",
       description:
-        "CCTV installation, networking, PABX telephony, access control, fiber optics, full office setups and IT support in Uganda.",
+        "CCTV supply and installation, IP cameras, networking and Wi-Fi, structured cabling, fiber optics, smart door locks, access control, PABX telephony, servers, full office setups and IT support in Uganda.",
       url: `${SITE_URL}/it-services`,
     },
-    {
-      "@type": "HealthAndBeautyBusiness",
-      name: "Beauty & Salon Division",
-      description:
-        "Haircuts, styling, hair treatments, nails, pedicure, beard grooming, facials and premium cosmetics in Kampala.",
-      url: `${SITE_URL}/beauty`,
-    },
+  ],
+  knowsAbout: [
+    "CCTV Installation",
+    "CCTV Supply",
+    "Security Cameras",
+    "Wi-Fi Installation",
+    "Wi-Fi Hotspot Solutions",
+    "Network Cabling",
+    "Structured Cabling",
+    "Fiber Installation",
+    "Smart Door Locks",
+    "PABX Systems",
+    "Office IT Setup",
+    "Network Solutions",
+    "IT Support",
+    "Security Solutions",
   ],
 };
 

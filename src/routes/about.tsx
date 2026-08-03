@@ -5,7 +5,7 @@ import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import engineerDesk from "@/assets/it-engineer-desk.jpg";
 import teamOffice from "@/assets/team-office.jpg";
-import salonTeam from "@/assets/salon-team.jpg";
+import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
@@ -15,19 +15,19 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "GP Smart Solutions Limited unites premium IT services and a luxurious salon experience under one trusted brand serving Uganda. Meet our certified engineers and senior stylists.",
+          "GP Smart Solutions Limited is a Uganda-based technology partner specialising in CCTV surveillance, networking, Wi-Fi, structured cabling, smart access control, PABX systems and office IT infrastructure.",
       },
       { name: "robots", content: "index, follow" },
       {
         name: "keywords",
         content:
-          "GP Smart Solutions, about us, IT company Uganda, salon Kampala, certified IT engineers, senior stylists, Uganda technology company",
+          "GP Smart Solutions, about us, IT company Uganda, CCTV company Kampala, certified IT technicians, network solutions Uganda, security solutions",
       },
       { property: "og:title", content: "About Us — GP Smart Solutions" },
       {
         property: "og:description",
         content:
-          "Premium IT services and luxurious salon experiences under one trusted brand in Uganda.",
+          "A trusted Uganda technology partner for security, networking and smart business infrastructure.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: "https://gpsmartsolutions.co.ug/about" },
@@ -36,7 +36,8 @@ export const Route = createFileRoute("/about")({
       { name: "twitter:title", content: "About Us — GP Smart Solutions" },
       {
         name: "twitter:description",
-        content: "One trusted brand delivering premium IT and luxury salon services in Uganda.",
+        content:
+          "Certified technicians delivering CCTV, networking and IT infrastructure across Uganda.",
       },
     ],
     links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/about" }],
@@ -78,14 +79,16 @@ function AboutPage() {
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">About Us</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
-            One brand. <span className="gradient-text">Two crafts.</span> <br />
-            <span className="gradient-text-beauty">Uncompromising quality.</span>
+A trusted <span className="gradient-text">technology partner.</span> <br />
+            Uncompromising quality.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-            GP Smart Solutions Limited is a Uganda-based company that brings enterprise IT
-            infrastructure and a luxurious salon experience under one trusted roof. We built the
-            business on the belief that whether you're securing an office network or booking a hair
-            treatment, you deserve the same level of care, precision and professionalism.
+            GP Smart Solutions Limited is a Uganda-based technology company specialising in
+            security, networking and smart business infrastructure. We supply, install and maintain
+            CCTV surveillance, IP cameras, Wi-Fi and hotspot systems, structured cabling, fiber,
+            smart door locks, access control, PABX telephony, servers and complete office IT — built
+            on professional technicians, reliable installations, high-quality equipment, affordable
+            pricing and genuine customer satisfaction.
           </p>
         </motion.div>
 
@@ -94,12 +97,12 @@ function AboutPage() {
             {
               icon: Target,
               title: "Mission",
-              body: "Deliver smart, reliable technology and premium beauty experiences that elevate everyday life for businesses and individuals.",
+              body: "Deliver smart, reliable technology that keeps homes, offices and institutions across Uganda secure, connected and productive.",
             },
             {
               icon: Eye,
               title: "Vision",
-              body: "To be East Africa's most trusted dual-service brand — where enterprise IT and luxury salon craftsmanship live under one standard.",
+              body: "To be East Africa's most trusted provider of security, networking and smart business infrastructure.",
             },
             {
               icon: Award,
@@ -133,8 +136,8 @@ function AboutPage() {
             The team behind the brand.
           </h2>
           <p className="mt-4 text-muted-foreground">
-            Certified IT engineers and senior stylists working under one roof — united by a shared
-            standard of quality, courtesy and craft.
+Certified IT engineers, network technicians and field installers — united by a shared
+            standard of quality, safety and workmanship.
           </p>
         </div>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
@@ -149,7 +152,11 @@ function AboutPage() {
               alt: "GP Smart Solutions IT department staff member at Kampala office",
               tag: "IT Support",
             },
-            { src: salonTeam, alt: "GP Unisex Salon stylists serving clients", tag: "Salon Team" },
+            {
+              src: cctvMonitoring,
+              alt: "GP Smart Solutions CCTV monitoring wall configured for a commercial client",
+              tag: "Surveillance",
+            },
           ].map((p, i) => (
             <motion.figure
               key={i}

@@ -4,20 +4,22 @@ import { itCategories } from "@/lib/it-categories";
 import { BUSINESS_EMAIL, BUSINESS_PHONE_DISPLAY, BUSINESS_WHATSAPP } from "@/lib/seo";
 import logo from "@/assets/logo.png";
 
-const beautyLinks = [
-  { to: "/beauty", label: "Overview" },
-  { to: "/beauty", label: "Haircuts & Styling" },
-  { to: "/beauty", label: "Hair Treatment" },
-  { to: "/beauty", label: "Nails & Pedicure" },
-  { to: "/beauty", label: "Beard Grooming" },
-  { to: "/beauty", label: "Cosmetics & Makeup" },
+const solutionLinks = [
+  { to: "/it-services", label: "CCTV Installation" },
+  { to: "/it-services", label: "Wi-Fi & Hotspot Setup" },
+  { to: "/it-services", label: "Structured Cabling" },
+  { to: "/it-services", label: "Fiber Optic Installation" },
+  { to: "/it-services", label: "Smart Door Locks" },
+  { to: "/it-services", label: "PABX Telephone Systems" },
+  { to: "/it-services", label: "Servers & Office IT Setup" },
+  { to: "/it-services", label: "IT Support & AMC" },
 ] as const;
 
 const companyLinks = [
   { to: "/about", label: "About Us" },
   { to: "/contact", label: "Contact" },
-  { to: "/contact", label: "Get a Quote" },
-  { to: "/beauty", label: "Book Appointment" },
+  { to: "/contact", label: "Get a Free Quote" },
+  { to: "/contact", label: "Talk to an IT Expert" },
 ] as const;
 
 function TiktokIcon({ className }: { className?: string }) {
@@ -57,8 +59,8 @@ export function Footer() {
               <span className="text-white font-bold text-lg">GP Smart Solutions</span>
             </Link>
             <p className="mt-4 text-sm text-white/60 max-w-sm">
-              Smart Technology. Professional Beauty. One trusted brand delivering premium IT
-              solutions and a luxurious salon experience across Uganda.
+              Professional IT & security solutions across Uganda — CCTV surveillance, networking,
+              Wi-Fi, structured cabling, smart access control, PABX systems and office IT support.
             </p>
 
             <ul className="mt-6 space-y-3 text-sm">
@@ -126,12 +128,10 @@ export function Footer() {
             </ul>
           </nav>
 
-          <nav aria-label="Beauty and salon navigation">
-            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">
-              Beauty &amp; Salon
-            </h3>
+          <nav aria-label="Solutions navigation">
+            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">Solutions</h3>
             <ul className="mt-4 space-y-2.5">
-              {beautyLinks.map((l) => (
+              {solutionLinks.map((l) => (
                 <li key={l.label}>
                   <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
                     {l.label}
@@ -157,7 +157,7 @@ export function Footer() {
 
         <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
           <p>&copy; {year} GP Smart Solutions Limited. All rights reserved.</p>
-          <p>Smart Technology. Professional Beauty.</p>
+          <p>Professional IT &amp; Security Solutions.</p>
         </div>
       </div>
     </footer>
