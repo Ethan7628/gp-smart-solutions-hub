@@ -44,8 +44,6 @@
   --color-success: var(--success);
   --color-warning: var(--warning);
   --color-danger: var(--danger);
-  --color-beauty: var(--beauty);
-  --color-beauty-glow: var(--beauty-glow);
 }
 
 :root {
@@ -55,8 +53,6 @@
   --brand: oklch(0.55 0.22 260); /* #2563EB */
   --brand-glow: oklch(0.78 0.15 232); /* #38BDF8 */
   --brand-accent: oklch(0.72 0.14 210); /* #06B6D4 */
-  --beauty: oklch(0.72 0.18 15); /* rose */
-  --beauty-glow: oklch(0.82 0.11 60); /* champagne */
 
   --dark: oklch(0.2 0.04 265);
   --success: oklch(0.72 0.18 145);
@@ -85,16 +81,14 @@
 
   /* Design tokens: gradients, shadows */
   --gradient-brand: linear-gradient(135deg, oklch(0.55 0.22 260), oklch(0.72 0.14 210));
-  --gradient-hero: linear-gradient(120deg, oklch(0.55 0.22 260 / 0.9), oklch(0.72 0.18 15 / 0.85));
-  --gradient-beauty: linear-gradient(135deg, oklch(0.72 0.18 15), oklch(0.82 0.11 60));
+  --gradient-hero: linear-gradient(120deg, oklch(0.55 0.22 260 / 0.9), oklch(0.72 0.14 210 / 0.85));
   --gradient-mesh:
     radial-gradient(at 20% 20%, oklch(0.55 0.22 260 / 0.25), transparent 60%),
     radial-gradient(at 80% 30%, oklch(0.72 0.14 210 / 0.22), transparent 55%),
-    radial-gradient(at 60% 90%, oklch(0.72 0.18 15 / 0.18), transparent 55%);
+    radial-gradient(at 60% 90%, oklch(0.78 0.15 232 / 0.18), transparent 55%);
   --shadow-elegant: 0 20px 50px -20px oklch(0.55 0.22 260 / 0.35);
   --shadow-soft: 0 10px 30px -12px oklch(0.2 0.04 265 / 0.12);
   --shadow-glow: 0 0 60px oklch(0.72 0.14 210 / 0.35);
-  --shadow-beauty: 0 20px 50px -20px oklch(0.72 0.18 15 / 0.35);
 }
 
 .dark {
@@ -157,13 +151,6 @@
   color: transparent;
 }
 
-@utility gradient-text-beauty {
-  background: var(--gradient-beauty);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
 @utility glass {
   background: color-mix(in oklab, white 60%, transparent);
   backdrop-filter: blur(16px) saturate(160%);
@@ -187,18 +174,12 @@
 @utility shadow-glow {
   box-shadow: var(--shadow-glow);
 }
-@utility shadow-beauty {
-  box-shadow: var(--shadow-beauty);
-}
 
 @utility bg-mesh {
   background-image: var(--gradient-mesh);
 }
 @utility bg-gradient-brand {
   background-image: var(--gradient-brand);
-}
-@utility bg-gradient-beauty {
-  background-image: var(--gradient-beauty);
 }
 
 @keyframes float-slow {
