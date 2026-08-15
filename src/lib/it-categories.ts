@@ -11,6 +11,8 @@ import cctvDome from "@/assets/eq/cctv-dome.jpg";
 import cctvBullet from "@/assets/eq/cctv-bullet.jpg";
 import cctvPtz from "@/assets/eq/cctv-ptz.jpg";
 import cctvThermal from "@/assets/eq/cctv-thermal.jpg";
+import cctvWifi from "@/assets/eq/cctv-wifi.jpg";
+import cctvPackage from "@/assets/eq/cctv-package.jpg";
 import storeDvr from "@/assets/eq/store-dvr.jpg";
 import storeNvr from "@/assets/eq/store-nvr.jpg";
 import storeHdd from "@/assets/eq/store-hdd.jpg";
@@ -95,6 +97,18 @@ export const itCategories: ITCategory[] = [
         image: cctvThermal,
         alt: "AI thermal CCTV camera with sleek metallic housing",
         desc: "Smart AI cameras with people/vehicle detection, license plate recognition (ANPR) and thermal imaging for critical sites.",
+      },
+      {
+        name: "WiFi & Dual-Lens Cameras",
+        image: cctvWifi,
+        alt: "Outdoor dual-lens WiFi pan-tilt security camera with antennas",
+        desc: "Wireless dual-lens pan-tilt cameras with 360° coverage, two-way audio, colour night vision and SD/cloud recording — quick to deploy in homes, shops and rentals.",
+      },
+      {
+        name: "Complete Camera Packages",
+        image: cctvPackage,
+        alt: "CCTV package with bullet cameras, turret cameras and a recorder",
+        desc: "Ready-to-install 4, 8 and 16-channel bundles pairing Hikvision, Dahua or Uniview cameras with a matched recorder, drive, power supply and cabling.",
       },
     ],
     benefits: [
