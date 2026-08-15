@@ -35,10 +35,11 @@ export const Route = createFileRoute("/it-services/$category")({
   loader: ({ params }) => {
     const category = getCategory(params.category);
     if (!category) throw notFound();
-    return { category };
+    return { slug: category.slug };
   },
   head: ({ loaderData }) => {
-    if (!loaderData) {
+    const category = loaderData ? getCategory(loaderData.slug) : undefined;
+    if (!category) {
       return {
         meta: [
           { title: "Category not found — GP Smart Solutions" },
@@ -46,7 +47,6 @@ export const Route = createFileRoute("/it-services/$category")({
         ],
       };
     }
-    const { category } = loaderData;
     const title = `${category.title} Uganda — GP Smart Solutions`;
     const description = categoryMetaDescriptions[category.slug] ?? category.shortDesc;
     const canonicalUrl = `https://gpsmartsolutions.co.ug/it-services/${category.slug}`;
@@ -139,7 +139,8 @@ function CategoryNotFound() {
 }
 
 function CategoryPage() {
-  const { category } = Route.useLoaderData() as { category: ITCategory };
+  const { slug } = Route.useLoaderData();
+  const category = getCategory(slug) as ITCategory;
   const Icon = category.icon;
   const others = itCategories.filter((c) => c.slug !== category.slug).slice(0, 3);
 
