@@ -162,10 +162,10 @@ const whyChooseUs = [
 ];
 
 const stats = [
-  { icon: Trophy, value: "500+", label: "Projects Delivered" },
-  { icon: Users, value: "2,000+", label: "Clients Served" },
-  { icon: Clock, value: "8+", label: "Years Experience" },
-  { icon: Star, value: "4.9", label: "Average Rating" },
+  { icon: Trophy, target: 500, suffix: "+", decimals: 0, label: "Projects Delivered" },
+  { icon: Users, target: 2000, suffix: "+", decimals: 0, label: "Clients Served" },
+  { icon: Clock, target: 8, suffix: "+", decimals: 0, label: "Years Experience" },
+  { icon: Star, target: 4.9, suffix: "", decimals: 1, label: "Average Rating" },
 ];
 
 const portfolio = [
