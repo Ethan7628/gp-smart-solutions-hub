@@ -37,6 +37,7 @@ import {
   Sparkle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Counter } from "@/components/site/Counter";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-it.jpg";
 import itImg from "@/assets/it-showcase.jpg";
@@ -162,10 +163,10 @@ const whyChooseUs = [
 ];
 
 const stats = [
-  { icon: Trophy, value: "500+", label: "Projects Delivered" },
-  { icon: Users, value: "2,000+", label: "Clients Served" },
-  { icon: Clock, value: "8+", label: "Years Experience" },
-  { icon: Star, value: "4.9", label: "Average Rating" },
+  { icon: Trophy, target: 500, suffix: "+", decimals: 0, label: "Projects Delivered" },
+  { icon: Users, target: 2000, suffix: "+", decimals: 0, label: "Clients Served" },
+  { icon: Clock, target: 8, suffix: "+", decimals: 0, label: "Years Experience" },
+  { icon: Star, target: 4.9, suffix: "", decimals: 1, label: "Average Rating" },
 ];
 
 const portfolio = [
@@ -287,7 +288,9 @@ function LandingPage() {
                 className="glass rounded-2xl p-5 shadow-soft"
               >
                 <s.icon className="h-5 w-5 text-brand" />
-                <div className="mt-3 text-3xl font-bold tracking-tight">{s.value}</div>
+                <div className="mt-3 text-3xl font-bold tracking-tight tabular-nums">
+                  <Counter target={s.target} suffix={s.suffix} decimals={s.decimals} />
+                </div>
                 <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
               </motion.div>
             ))}
