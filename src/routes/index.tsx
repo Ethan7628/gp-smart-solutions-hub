@@ -37,6 +37,7 @@ import {
   Sparkle,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Counter } from "@/components/site/Counter";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-it.jpg";
 import itImg from "@/assets/it-showcase.jpg";
