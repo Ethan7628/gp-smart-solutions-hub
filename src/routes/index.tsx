@@ -287,7 +287,9 @@ function LandingPage() {
                 className="glass rounded-2xl p-5 shadow-soft"
               >
                 <s.icon className="h-5 w-5 text-brand" />
-                <div className="mt-3 text-3xl font-bold tracking-tight">{s.value}</div>
+                <div className="mt-3 text-3xl font-bold tracking-tight tabular-nums">
+                  <Counter target={s.target} suffix={s.suffix} decimals={s.decimals} />
+                </div>
                 <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
               </motion.div>
             ))}
