@@ -14,7 +14,6 @@ import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
 import { Toaster } from "sonner";
 import {
-  SITE_URL,
   SITEMAP_PATH,
   localBusinessJsonLd,
   websiteJsonLd,
