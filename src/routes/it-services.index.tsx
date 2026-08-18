@@ -24,42 +24,28 @@ import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import servicesFlyer from "@/assets/services-flyer.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import { itCategories } from "@/lib/it-categories";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMeta, SITE_URL } from "@/lib/seo";
 
 export const Route = createFileRoute("/it-services/")({
   head: () => ({
-    meta: [
-      { title: "IT Services — GP Smart Solutions" },
-      {
-        name: "description",
-        content:
-          "Enterprise-grade IT services in Uganda: CCTV installation, networking, PABX, access control, fiber optics, full office setups and IT support. Request a quote today.",
-      },
-      { name: "robots", content: "index, follow" },
-      {
-        name: "keywords",
-        content:
-          "CCTV installation Uganda, networking Kampala, PABX telephony, access control, fiber optics, office setup, IT support Uganda, WiFi installation, smart door locks",
-      },
-      { property: "og:title", content: "IT Services — GP Smart Solutions" },
-      {
-        property: "og:description",
-        content: "CCTV, networking, PABX, access control, fiber and full office setups in Uganda.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://gpsmartsolutions.co.ug/it-services" },
-      { property: "og:site_name", content: "GP Smart Solutions" },
-      { property: "og:locale", content: "en_UG" },
-      { property: "og:image", content: "https://gpsmartsolutions.co.ug/og-image.jpg" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "IT Services — GP Smart Solutions" },
-      {
-        name: "twitter:description",
-        content: "Enterprise IT solutions: CCTV, networking, PABX, access control in Uganda.",
-      },
-      { name: "twitter:image", content: "https://gpsmartsolutions.co.ug/og-image.jpg" },
-    ],
-    links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/it-services" }],
+    ...pageMeta({
+      title: "IT Services — GP Smart Solutions",
+      description:
+        "Enterprise-grade IT services in Uganda: CCTV installation, networking, PABX, access control, fiber optics, full office setups and IT support. Request a quote today.",
+      path: "/it-services",
+      keywords: [
+        "CCTV installation Uganda",
+        "networking Kampala",
+        "PABX telephony",
+        "access control",
+        "fiber optics",
+        "office setup",
+        "IT support Uganda",
+        "WiFi installation",
+        "smart door locks",
+      ],
+      ogImage: `${SITE_URL}/og-image.jpg`,
+    }),
     scripts: [
       {
         type: "application/ld+json",
