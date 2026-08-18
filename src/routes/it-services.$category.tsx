@@ -49,8 +49,8 @@ export const Route = createFileRoute("/it-services/$category")({
     }
     const title = `${category.title} Uganda — GP Smart Solutions`;
     const description = categoryMetaDescriptions[category.slug] ?? category.shortDesc;
-    const canonicalUrl = `https://gpsmartsolutions.co.ug/it-services/${category.slug}`;
-    const ogImage = `https://gpsmartsolutions.co.ug${category.image.startsWith("/") ? "" : "/"}${category.image}`;
+    const path = `/it-services/${category.slug}`;
+    const ogImage = `${SITE_URL}${category.image.startsWith("/") ? "" : "/"}${category.image}`;
 
     const breadcrumbLd = breadcrumbJsonLd([
       { name: "Home", path: "/" },
