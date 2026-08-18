@@ -94,21 +94,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "robots", content: "index, follow" },
       { name: "author", content: "GP Smart Solutions Limited" },
-      {
-        name: "keywords",
-        content:
-          "CCTV Installation, CCTV Supply, Security Cameras, Wi-Fi Installation, Wi-Fi Hotspot Solutions, Network Cabling, Structured Cabling, Fiber Installation, Smart Door Locks, PABX Systems, Office IT Setup, Network Solutions, IT Support, Security Solutions, GP Smart Solutions",
-      },
-      { property: "og:title", content: "GP Smart Solutions Limited — IT, CCTV & Security Solutions" },
-      {
-        property: "og:description",
-        content:
-          "CCTV, networking, Wi-Fi, cabling, smart access control and IT support across Uganda.",
-      },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "GP Smart Solutions" },
       { property: "og:locale", content: "en_UG" },
-      { property: "og:url", content: SITE_URL },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
