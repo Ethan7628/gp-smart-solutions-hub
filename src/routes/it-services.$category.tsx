@@ -14,7 +14,7 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
-import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
+import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 
 const categoryMetaDescriptions: Record<string, string> = {
   "cctv-surveillance":
@@ -49,8 +49,8 @@ export const Route = createFileRoute("/it-services/$category")({
     }
     const title = `${category.title} Uganda — GP Smart Solutions`;
     const description = categoryMetaDescriptions[category.slug] ?? category.shortDesc;
-    const canonicalUrl = `https://gpsmartsolutions.co.ug/it-services/${category.slug}`;
-    const ogImage = `https://gpsmartsolutions.co.ug${category.image.startsWith("/") ? "" : "/"}${category.image}`;
+    const path = `/it-services/${category.slug}`;
+    const ogImage = `${SITE_URL}${category.image.startsWith("/") ? "" : "/"}${category.image}`;
 
     const breadcrumbLd = breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -81,25 +81,13 @@ export const Route = createFileRoute("/it-services/$category")({
     const faqLd = faqJsonLd(category.faqs);
 
     return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { name: "keywords", content: category.keywords.join(", ") },
-        { name: "robots", content: "index, follow" },
-        { name: "author", content: "GP Smart Solutions" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: canonicalUrl },
-        { property: "og:site_name", content: "GP Smart Solutions" },
-        { property: "og:locale", content: "en_UG" },
-        { property: "og:image", content: ogImage },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-        { name: "twitter:image", content: ogImage },
-      ],
-      links: [{ rel: "canonical", href: canonicalUrl }],
+      ...pageMeta({
+        title,
+        description,
+        path,
+        keywords: category.keywords,
+        ogImage,
+      }),
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
         { type: "application/ld+json", children: JSON.stringify(serviceLd) },

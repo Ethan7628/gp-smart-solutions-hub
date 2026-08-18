@@ -6,41 +6,25 @@ import { Button } from "@/components/ui/button";
 import engineerDeskAsset from "@/assets/team-rooftop-install.webp.asset.json";
 import teamOfficeAsset from "@/assets/it-support-staff.webp.asset.json";
 import cctvMonitoringAsset from "@/assets/cctv-review-client.webp.asset.json";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
-    meta: [
-      { title: "About Us — GP Smart Solutions" },
-      {
-        name: "description",
-        content:
-          "GP Smart Solutions Limited is a Uganda-based technology partner specialising in CCTV surveillance, networking, Wi-Fi, structured cabling, smart access control, PABX systems and office IT infrastructure.",
-      },
-      { name: "robots", content: "index, follow" },
-      {
-        name: "keywords",
-        content:
-          "GP Smart Solutions, about us, IT company Uganda, CCTV company Kampala, certified IT technicians, network solutions Uganda, security solutions",
-      },
-      { property: "og:title", content: "About Us — GP Smart Solutions" },
-      {
-        property: "og:description",
-        content:
-          "A trusted Uganda technology partner for security, networking and smart business infrastructure.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://gpsmartsolutions.co.ug/about" },
-      { property: "og:site_name", content: "GP Smart Solutions" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "About Us — GP Smart Solutions" },
-      {
-        name: "twitter:description",
-        content:
-          "Certified technicians delivering CCTV, networking and IT infrastructure across Uganda.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/about" }],
+    ...pageMeta({
+      title: "About Us — GP Smart Solutions",
+      description:
+        "GP Smart Solutions Limited is a Uganda-based technology partner specialising in CCTV surveillance, networking, Wi-Fi, structured cabling, smart access control, PABX systems and office IT infrastructure.",
+      path: "/about",
+      keywords: [
+        "GP Smart Solutions",
+        "about us",
+        "IT company Uganda",
+        "CCTV company Kampala",
+        "certified IT technicians",
+        "network solutions Uganda",
+        "security solutions",
+      ],
+    }),
     scripts: [
       {
         type: "application/ld+json",
