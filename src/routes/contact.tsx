@@ -6,7 +6,7 @@ import { z } from "zod";
 import { Phone, Mail, MapPin, MessageCircle, Send, Clock, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import { breadcrumbJsonLd } from "@/lib/seo";
+import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -14,36 +14,20 @@ import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
-    meta: [
-      { title: "Contact — GP Smart Solutions" },
-      {
-        name: "description",
-        content:
-          "Talk to GP Smart Solutions Limited about CCTV installation, Wi-Fi, structured cabling, smart locks, PABX and office IT support. Request a free quote or reach us on WhatsApp at +256 789 877 929.",
-      },
-      { name: "robots", content: "index, follow" },
-      {
-        name: "keywords",
-        content:
-          "contact GP Smart Solutions, IT quote Uganda, CCTV quote Kampala, WiFi installation quote, network cabling quote, IT support Uganda",
-      },
-      { property: "og:title", content: "Contact — GP Smart Solutions" },
-      {
-        property: "og:description",
-        content:
-          "Request a free IT and security quote, or reach us on WhatsApp at +256 789 877 929.",
-      },
-      { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://gpsmartsolutions.co.ug/contact" },
-      { property: "og:site_name", content: "GP Smart Solutions" },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Contact — GP Smart Solutions" },
-      {
-        name: "twitter:description",
-        content: "Request a free IT and security quote. WhatsApp +256 789 877 929.",
-      },
-    ],
-    links: [{ rel: "canonical", href: "https://gpsmartsolutions.co.ug/contact" }],
+    ...pageMeta({
+      title: "Contact — GP Smart Solutions",
+      description:
+        "Talk to GP Smart Solutions Limited about CCTV installation, Wi-Fi, structured cabling, smart locks, PABX and office IT support. Request a free quote or reach us on WhatsApp at +256 789 877 929.",
+      path: "/contact",
+      keywords: [
+        "contact GP Smart Solutions",
+        "IT quote Uganda",
+        "CCTV quote Kampala",
+        "WiFi installation quote",
+        "network cabling quote",
+        "IT support Uganda",
+      ],
+    }),
     scripts: [
       {
         type: "application/ld+json",
