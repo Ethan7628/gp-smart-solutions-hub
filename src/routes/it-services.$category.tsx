@@ -81,25 +81,13 @@ export const Route = createFileRoute("/it-services/$category")({
     const faqLd = faqJsonLd(category.faqs);
 
     return {
-      meta: [
-        { title },
-        { name: "description", content: description },
-        { name: "keywords", content: category.keywords.join(", ") },
-        { name: "robots", content: "index, follow" },
-        { name: "author", content: "GP Smart Solutions" },
-        { property: "og:title", content: title },
-        { property: "og:description", content: description },
-        { property: "og:type", content: "website" },
-        { property: "og:url", content: canonicalUrl },
-        { property: "og:site_name", content: "GP Smart Solutions" },
-        { property: "og:locale", content: "en_UG" },
-        { property: "og:image", content: ogImage },
-        { name: "twitter:card", content: "summary_large_image" },
-        { name: "twitter:title", content: title },
-        { name: "twitter:description", content: description },
-        { name: "twitter:image", content: ogImage },
-      ],
-      links: [{ rel: "canonical", href: canonicalUrl }],
+      ...pageMeta({
+        title,
+        description,
+        path,
+        keywords: category.keywords,
+        ogImage,
+      }),
       scripts: [
         { type: "application/ld+json", children: JSON.stringify(breadcrumbLd) },
         { type: "application/ld+json", children: JSON.stringify(serviceLd) },
