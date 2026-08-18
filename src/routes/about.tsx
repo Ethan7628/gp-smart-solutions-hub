@@ -143,18 +143,18 @@ Certified IT engineers, network technicians and field installers — united by a
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
             {
-              src: engineerDesk,
-              alt: "GP Smart Solutions IT engineer at workstation with CCTV monitoring wall",
+              src: engineerDeskAsset.url,
+              alt: "GP Smart Solutions technicians installing a rooftop wireless access point and antenna in Kampala",
               tag: "IT Engineering",
             },
             {
-              src: teamOffice,
+              src: teamOfficeAsset.url,
               alt: "GP Smart Solutions IT department staff member at Kampala office",
               tag: "IT Support",
             },
             {
-              src: cctvMonitoring,
-              alt: "GP Smart Solutions CCTV monitoring wall configured for a commercial client",
+              src: cctvMonitoringAsset.url,
+              alt: "Client reviewing GP Smart Solutions CCTV camera footage on a wall-mounted monitor",
               tag: "Surveillance",
             },
           ].map((p, i) => (
