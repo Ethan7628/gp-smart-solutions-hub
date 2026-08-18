@@ -14,7 +14,7 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
-import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd } from "@/lib/seo";
+import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 
 const categoryMetaDescriptions: Record<string, string> = {
   "cctv-surveillance":
