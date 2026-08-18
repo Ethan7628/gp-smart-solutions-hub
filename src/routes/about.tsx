@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { Target, Eye, Award, Users, Trophy, Clock, ArrowRight, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import engineerDesk from "@/assets/it-engineer-desk.jpg";
-import teamOffice from "@/assets/team-office.jpg";
-import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
+import engineerDeskAsset from "@/assets/team-rooftop-install.webp.asset.json";
+import teamOfficeAsset from "@/assets/it-support-staff.webp.asset.json";
+import cctvMonitoringAsset from "@/assets/cctv-review-client.webp.asset.json";
 import { breadcrumbJsonLd } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
