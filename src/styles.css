@@ -195,6 +195,14 @@
   animation: float-slow 6s ease-in-out infinite;
 }
 
+@utility no-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
 @keyframes shimmer {
   0% {
     background-position: -1000px 0;
