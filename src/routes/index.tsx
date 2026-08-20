@@ -474,7 +474,7 @@ function LandingPage() {
             locks, Wi-Fi access points and switching — installed by our own technicians.
           </p>
         </motion.div>
-        <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-12 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-3 no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0">
           {portfolio.map((p, i) => (
             <motion.figure
               key={p.alt}
@@ -482,7 +482,7 @@ function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: (i % 3) * 0.08 }}
-              className="group overflow-hidden rounded-2xl border border-border shadow-soft hover:shadow-elegant transition"
+              className="group relative shrink-0 snap-start overflow-hidden rounded-2xl border border-border shadow-soft hover:shadow-elegant transition w-[78vw] max-w-[340px] sm:w-auto"
             >
               <img
                 src={p.src}
