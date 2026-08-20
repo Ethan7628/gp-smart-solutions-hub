@@ -49,7 +49,7 @@ import instRack from "@/assets/eq/inst-rack.jpg";
 import instCabling from "@/assets/eq/inst-cabling.jpg";
 import netSwitch from "@/assets/eq/net-switch.jpg";
 import netFiber from "@/assets/eq/net-fiber.jpg";
-import netAp from "@/assets/eq/net-ap.jpg";
+
 import accFingerprint from "@/assets/eq/acc-fingerprint.jpg";
 import cctvBullet from "@/assets/eq/cctv-bullet.jpg";
 import { faqJsonLd, pageMeta } from "@/lib/seo";
