@@ -174,7 +174,7 @@ const portfolio = [
   { src: instRack, alt: "Neatly dressed server rack with switches and patch panels in an office data cabinet" },
   { src: instCabling, alt: "Structured network cabling and labelled patch panel termination in a network cabinet" },
   { src: netSwitch, alt: "Managed network switch with patched Ethernet uplinks in a business network cabinet" },
-  { src: netFiber, alt: "Fiber optic cable termination and splicing tray during an office fiber installation" },
+  { src: netAp, alt: "Ceiling-mounted enterprise Wi-Fi access point installed in a modern office" },
   { src: accFingerprint, alt: "Fingerprint access control reader installed at a secured office entrance" },
   { src: cctvBullet, alt: "Outdoor bullet security camera mounted on a building wall for perimeter surveillance" },
   { src: wifiInstall, alt: "GP Smart Solutions technician installing a wireless access point in a real estate office" },
