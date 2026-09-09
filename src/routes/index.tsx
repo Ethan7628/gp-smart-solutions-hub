@@ -52,7 +52,9 @@ import netAp from "@/assets/eq/net-ap.jpg";
 
 import accFingerprint from "@/assets/eq/acc-fingerprint.jpg";
 import cctvBullet from "@/assets/eq/cctv-bullet.jpg";
-import { faqJsonLd, pageMeta } from "@/lib/seo";
+import { BUSINESS_WHATSAPP, faqJsonLd, pageMeta } from "@/lib/seo";
+import { primaryServices } from "@/lib/services";
+
 
 const faqs = [
   {
@@ -392,6 +394,67 @@ function LandingPage() {
         </div>
       </section>
 
+      {/* PRIMARY SERVICE CATEGORIES */}
+      <section className="container-app py-16 md:py-24">
+        <motion.div {...fade} className="max-w-2xl">
+          <p className="text-sm font-semibold uppercase tracking-wider text-brand">
+            What We Do
+          </p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-bold tracking-tight">
+            Six core service areas, each with a dedicated page
+          </h2>
+          <p className="mt-5 text-lg text-muted-foreground">
+            Choose the area you need and see exactly what is included, the equipment we use and how
+            the installation is carried out.
+          </p>
+        </motion.div>
+
+        <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {primaryServices.map((s, i) => (
+            <motion.div
+              key={s.slug}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.4, delay: (i % 3) * 0.06 }}
+            >
+              <Link
+                to="/services/$slug"
+                params={{ slug: s.slug }}
+                className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-card shadow-soft transition duration-300 hover:-translate-y-1 hover:shadow-elegant"
+              >
+                <div className="aspect-[16/10] overflow-hidden">
+                  <img
+                    src={s.image}
+                    alt={s.alt}
+                    loading="lazy"
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="flex flex-1 flex-col p-6">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+                    <s.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
+                  <ul className="mt-4 space-y-1.5">
+                    {s.points.map((p) => (
+                      <li key={p} className="flex gap-2 text-sm text-muted-foreground">
+                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-brand" />
+                        <span>{p}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <span className="mt-5 inline-flex items-center gap-1 text-sm font-medium text-brand">
+                    Learn more <ArrowRight className="h-4 w-4" />
+                  </span>
+                </div>
+              </Link>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
       {/* SERVICES */}
       <section className="container-app py-16 md:py-24">
         <motion.div {...fade} className="flex flex-wrap items-end justify-between gap-4">
@@ -402,11 +465,12 @@ function LandingPage() {
             </h2>
           </div>
           <Button asChild variant="ghost" className="text-brand">
-            <Link to="/it-services">
+            <Link to="/services">
               View all <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
         </motion.div>
+
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {services.map((s, i) => (
