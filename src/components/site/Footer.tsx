@@ -5,15 +5,16 @@ import { BUSINESS_EMAIL, BUSINESS_PHONE_DISPLAY, BUSINESS_WHATSAPP } from "@/lib
 import logo from "@/assets/logo.png";
 
 const solutionLinks = [
-  { to: "/it-services", label: "CCTV Installation" },
-  { to: "/it-services", label: "Wi-Fi & Hotspot Setup" },
-  { to: "/it-services", label: "Structured Cabling" },
-  { to: "/it-services", label: "Fiber Optic Installation" },
-  { to: "/it-services", label: "Smart Door Locks" },
-  { to: "/it-services", label: "PABX Telephone Systems" },
-  { to: "/it-services", label: "Servers & Office IT Setup" },
-  { to: "/it-services", label: "IT Support & AMC" },
+  { slug: "cctv-installation", label: "CCTV Installation" },
+  { slug: "wifi", label: "Wi-Fi & Hotspot Setup" },
+  { slug: "structured-cabling", label: "Structured Cabling" },
+  { slug: "fiber-optic", label: "Fiber Optic Installation" },
+  { slug: "access-control", label: "Smart Locks & Access Control" },
+  { slug: "pabx", label: "PABX Telephone Systems" },
+  { slug: "server-installation", label: "Servers & Office IT Setup" },
+  { slug: "it-support", label: "IT Support & Maintenance" },
 ] as const;
+
 
 const companyLinks = [
   { to: "/about", label: "About Us" },
@@ -133,13 +134,18 @@ export function Footer() {
             <ul className="mt-4 space-y-2.5">
               {solutionLinks.map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
+                  <Link
+                    to="/services/$slug"
+                    params={{ slug: l.slug }}
+                    className="text-sm text-white/60 hover:text-white transition"
+                  >
                     {l.label}
                   </Link>
                 </li>
               ))}
             </ul>
           </nav>
+
 
           <nav aria-label="Company navigation">
             <h3 className="text-white font-semibold text-sm tracking-wide uppercase">Company</h3>
