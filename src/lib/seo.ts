@@ -1,4 +1,4 @@
-export const SITE_URL = "https://gpsmartsolutions.co.ug";
+export const SITE_URL = "https://www.gpsmartsolutions.com";
 export const SITE_NAME = "GP Smart Solutions Limited";
 export const SITE_TAGLINE = "Professional IT & Security Solutions.";
 export const BUSINESS_EMAIL = "gpsmartsolutions9@gmail.com";

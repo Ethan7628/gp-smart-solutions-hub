@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { WhatsAppFab } from "./WhatsAppFab";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -16,6 +17,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
         {children}
       </main>
       <Footer />
+      <WhatsAppFab />
     </div>
   );
 }

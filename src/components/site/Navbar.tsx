@@ -7,10 +7,12 @@ import logo from "@/assets/logo.png";
 
 const nav = [
   { to: "/", label: "Home" },
-  { to: "/it-services", label: "IT Services" },
+  { to: "/services", label: "Services" },
+  { to: "/it-services", label: "Equipment" },
   { to: "/about", label: "About" },
   { to: "/contact", label: "Contact" },
 ];
+
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
