@@ -69,6 +69,7 @@ function ContactPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    defaultValues: { contactMethod: "WhatsApp" },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -77,12 +78,17 @@ function ContactPage() {
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("phone", values.phone);
+      formData.append("organisation", values.organisation || "—");
+      formData.append("location", values.location);
+      formData.append("service", values.service);
+      formData.append("preferred contact", values.contactMethod);
       formData.append("subject", values.subject);
       formData.append("message", values.message);
-      formData.append("_subject", `New enquiry: ${values.subject}`);
+      formData.append("_subject", `New ${values.service} enquiry: ${values.subject}`);
       formData.append("_template", "table");
       formData.append("_captcha", "false");
       formData.append("_replyto", values.email);
+
 
       const res = await fetch("https://formsubmit.co/ajax/gpsmartsolutions9@gmail.com", {
         method: "POST",
