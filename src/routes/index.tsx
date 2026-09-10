@@ -272,8 +272,20 @@ function LandingPage() {
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-6 text-base border-2">
-                <Link to="/it-services">Explore Services</Link>
+                <a
+                  href={`https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(
+                    "Hello GP Smart Solutions, I would like to talk to an IT expert.",
+                  )}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  WhatsApp an IT Expert
+                </a>
               </Button>
+              <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-base">
+                <Link to="/services">Explore Services</Link>
+              </Button>
+
             </div>
           </motion.div>
 
