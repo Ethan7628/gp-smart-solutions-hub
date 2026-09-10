@@ -7,6 +7,8 @@ import { Phone, Mail, MapPin, MessageCircle, Send, Clock, ChevronRight } from "l
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
+import { quoteServiceOptions } from "@/lib/services";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -47,12 +49,17 @@ const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(160),
   phone: z.string().trim().min(7, "Enter a valid phone number").max(20),
+  organisation: z.string().trim().max(120).optional(),
+  location: z.string().trim().min(2, "Where is the site?").max(120),
+  service: z.enum(quoteServiceOptions, { message: "Choose a service" }),
+  contactMethod: z.enum(["WhatsApp", "Phone call", "Email"]),
   subject: z.string().trim().min(3, "Add a short subject").max(120),
   message: z.string().trim().min(10, "Tell us a bit more").max(2000),
   // Honeypot field — must be empty for legitimate submissions
-  company: z.string().max(0, "Spam detected").optional(),
+  website: z.string().max(0, "Spam detected").optional(),
 });
 type FormValues = z.infer<typeof schema>;
+
 
 function ContactPage() {
   const {
@@ -62,6 +69,7 @@ function ContactPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
+    defaultValues: { contactMethod: "WhatsApp" },
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -70,12 +78,17 @@ function ContactPage() {
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("phone", values.phone);
+      formData.append("organisation", values.organisation || "—");
+      formData.append("location", values.location);
+      formData.append("service", values.service);
+      formData.append("preferred contact", values.contactMethod);
       formData.append("subject", values.subject);
       formData.append("message", values.message);
-      formData.append("_subject", `New enquiry: ${values.subject}`);
+      formData.append("_subject", `New ${values.service} enquiry: ${values.subject}`);
       formData.append("_template", "table");
       formData.append("_captcha", "false");
       formData.append("_replyto", values.email);
+
 
       const res = await fetch("https://formsubmit.co/ajax/gpsmartsolutions9@gmail.com", {
         method: "POST",
@@ -192,15 +205,16 @@ function ContactPage() {
 
             {/* Honeypot field — visually hidden, accessible to screen readers */}
             <div className="sr-only" aria-hidden="true">
-              <label htmlFor="company">Company (leave blank)</label>
+              <label htmlFor="website">Website (leave blank)</label>
               <input
-                id="company"
+                id="website"
                 type="text"
                 tabIndex={-1}
                 autoComplete="off"
-                {...register("company")}
+                {...register("website")}
               />
             </div>
+
 
             <div className="mt-6 grid gap-5 sm:grid-cols-2">
               <div className="space-y-1.5">
@@ -250,6 +264,66 @@ function ContactPage() {
                 )}
               </div>
               <div className="space-y-1.5">
+                <Label htmlFor="organisation">Company / organisation (optional)</Label>
+                <Input
+                  id="organisation"
+                  placeholder="e.g. Kampala Retail Ltd"
+                  {...register("organisation")}
+                />
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="location">Site location</Label>
+                <Input
+                  id="location"
+                  placeholder="e.g. Ntinda, Kampala"
+                  aria-invalid={!!errors.location}
+                  aria-describedby={errors.location ? "location-error" : undefined}
+                  {...register("location")}
+                />
+                {errors.location && (
+                  <p id="location-error" className="text-xs text-danger" role="alert">
+                    {errors.location.message}
+                  </p>
+                )}
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="service">Service needed</Label>
+                <select
+                  id="service"
+                  defaultValue=""
+                  aria-invalid={!!errors.service}
+                  aria-describedby={errors.service ? "service-error" : undefined}
+                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                  {...register("service")}
+                >
+                  <option value="" disabled>
+                    Select a service…
+                  </option>
+                  {quoteServiceOptions.map((o) => (
+                    <option key={o} value={o}>
+                      {o}
+                    </option>
+                  ))}
+                </select>
+                {errors.service && (
+                  <p id="service-error" className="text-xs text-danger" role="alert">
+                    {errors.service.message}
+                  </p>
+                )}
+              </div>
+              <div className="space-y-1.5">
+                <Label htmlFor="contactMethod">Preferred contact method</Label>
+                <select
+                  id="contactMethod"
+                  className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-xs outline-none focus-visible:border-ring focus-visible:ring-[3px] focus-visible:ring-ring/50"
+                  {...register("contactMethod")}
+                >
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Phone call">Phone call</option>
+                  <option value="Email">Email</option>
+                </select>
+              </div>
+              <div className="space-y-1.5 sm:col-span-2">
                 <Label htmlFor="subject">Subject</Label>
                 <Input
                   id="subject"
@@ -265,6 +339,7 @@ function ContactPage() {
                 )}
               </div>
             </div>
+
 
             <div className="mt-5 space-y-1.5">
               <Label htmlFor="message">Message</Label>
