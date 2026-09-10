@@ -20,7 +20,8 @@ import catStorage from "@/assets/cat-storage.jpg";
 import wifiInstall from "@/assets/wifi-install.jpg";
 import netFiber from "@/assets/eq/net-fiber.jpg";
 import instCabling from "@/assets/eq/inst-cabling.jpg";
-import itSupportStaff from "@/assets/it-support-staff.webp";
+import itSupportStaffAsset from "@/assets/it-support-staff.webp.asset.json";
+const itSupportStaff = itSupportStaffAsset.url;
 
 export type ServiceFaq = { question: string; answer: string };
 
