@@ -7,6 +7,8 @@ import { Phone, Mail, MapPin, MessageCircle, Send, Clock, ChevronRight } from "l
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
+import { quoteServiceOptions } from "@/lib/services";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
@@ -47,12 +49,17 @@ const schema = z.object({
   name: z.string().trim().min(2, "Please enter your name").max(80),
   email: z.string().trim().email("Enter a valid email").max(160),
   phone: z.string().trim().min(7, "Enter a valid phone number").max(20),
+  organisation: z.string().trim().max(120).optional(),
+  location: z.string().trim().min(2, "Where is the site?").max(120),
+  service: z.enum(quoteServiceOptions, { message: "Choose a service" }),
+  contactMethod: z.enum(["WhatsApp", "Phone call", "Email"]),
   subject: z.string().trim().min(3, "Add a short subject").max(120),
   message: z.string().trim().min(10, "Tell us a bit more").max(2000),
   // Honeypot field — must be empty for legitimate submissions
-  company: z.string().max(0, "Spam detected").optional(),
+  website: z.string().max(0, "Spam detected").optional(),
 });
 type FormValues = z.infer<typeof schema>;
+
 
 function ContactPage() {
   const {
