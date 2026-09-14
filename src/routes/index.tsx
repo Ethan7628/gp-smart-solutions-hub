@@ -235,12 +235,23 @@ function LandingPage() {
       {/* HERO */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0 -z-10">
+          <video
+            className="h-full w-full object-cover opacity-70 motion-reduce:hidden"
+            src={heroVideo.url}
+            poster={heroImg}
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden="true"
+          />
           <img
             src={heroImg}
             alt="Network operations centre with server racks, structured cabling and a security dome camera"
             width={1920}
             height={1088}
-            className="h-full w-full object-cover opacity-70"
+            className="hidden h-full w-full object-cover opacity-70 motion-reduce:block"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
           <div className="absolute inset-0 bg-mesh" />
