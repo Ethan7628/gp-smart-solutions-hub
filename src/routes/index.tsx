@@ -40,6 +40,7 @@ import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-it.jpg";
+import heroVideo from "@/assets/hero-loop.mp4.asset.json";
 import itImg from "@/assets/it-showcase.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
