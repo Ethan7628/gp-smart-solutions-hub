@@ -73,11 +73,7 @@ export function Navbar() {
           )}
           aria-label="Primary"
         >
-          <Link
-            to="/"
-            className="flex items-center gap-2 group"
-            aria-label="GP Smart Solutions home"
-          >
+          <Link to="/" className="flex items-center gap-2 group">
             <img src={logo} alt="GP Smart Solutions logo" className="h-10 w-18" />
           </Link>
 
