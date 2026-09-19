@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   ArrowRight,
@@ -40,7 +41,10 @@ import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-it.jpg";
-import heroVideo from "@/assets/hero-loop.mp4.asset.json";
+import heroMobileWebm from "@/assets/hero-mobile.webm.asset.json";
+import heroMobileMp4 from "@/assets/hero-mobile.mp4.asset.json";
+import heroDesktopWebm from "@/assets/hero-desktop.webm.asset.json";
+import heroDesktopMp4 from "@/assets/hero-desktop.mp4.asset.json";
 import itImg from "@/assets/it-showcase.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
@@ -230,33 +234,81 @@ const fade = {
   transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
 };
 
+function HeroBackground() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [isVideoReady, setIsVideoReady] = useState(false);
+
+  useEffect(() => {
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean };
+    }).connection;
+
+    if (connection?.saveData || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      return;
+    }
+
+    const loadVideo = () => setShouldLoadVideo(true);
+    if (document.readyState === "complete") {
+      const timeout = window.setTimeout(loadVideo, 250);
+      return () => window.clearTimeout(timeout);
+    }
+
+    window.addEventListener("load", loadVideo, { once: true });
+    return () => window.removeEventListener("load", loadVideo);
+  }, []);
+
+  useEffect(() => {
+    if (!shouldLoadVideo || !videoRef.current) return;
+    videoRef.current.load();
+    void videoRef.current.play().catch(() => {
+      setIsVideoReady(false);
+    });
+  }, [shouldLoadVideo]);
+
+  return (
+    <div className="absolute inset-0 -z-10">
+      <img
+        src={heroImg}
+        alt=""
+        width={1920}
+        height={1088}
+        fetchPriority="high"
+        className="absolute inset-0 h-full w-full object-cover opacity-70"
+      />
+      {shouldLoadVideo ? (
+        <video
+          ref={videoRef}
+          className={`absolute inset-0 h-full w-full object-cover opacity-70 transition-opacity duration-700 motion-reduce:hidden ${
+            isVideoReady ? "opacity-100" : "opacity-0"
+          }`}
+          poster={heroImg}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="none"
+          aria-hidden="true"
+          onCanPlay={() => setIsVideoReady(true)}
+        >
+          <source src={heroMobileWebm.url} type="video/webm" media="(max-width: 767px)" />
+          <source src={heroMobileMp4.url} type="video/mp4" media="(max-width: 767px)" />
+          <source src={heroDesktopWebm.url} type="video/webm" />
+          <source src={heroDesktopMp4.url} type="video/mp4" />
+        </video>
+      ) : null}
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
+      <div className="absolute inset-0 bg-mesh" />
+    </div>
+  );
+}
+
 function LandingPage() {
   return (
     <SiteLayout>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 -z-10">
-          <video
-            className="h-full w-full object-cover opacity-70 motion-reduce:hidden"
-            src={heroVideo.url}
-            poster={heroImg}
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            aria-hidden="true"
-          />
-          <img
-            src={heroImg}
-            alt="Network operations centre with server racks, structured cabling and a security dome camera"
-            width={1920}
-            height={1088}
-            className="hidden h-full w-full object-cover opacity-70 motion-reduce:block"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-          <div className="absolute inset-0 bg-mesh" />
-        </div>
+        <HeroBackground />
 
         <div className="container-app py-20 md:py-32 lg:py-40">
           <motion.div {...fade} className="max-w-4xl">
