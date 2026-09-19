@@ -55,8 +55,8 @@ export function Footer() {
       <div className="container-app py-16">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
-            <Link to="/" className="flex items-center gap-2" aria-label="GP Smart Solutions home">
-              <img src={logo} alt="GP Smart Solutions logo" className="h-10 w-18" />
+            <Link to="/" className="flex items-center gap-2">
+              <img src={logo} alt="" className="h-10 w-18" />
               <span className="text-white font-bold text-lg">GP Smart Solutions</span>
             </Link>
             <p className="mt-4 text-sm text-white/60 max-w-sm">
