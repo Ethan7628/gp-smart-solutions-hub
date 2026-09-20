@@ -279,8 +279,8 @@ function HeroBackground() {
       {shouldLoadVideo ? (
         <video
           ref={videoRef}
-          className={`absolute inset-0 h-full w-full object-cover opacity-70 transition-opacity duration-700 motion-reduce:hidden ${
-            isVideoReady ? "opacity-100" : "opacity-0"
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:hidden ${
+            isVideoReady ? "opacity-70" : "opacity-0"
           }`}
           poster={heroImg}
           autoPlay
