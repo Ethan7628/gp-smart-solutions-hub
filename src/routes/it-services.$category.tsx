@@ -14,7 +14,7 @@ import {
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { getCategory, itCategories, type ITCategory } from "@/lib/it-categories";
-import { SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
+import { BUSINESS_WHATSAPP, SITE_URL, breadcrumbJsonLd, serviceJsonLd, faqJsonLd, pageMeta } from "@/lib/seo";
 
 const categoryMetaDescriptions: Record<string, string> = {
   "cctv-surveillance":
@@ -54,7 +54,7 @@ export const Route = createFileRoute("/it-services/$category")({
 
     const breadcrumbLd = breadcrumbJsonLd([
       { name: "Home", path: "/" },
-      { name: "IT Services", path: "/it-services" },
+      { name: "Equipment", path: "/it-services" },
       { name: category.title, path: `/it-services/${category.slug}` },
     ]);
     const serviceLd = {
@@ -101,7 +101,7 @@ export const Route = createFileRoute("/it-services/$category")({
     <SiteLayout>
       <div className="container-app py-24">
         <h1 className="text-3xl font-bold">Something went wrong</h1>
-        <p className="mt-3 text-muted-foreground">{error.message}</p>
+        <p className="mt-3 text-muted-foreground">{error instanceof Error ? error.message : "Please try again."}</p>
         <Button className="mt-6" onClick={reset}>
           Try again
         </Button>
@@ -119,7 +119,7 @@ function CategoryNotFound() {
           The IT category you're looking for doesn't exist.
         </p>
         <Button asChild className="mt-6">
-          <Link to="/it-services">Back to IT Services</Link>
+          <Link to="/it-services">Back to Equipment</Link>
         </Button>
       </div>
     </SiteLayout>
@@ -152,7 +152,7 @@ function CategoryPage() {
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <Link to="/it-services" className="hover:text-brand transition">
-              IT Services
+              Equipment
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
             <span className="text-foreground font-medium">{category.title}</span>
@@ -165,7 +165,7 @@ function CategoryPage() {
             className="mt-6 max-w-3xl"
           >
             <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium">
-              <Icon className="h-3.5 w-3.5 text-brand" /> IT & Technology Division
+              <Icon className="h-3.5 w-3.5 text-brand" /> Hardware & Equipment
             </span>
             <h1 className="mt-6 text-4xl md:text-5xl font-bold tracking-tight">
               <span className="gradient-text">{category.title}</span>
@@ -283,6 +283,11 @@ function CategoryPage() {
               <div className="p-6">
                 <h3 className="text-xl font-bold">{item.name}</h3>
                 <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{item.desc}</p>
+                <Button asChild variant="outline" className="mt-5 w-full">
+                  <a href={`https://wa.me/${BUSINESS_WHATSAPP}?text=${encodeURIComponent(`Hello GP Smart Solutions, I'm interested in ${item.name} (${category.title}). Please share suitable models, specifications, availability and pricing.`)}`} target="_blank" rel="noopener noreferrer">
+                    Enquire About This Equipment <ArrowRight className="ml-2 h-4 w-4 shrink-0" />
+                  </a>
+                </Button>
                 <div className="mt-4 flex items-center gap-2 text-sm text-success">
                   <Check className="h-4 w-4" /> Supplied • Installed • Supported
                 </div>

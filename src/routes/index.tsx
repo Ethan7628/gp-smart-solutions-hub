@@ -36,6 +36,7 @@ import {
   Zap,
   Award,
   Sparkle,
+  MapPin,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
@@ -58,6 +59,7 @@ import netAp from "@/assets/eq/net-ap.jpg";
 import accFingerprint from "@/assets/eq/acc-fingerprint.jpg";
 import cctvBullet from "@/assets/eq/cctv-bullet.jpg";
 import { BUSINESS_WHATSAPP, faqJsonLd, pageMeta } from "@/lib/seo";
+import { serviceAreas } from "@/lib/enquiries";
 import { primaryServices } from "@/lib/services";
 
 
@@ -177,15 +179,15 @@ const stats = [
 ];
 
 const portfolio = [
-  { src: cctvMonitoring, alt: "Multi-screen CCTV monitoring wall installed by GP Smart Solutions for a commercial client" },
-  { src: instRack, alt: "Neatly dressed server rack with switches and patch panels in an office data cabinet" },
-  { src: instCabling, alt: "Structured network cabling and labelled patch panel termination in a network cabinet" },
-  { src: netSwitch, alt: "Managed network switch with patched Ethernet uplinks in a business network cabinet" },
-  { src: netAp, alt: "Ceiling-mounted enterprise Wi-Fi access point installed in a modern office" },
-  { src: accFingerprint, alt: "Fingerprint access control reader installed at a secured office entrance" },
-  { src: cctvBullet, alt: "Outdoor bullet security camera mounted on a building wall for perimeter surveillance" },
-  { src: wifiInstall, alt: "GP Smart Solutions technician installing a wireless access point in a real estate office" },
-  { src: teamAntenna, alt: "GP Smart Solutions technicians aligning an outdoor wireless link antenna on site" },
+  { src: cctvMonitoring, title: "CCTV monitoring", context: "Commercial surveillance", detail: "Multi-camera viewing and centralised monitoring.", alt: "Multi-screen CCTV monitoring display", slug: "cctv-installation" },
+  { src: instRack, title: "Server rack setup", context: "Office infrastructure", detail: "Organised switching, patch panels and data cabinets.", alt: "Server rack with switches and patch panels", slug: "server-office-setup" },
+  { src: instCabling, title: "Structured cabling", context: "Business connectivity", detail: "Labelled connections and neatly routed network cabling.", alt: "Network cabling and patch panel termination", slug: "structured-cabling" },
+  { src: netSwitch, title: "Network switching", context: "Office networks", detail: "Managed Ethernet connections for business systems.", alt: "Managed network switch with Ethernet connections", slug: "networking-solutions" },
+  { src: netAp, title: "Enterprise Wi-Fi", context: "Indoor connectivity", detail: "Ceiling-mounted access points for workspace coverage.", alt: "Ceiling-mounted enterprise Wi-Fi access point", slug: "wifi-installation" },
+  { src: accFingerprint, title: "Biometric access", context: "Entrance security", detail: "Fingerprint-based entry for controlled office access.", alt: "Fingerprint access control reader at an office entrance", slug: "access-control" },
+  { src: cctvBullet, title: "Perimeter surveillance", context: "Outdoor security", detail: "Weather-resistant cameras for entrances and boundaries.", alt: "Outdoor bullet security camera on a building wall", slug: "cctv-installation" },
+  { src: wifiInstall, title: "Wi-Fi installation", context: "On-site field work", detail: "Access point positioning and installation by our technicians.", alt: "Technician installing a wireless access point", slug: "wifi-installation" },
+  { src: teamAntenna, title: "Outdoor wireless links", context: "Rooftop installation", detail: "Antenna alignment for connections between buildings.", alt: "Technicians aligning an outdoor wireless antenna", slug: "networking-solutions" },
 ];
 
 const testimonials = [
@@ -331,8 +333,8 @@ function LandingPage() {
                 size="lg"
                 className="bg-gradient-brand hover:opacity-95 shadow-elegant h-12 px-6 text-base"
               >
-                <Link to="/contact">
-                  Get Free Quote <ArrowRight className="ml-1 h-4 w-4" />
+                <Link to="/contact" search={{ request: "survey" }}>
+                  Book a Free Site Survey <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
               </Button>
               <Button asChild size="lg" variant="outline" className="h-12 px-6 text-base border-2">
@@ -370,6 +372,17 @@ function LandingPage() {
                 </div>
                 <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
               </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-secondary/40 py-10" aria-labelledby="brands-heading">
+        <div className="container-app">
+          <h2 id="brands-heading" className="text-sm font-semibold text-muted-foreground">Technology brands we supply & integrate</h2>
+          <div className="mt-6 grid grid-cols-2 gap-x-8 gap-y-6 sm:grid-cols-4 lg:grid-cols-8">
+            {["Hikvision", "Dahua", "Ubiquiti", "Cisco", "MikroTik", "TP-Link", "ZKTeco", "Grandstream"].map((brand) => (
+              <span key={brand} className="flex min-h-10 items-center text-lg font-bold text-muted-foreground">{brand}</span>
             ))}
           </div>
         </div>
@@ -594,7 +607,7 @@ function LandingPage() {
                 installation services — with the exact hardware we supply and support.
               </p>
               <span className="mt-6 inline-flex items-center gap-2 font-semibold group-hover:gap-3 transition-all">
-                Explore IT Services <ArrowRight className="h-4 w-4" />
+                Explore Equipment <ArrowRight className="h-4 w-4" />
               </span>
             </div>
           </Link>
@@ -621,7 +634,7 @@ function LandingPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: (i % 3) * 0.08 }}
-              className="group relative shrink-0 snap-start overflow-hidden rounded-2xl border border-border shadow-soft hover:shadow-elegant transition w-[78vw] max-w-[340px] sm:w-auto"
+              className="group relative shrink-0 snap-start overflow-hidden rounded-lg bg-card border border-border shadow-soft hover:shadow-elegant transition w-[78vw] max-w-[340px] sm:w-auto"
             >
               <img
                 src={p.src}
@@ -631,8 +644,27 @@ function LandingPage() {
                 loading="lazy"
                 className="h-60 w-full object-cover group-hover:scale-105 transition duration-500"
               />
+              <figcaption className="p-5">
+                <p className="text-xs font-semibold text-brand">{p.context}</p>
+                <h3 className="mt-2 text-lg font-bold">{p.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{p.detail}</p>
+              </figcaption>
             </motion.figure>
           ))}
+        </div>
+      </section>
+
+      <section className="border-y border-border bg-secondary/40 py-16 md:py-20">
+        <div className="container-app grid gap-10 lg:grid-cols-2">
+          <div>
+            <p className="text-sm font-semibold text-brand">Local service coverage</p>
+            <h2 className="mt-3 text-3xl font-bold">Connected and secure, across Uganda</h2>
+            <p className="mt-4 text-muted-foreground leading-relaxed">CCTV installation, office networking and Wi-Fi support for Kampala and surrounding areas. Share your site location so we can confirm visit arrangements.</p>
+            <Button asChild size="lg" className="mt-6"><Link to="/contact" search={{ request: "survey" }}><CalendarCheck className="mr-2 h-4 w-4" />Book a Free Site Survey</Link></Button>
+          </div>
+          <ul className="grid grid-cols-2 gap-x-6 gap-y-2">
+            {serviceAreas.map((area) => <li key={area}><Link to="/contact" search={{ request: "survey", area }} className="flex min-h-12 items-center gap-2 border-b border-border py-3 text-sm font-medium hover:text-primary"><MapPin className="h-4 w-4 shrink-0 text-brand" />{area}<ArrowRight className="ml-auto h-4 w-4 shrink-0" /></Link></li>)}
+          </ul>
         </div>
       </section>
 
@@ -740,7 +772,7 @@ function LandingPage() {
           <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
             <div className="text-white">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
-                Request a Free Consultation
+                Book a Free Site Survey
               </h2>
               <p className="mt-3 text-white/85 text-lg max-w-md">
                 Tell us about your site and we'll prepare a clear, itemised quotation — our team
@@ -749,7 +781,7 @@ function LandingPage() {
             </div>
             <div className="flex flex-wrap gap-3 md:justify-end">
               <Button asChild size="lg" variant="secondary" className="h-12 px-6">
-                <Link to="/contact">Get a Quote</Link>
+                <Link to="/contact" search={{ request: "survey" }}>Request a Site Survey</Link>
               </Button>
               <Button asChild size="lg" className="h-12 px-6 bg-white text-brand hover:bg-white/90">
                 <a href="tel:+256789877929" aria-label="Call +256 789 877 929">

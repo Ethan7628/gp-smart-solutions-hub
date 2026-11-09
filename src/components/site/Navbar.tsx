@@ -94,7 +94,7 @@ export function Navbar() {
 
           <div className="hidden lg:flex items-center gap-2">
             <Button asChild variant="ghost" size="sm">
-              <Link to="/it-services">Explore Services</Link>
+              <Link to="/services">Explore Services</Link>
             </Button>
             <Button asChild size="sm" className="bg-gradient-brand hover:opacity-95 shadow-elegant">
               <Link to="/contact">Get Free Quote</Link>
@@ -135,7 +135,7 @@ export function Navbar() {
               ))}
               <li className="pt-2 flex flex-col gap-2">
                 <Button asChild variant="outline" onClick={() => setOpen(false)}>
-                  <Link to="/it-services">Explore Services</Link>
+                  <Link to="/services">Explore Services</Link>
                 </Button>
                 <Button asChild className="bg-gradient-brand" onClick={() => setOpen(false)}>
                   <Link to="/contact">Get Free Quote</Link>

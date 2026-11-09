@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, MessageCircle, Send, Clock, ChevronRight } from "l
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
+import { enquiryDefaults, type EnquirySearch } from "@/lib/enquiries";
 import { quoteServiceOptions } from "@/lib/services";
 
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,12 @@ import { Label } from "@/components/ui/label";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
+  validateSearch: (search: Record<string, unknown>): EnquirySearch => ({
+    request: search.request === "survey" || search.request === "equipment" ? search.request : undefined,
+    item: typeof search.item === "string" ? search.item.slice(0, 100) : undefined,
+    area: typeof search.area === "string" ? search.area.slice(0, 120) : undefined,
+  }),
+  remountDeps: ({ search }) => [search.request, search.item, search.area],
   head: () => ({
     ...pageMeta({
       title: "Contact — GP Smart Solutions",
@@ -62,6 +69,7 @@ type FormValues = z.infer<typeof schema>;
 
 
 function ContactPage() {
+  const search = Route.useSearch();
   const {
     register,
     handleSubmit,
@@ -69,7 +77,7 @@ function ContactPage() {
     formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: zodResolver(schema),
-    defaultValues: { contactMethod: "WhatsApp" },
+    defaultValues: enquiryDefaults(search),
   });
 
   const onSubmit = async (values: FormValues) => {
@@ -130,7 +138,7 @@ function ContactPage() {
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">Contact</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
-            Let's <span className="gradient-text">build</span> something great.
+            {search.request === "survey" ? "Book a Free Site Survey" : search.request === "equipment" ? "Enquire About Equipment" : <>Let's <span className="gradient-text">build</span> something great.</>}
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
             Request a free consultation, get a quote for CCTV, Wi-Fi, cabling or IT support, or talk to
@@ -198,7 +206,7 @@ function ContactPage() {
             noValidate
             aria-label="Contact form"
           >
-            <h2 className="text-2xl font-bold">Send a message</h2>
+            <h2 className="text-2xl font-bold">{search.request === "survey" ? "Your site survey request" : "Send a message"}</h2>
             <p className="mt-1 text-sm text-muted-foreground" id="form-desc">
               We reply within one business hour.
             </p>
