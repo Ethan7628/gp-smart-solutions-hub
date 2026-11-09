@@ -9,29 +9,19 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as ServicesRouteImport } from './routes/services'
-import { Route as ItServicesRouteImport } from './routes/it-services'
-import { Route as ContactRouteImport } from './routes/contact'
-import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
-import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as ContactRouteImport } from './routes/contact'
+import { Route as ItServicesRouteImport } from './routes/it-services'
+import { Route as ServicesRouteImport } from './routes/services'
 import { Route as ItServicesIndexRouteImport } from './routes/it-services.index'
-import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 import { Route as ItServicesCategoryRouteImport } from './routes/it-services.$category'
+import { Route as ServicesIndexRouteImport } from './routes/services.index'
+import { Route as ServicesSlugRouteImport } from './routes/services.$slug'
 
-const ServicesRoute = ServicesRouteImport.update({
-  id: '/services',
-  path: '/services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ItServicesRoute = ItServicesRouteImport.update({
-  id: '/it-services',
-  path: '/it-services',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ContactRoute = ContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
+const IndexRoute = IndexRouteImport.update({
+  id: '/',
+  path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -39,30 +29,40 @@ const AboutRoute = AboutRouteImport.update({
   path: '/about',
   getParentRoute: () => rootRouteImport,
 } as any)
-const IndexRoute = IndexRouteImport.update({
-  id: '/',
-  path: '/',
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
-const ServicesIndexRoute = ServicesIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => ServicesRoute,
+const ItServicesRoute = ItServicesRouteImport.update({
+  id: '/it-services',
+  path: '/it-services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ServicesRoute = ServicesRouteImport.update({
+  id: '/services',
+  path: '/services',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const ItServicesIndexRoute = ItServicesIndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => ItServicesRoute,
 } as any)
-const ServicesSlugRoute = ServicesSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => ServicesRoute,
-} as any)
 const ItServicesCategoryRoute = ItServicesCategoryRouteImport.update({
   id: '/$category',
   path: '/$category',
   getParentRoute: () => ItServicesRoute,
+} as any)
+const ServicesIndexRoute = ServicesIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => ServicesRoute,
+} as any)
+const ServicesSlugRoute = ServicesSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => ServicesRoute,
 } as any)
 
 export interface FileRoutesByFullPath {
@@ -141,25 +141,11 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/services': {
-      id: '/services'
-      path: '/services'
-      fullPath: '/services'
-      preLoaderRoute: typeof ServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/it-services': {
-      id: '/it-services'
-      path: '/it-services'
-      fullPath: '/it-services'
-      preLoaderRoute: typeof ItServicesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/contact': {
-      id: '/contact'
-      path: '/contact'
-      fullPath: '/contact'
-      preLoaderRoute: typeof ContactRouteImport
+    '/': {
+      id: '/'
+      path: '/'
+      fullPath: '/'
+      preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -169,19 +155,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AboutRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexRouteImport
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/services/': {
-      id: '/services/'
-      path: '/'
-      fullPath: '/services/'
-      preLoaderRoute: typeof ServicesIndexRouteImport
-      parentRoute: typeof ServicesRoute
+    '/it-services': {
+      id: '/it-services'
+      path: '/it-services'
+      fullPath: '/it-services'
+      preLoaderRoute: typeof ItServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/services': {
+      id: '/services'
+      path: '/services'
+      fullPath: '/services'
+      preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
     }
     '/it-services/': {
       id: '/it-services/'
@@ -190,19 +183,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ItServicesIndexRouteImport
       parentRoute: typeof ItServicesRoute
     }
-    '/services/$slug': {
-      id: '/services/$slug'
-      path: '/$slug'
-      fullPath: '/services/$slug'
-      preLoaderRoute: typeof ServicesSlugRouteImport
-      parentRoute: typeof ServicesRoute
-    }
     '/it-services/$category': {
       id: '/it-services/$category'
       path: '/$category'
       fullPath: '/it-services/$category'
       preLoaderRoute: typeof ItServicesCategoryRouteImport
       parentRoute: typeof ItServicesRoute
+    }
+    '/services/': {
+      id: '/services/'
+      path: '/'
+      fullPath: '/services/'
+      preLoaderRoute: typeof ServicesIndexRouteImport
+      parentRoute: typeof ServicesRoute
+    }
+    '/services/$slug': {
+      id: '/services/$slug'
+      path: '/$slug'
+      fullPath: '/services/$slug'
+      preLoaderRoute: typeof ServicesSlugRouteImport
+      parentRoute: typeof ServicesRoute
     }
   }
 }
