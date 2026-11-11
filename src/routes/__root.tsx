@@ -94,6 +94,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { name: "robots", content: "index, follow" },
       { name: "author", content: "GP Smart Solutions Limited" },
+      { name: "google-site-verification", content: "KnPCoMydLZJ-UviTXdGYIrRIH0iYkt2H9aNoK0YZEuc" },
       { property: "og:type", content: "website" },
       { property: "og:site_name", content: "GP Smart Solutions" },
       { property: "og:locale", content: "en_UG" },
