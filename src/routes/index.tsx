@@ -99,7 +99,7 @@ const faqs = [
 export const Route = createFileRoute("/")({
   head: () => ({
     ...pageMeta({
-      title: "GP Smart Solutions — CCTV, Networking & IT Security Solutions in Uganda",
+      title: "GP Smart Solutions Limited — CCTV, Security & IT Systems in Uganda",
       description:
         "GP Smart Solutions delivers CCTV supply and installation, IP cameras, Wi-Fi solutions, structured cabling, fiber optics, smart door locks, PABX systems, servers and complete office IT support in Kampala, Uganda.",
       path: "/",

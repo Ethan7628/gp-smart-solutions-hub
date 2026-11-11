@@ -24,6 +24,7 @@ export const localBusinessJsonLd = {
   "@type": "LocalBusiness",
   "@id": `${SITE_URL}#business`,
   name: SITE_NAME,
+  alternateName: ["GP Smart Solutions", "GP Smart", "GP Smart Solution", "GP Smart Solutions Uganda", "GP Smart Solutions Limited Uganda"],
   description:
     "Professional IT and security solutions in Kampala, Uganda: CCTV supply and installation, IP cameras, Wi-Fi and hotspot setup, structured cabling, fiber optics, smart door locks, access control, PABX systems, servers and office IT support.",
   url: SITE_URL,
@@ -88,6 +89,7 @@ export const websiteJsonLd = {
   "@type": "WebSite",
   "@id": `${SITE_URL}#website`,
   name: SITE_NAME,
+  alternateName: ["GP Smart Solutions", "GP Smart"],
   url: SITE_URL,
   publisher: { "@id": `${SITE_URL}#business` },
   potentialAction: {
@@ -102,6 +104,7 @@ export const organizationJsonLd = {
   "@type": "Organization",
   "@id": `${SITE_URL}#organization`,
   name: SITE_NAME,
+  alternateName: ["GP Smart Solutions", "GP Smart", "GP Smart Solution", "GP Smart Solutions Uganda", "GP Smart Solutions Limited Uganda"],
   url: SITE_URL,
   logo: `${SITE_URL}/favicon.ico`,
   email: BUSINESS_EMAIL,
