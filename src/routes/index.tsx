@@ -37,6 +37,8 @@ import {
   Award,
   Sparkle,
   MapPin,
+  Play,
+  Pause,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
@@ -240,8 +242,11 @@ function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
+    setIsMobile(window.matchMedia("(max-width: 767px)").matches);
     const connection = (navigator as Navigator & {
       connection?: { saveData?: boolean };
     }).connection;
@@ -250,25 +255,42 @@ function HeroBackground() {
       return;
     }
 
-    const loadVideo = () => setShouldLoadVideo(true);
-    if (document.readyState === "complete") {
-      const timeout = window.setTimeout(loadVideo, 250);
-      return () => window.clearTimeout(timeout);
-    }
-
-    window.addEventListener("load", loadVideo, { once: true });
-    return () => window.removeEventListener("load", loadVideo);
+    // Do not wait for unrelated images to finish loading before starting the video.
+    const timeout = window.setTimeout(() => setShouldLoadVideo(true), 250);
+    return () => window.clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
     if (!shouldLoadVideo || !videoRef.current) return;
-    videoRef.current.load();
-    void videoRef.current.play().catch(() => {
+    const video = videoRef.current;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.load();
+    void video.play().catch(() => {
       setIsVideoReady(false);
+      setIsPlaying(false);
     });
-  }, [shouldLoadVideo]);
+  }, [shouldLoadVideo, isMobile]);
+
+  const togglePlayback = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (!video.paused) {
+      video.pause();
+      return;
+    }
+    // Keep play() inside the tap handler for iOS / low-power autoplay restrictions.
+    video.muted = true;
+    video.defaultMuted = true;
+    if (!isVideoReady) video.load();
+    void video.play().catch(() => {
+      setIsVideoReady(false);
+      setIsPlaying(false);
+    });
+  };
 
   return (
+    <>
     <div className="absolute inset-0 -z-10">
       <img
         src={heroImg}
@@ -278,30 +300,45 @@ function HeroBackground() {
         fetchPriority="high"
         className="absolute inset-0 h-full w-full object-cover opacity-70"
       />
-      {shouldLoadVideo ? (
         <video
           ref={videoRef}
-          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:hidden ${
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
             isVideoReady ? "opacity-70" : "opacity-0"
           }`}
           poster={heroImg}
-          autoPlay
           muted
           loop
           playsInline
           preload="none"
           aria-hidden="true"
-          onCanPlay={() => setIsVideoReady(true)}
+          onPlaying={() => {
+            setIsVideoReady(true);
+            setIsPlaying(true);
+          }}
+          onPause={() => setIsPlaying(false)}
+          onError={() => {
+            setIsVideoReady(false);
+            setIsPlaying(false);
+          }}
         >
-          <source src={heroMobileWebm} type="video/webm" media="(max-width: 767px)" />
-          <source src={heroMobileMp4} type="video/mp4" media="(max-width: 767px)" />
-          <source src={heroDesktopWebm} type="video/webm" />
-          <source src={heroDesktopMp4} type="video/mp4" />
+          <source src={isMobile ? heroMobileMp4 : heroDesktopMp4} type="video/mp4" />
+          <source src={isMobile ? heroMobileWebm : heroDesktopWebm} type="video/webm" />
         </video>
-      ) : null}
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
       <div className="absolute inset-0 bg-mesh" />
     </div>
+    <Button
+      type="button"
+      variant="outline"
+      size="icon"
+      className="absolute bottom-3 right-4 z-10"
+      onClick={togglePlayback}
+      aria-label={isPlaying ? "Pause background video" : "Play background video"}
+      title={isPlaying ? "Pause background video" : "Play background video"}
+    >
+      {isPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
+    </Button>
+    </>
   );
 }
 
