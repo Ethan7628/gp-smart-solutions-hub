@@ -44,9 +44,7 @@ import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-it.jpg";
-import heroMobileWebm from "@/assets/hero-mobile.webm";
 import heroMobileMp4 from "@/assets/hero-mobile.mp4";
-import heroDesktopWebm from "@/assets/hero-desktop.webm";
 import heroDesktopMp4 from "@/assets/hero-desktop.mp4";
 import itImg from "@/assets/it-showcase.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
@@ -265,7 +263,6 @@ function HeroBackground() {
     const video = videoRef.current;
     video.muted = true;
     video.defaultMuted = true;
-    video.load();
     void video.play().catch(() => {
       setIsVideoReady(false);
       setIsPlaying(false);
@@ -282,7 +279,6 @@ function HeroBackground() {
     // Keep play() inside the tap handler for iOS / low-power autoplay restrictions.
     video.muted = true;
     video.defaultMuted = true;
-    if (!isVideoReady) video.load();
     void video.play().catch(() => {
       setIsVideoReady(false);
       setIsPlaying(false);
@@ -306,10 +302,12 @@ function HeroBackground() {
             isVideoReady ? "opacity-70" : "opacity-0"
           }`}
           poster={heroImg}
+          src={isMobile ? heroMobileMp4 : heroDesktopMp4}
+          autoPlay={shouldLoadVideo}
           muted
           loop
           playsInline
-          preload="none"
+          preload="metadata"
           aria-hidden="true"
           onPlaying={() => {
             setIsVideoReady(true);
@@ -320,10 +318,7 @@ function HeroBackground() {
             setIsVideoReady(false);
             setIsPlaying(false);
           }}
-        >
-          <source src={isMobile ? heroMobileMp4 : heroDesktopMp4} type="video/mp4" />
-          <source src={isMobile ? heroMobileWebm : heroDesktopWebm} type="video/webm" />
-        </video>
+        />
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
       <div className="absolute inset-0 bg-mesh" />
     </div>
@@ -663,12 +658,12 @@ function LandingPage() {
             locks, Wi-Fi access points and switching — installed by our own technicians.
           </p>
         </motion.div>
-        <div className="mt-12 flex gap-5 overflow-x-auto snap-x snap-mandatory pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-3 no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0">
+        <div className="mt-12 flex gap-5 overflow-x-auto overflow-y-hidden touch-pan-x overscroll-x-contain snap-x snap-mandatory pb-4 sm:grid sm:grid-cols-2 sm:overflow-visible sm:touch-auto sm:pb-0 lg:grid-cols-3 no-scrollbar -mx-5 px-5 sm:mx-0 sm:px-0">
           {portfolio.map((p, i) => (
             <motion.figure
               key={p.alt}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.45, delay: (i % 3) * 0.08 }}
               className="group relative shrink-0 snap-start overflow-hidden rounded-lg bg-card border border-border shadow-soft hover:shadow-elegant transition w-[78vw] max-w-[340px] sm:w-auto"
@@ -679,6 +674,7 @@ function LandingPage() {
                 width={1200}
                 height={800}
                 loading="lazy"
+                draggable={false}
                 className="h-60 w-full object-cover group-hover:scale-105 transition duration-500"
               />
               <figcaption className="p-5">
