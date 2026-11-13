@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 import { Target, Eye, Award, Users, Trophy, Clock, ArrowRight, ChevronRight } from "lucide-react";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import { Button } from "@/components/ui/button";
-import engineerDeskAsset from "@/assets/team-rooftop-install.webp.asset.json";
-import teamOfficeAsset from "@/assets/it-support-staff.webp.asset.json";
-import cctvMonitoringAsset from "@/assets/cctv-review-client.webp.asset.json";
+import engineerDeskAsset from "@/assets/team-rooftop-install.webp";
+import teamOfficeAsset from "@/assets/it-support-staff.webp";
+import cctvMonitoringAsset from "@/assets/cctv-review-client.webp";
 import { breadcrumbJsonLd, pageMeta } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
@@ -127,17 +127,17 @@ Certified IT engineers, network technicians and field installers — united by a
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {[
             {
-              src: engineerDeskAsset.url,
+              src: engineerDeskAsset,
               alt: "GP Smart Solutions technicians installing a rooftop wireless access point and antenna in Kampala",
               tag: "IT Engineering",
             },
             {
-              src: teamOfficeAsset.url,
+              src: teamOfficeAsset,
               alt: "GP Smart Solutions IT department staff member at Kampala office",
               tag: "IT Support",
             },
             {
-              src: cctvMonitoringAsset.url,
+              src: cctvMonitoringAsset,
               alt: "Client reviewing GP Smart Solutions CCTV camera footage on a wall-mounted monitor",
               tag: "Surveillance",
             },

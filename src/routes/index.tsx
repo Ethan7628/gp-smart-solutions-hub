@@ -42,10 +42,10 @@ import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
 import { SiteLayout } from "@/components/site/SiteLayout";
 import heroImg from "@/assets/hero-it.jpg";
-import heroMobileWebm from "@/assets/hero-mobile.webm.asset.json";
-import heroMobileMp4 from "@/assets/hero-mobile.mp4.asset.json";
-import heroDesktopWebm from "@/assets/hero-desktop.webm.asset.json";
-import heroDesktopMp4 from "@/assets/hero-desktop.mp4.asset.json";
+import heroMobileWebm from "@/assets/hero-mobile.webm";
+import heroMobileMp4 from "@/assets/hero-mobile.mp4";
+import heroDesktopWebm from "@/assets/hero-desktop.webm";
+import heroDesktopMp4 from "@/assets/hero-desktop.mp4";
 import itImg from "@/assets/it-showcase.jpg";
 import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
@@ -293,10 +293,10 @@ function HeroBackground() {
           aria-hidden="true"
           onCanPlay={() => setIsVideoReady(true)}
         >
-          <source src={heroMobileWebm.url} type="video/webm" media="(max-width: 767px)" />
-          <source src={heroMobileMp4.url} type="video/mp4" media="(max-width: 767px)" />
-          <source src={heroDesktopWebm.url} type="video/webm" />
-          <source src={heroDesktopMp4.url} type="video/mp4" />
+          <source src={heroMobileWebm} type="video/webm" media="(max-width: 767px)" />
+          <source src={heroMobileMp4} type="video/mp4" media="(max-width: 767px)" />
+          <source src={heroDesktopWebm} type="video/webm" />
+          <source src={heroDesktopMp4} type="video/mp4" />
         </video>
       ) : null}
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
