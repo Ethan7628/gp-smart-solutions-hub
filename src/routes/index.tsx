@@ -236,7 +236,7 @@ const fade = {
 
 function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
+  const [shouldLoadVideo, setShouldLoadVideo] = useState(true);
   const [isVideoReady, setIsVideoReady] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -247,17 +247,22 @@ function HeroBackground() {
     }).connection;
 
     if (connection?.saveData || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      return;
+      setShouldLoadVideo(false);
+      videoRef.current?.pause();
+      setIsVideoReady(false);
     }
-
-    // Do not wait for unrelated images to finish loading before starting the video.
-    const timeout = window.setTimeout(() => setShouldLoadVideo(true), 250);
-    return () => window.clearTimeout(timeout);
   }, []);
 
   useEffect(() => {
     if (!shouldLoadVideo || !videoRef.current) return;
     const video = videoRef.current;
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean };
+    }).connection;
+    if (connection?.saveData || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      video.pause();
+      return;
+    }
     const resumePlayback = () => {
       if (document.visibilityState !== "visible" || !video.paused) return;
       video.muted = true;
@@ -296,7 +301,15 @@ function HeroBackground() {
         className="absolute inset-0 h-full w-full object-cover opacity-70"
       />
         <video
-          ref={videoRef}
+          ref={(video) => {
+            videoRef.current = video;
+            if (video) {
+              // defaultMuted is a DOM property, not a supported React video prop.
+              video.defaultMuted = true;
+              video.muted = true;
+              video.setAttribute("muted", "");
+            }
+          }}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
             isVideoReady ? "opacity-70" : "opacity-0"
           }`}
@@ -306,10 +319,17 @@ function HeroBackground() {
           muted
           loop
           playsInline
+          webkit-playsinline=""
           preload="metadata"
           aria-hidden="true"
           onPlaying={() => {
             setIsVideoReady(true);
+          }}
+          onEnded={(event) => {
+            if (!shouldLoadVideo || document.visibilityState !== "visible") return;
+            const video = event.currentTarget;
+            video.currentTime = 0;
+            void video.play().catch(() => setIsVideoReady(false));
           }}
           onError={() => {
             setIsVideoReady(false);

@@ -1,4 +1,5 @@
 # Website improvements
+- [x] Enable immediate muted inline background autoplay and an ended restart fallback; verified mobile/desktop browser playback and reduced-motion handling (physical iPhone behavior requires a device check).
 - [x] Apply native iPhone-friendly video playback and verify autoplay/direct-tap controls in the browser; physical iPhone playback requires the user's device check.
 - [x] Constrain mobile installation cards to horizontal swiping and verify desktop layout remains unchanged.
 - [x] Distinguish the equipment catalogue from installation services.
