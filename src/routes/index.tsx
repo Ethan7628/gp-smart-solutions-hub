@@ -37,8 +37,6 @@ import {
   Award,
   Sparkle,
   MapPin,
-  Play,
-  Pause,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Counter } from "@/components/site/Counter";
@@ -240,7 +238,6 @@ function HeroBackground() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [shouldLoadVideo, setShouldLoadVideo] = useState(false);
   const [isVideoReady, setIsVideoReady] = useState(false);
-  const [isPlaying, setIsPlaying] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -261,29 +258,31 @@ function HeroBackground() {
   useEffect(() => {
     if (!shouldLoadVideo || !videoRef.current) return;
     const video = videoRef.current;
-    video.muted = true;
-    video.defaultMuted = true;
-    void video.play().catch(() => {
-      setIsVideoReady(false);
-      setIsPlaying(false);
-    });
+    const resumePlayback = () => {
+      if (document.visibilityState !== "visible" || !video.paused) return;
+      video.muted = true;
+      video.defaultMuted = true;
+      // A normal page interaction can unlock playback when Safari rejects autoplay.
+      void video.play().catch(() => {
+        setIsVideoReady(false);
+      });
+    };
+    resumePlayback();
+    video.addEventListener("canplay", resumePlayback);
+    document.addEventListener("touchend", resumePlayback, { passive: true });
+    document.addEventListener("click", resumePlayback);
+    document.addEventListener("keydown", resumePlayback);
+    document.addEventListener("visibilitychange", resumePlayback);
+    window.addEventListener("pageshow", resumePlayback);
+    return () => {
+      video.removeEventListener("canplay", resumePlayback);
+      document.removeEventListener("touchend", resumePlayback);
+      document.removeEventListener("click", resumePlayback);
+      document.removeEventListener("keydown", resumePlayback);
+      document.removeEventListener("visibilitychange", resumePlayback);
+      window.removeEventListener("pageshow", resumePlayback);
+    };
   }, [shouldLoadVideo, isMobile]);
-
-  const togglePlayback = () => {
-    const video = videoRef.current;
-    if (!video) return;
-    if (!video.paused) {
-      video.pause();
-      return;
-    }
-    // Keep play() inside the tap handler for iOS / low-power autoplay restrictions.
-    video.muted = true;
-    video.defaultMuted = true;
-    void video.play().catch(() => {
-      setIsVideoReady(false);
-      setIsPlaying(false);
-    });
-  };
 
   return (
     <>
@@ -311,28 +310,14 @@ function HeroBackground() {
           aria-hidden="true"
           onPlaying={() => {
             setIsVideoReady(true);
-            setIsPlaying(true);
           }}
-          onPause={() => setIsPlaying(false)}
           onError={() => {
             setIsVideoReady(false);
-            setIsPlaying(false);
           }}
         />
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
       <div className="absolute inset-0 bg-mesh" />
     </div>
-    <Button
-      type="button"
-      variant="outline"
-      size="icon"
-      className="absolute bottom-3 right-4 z-10"
-      onClick={togglePlayback}
-      aria-label={isPlaying ? "Pause background video" : "Play background video"}
-      title={isPlaying ? "Pause background video" : "Play background video"}
-    >
-      {isPlaying ? <Pause aria-hidden="true" /> : <Play aria-hidden="true" />}
-    </Button>
     </>
   );
 }

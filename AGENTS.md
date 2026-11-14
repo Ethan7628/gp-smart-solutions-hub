@@ -14,5 +14,5 @@
 - Keep enquiry intent in optional validated contact search parameters and derive form defaults through a shared browser-safe helper so survey, equipment and area links remain consistent.
 - Keep existing equipment URLs as catalogue pages; installation scopes belong on the separate service routes so published links remain valid.
 - Production media must be bundled local files in src/assets (not .asset.json pointers): the custom domain is hosted outside Lovable and cannot serve /__l5e/ URLs.
-- Background video binds viewport-selected H.264 MP4 directly to the video src with metadata preloading and native autoplay respecting reduced-motion/data-saving preferences; the tap control calls play() without load() so mobile user activation is preserved.
+- Background video uses viewport-selected bundled H.264 MP4, metadata preloading and muted inline looping with motion/data-saving preferences respected; retry play() on normal page interactions and page return without load() or a visible playback button because Safari may require user activation.
 - The homepage portfolio uses horizontal-only touch scrolling on phones and a grid on larger screens so card gestures cannot pan the strip vertically.
