@@ -145,10 +145,8 @@
 }
 
 @utility gradient-text {
-  background: var(--gradient-brand);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  /* Solid accent text stays visible across wrapped inline fragments and Safari. */
+  color: var(--color-primary);
 }
 
 @utility glass {
