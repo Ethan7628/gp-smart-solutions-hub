@@ -356,7 +356,7 @@ function LandingPage() {
               Trusted by 2,000+ homes and businesses across Uganda
             </span>
             <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-              Professional <span className="gradient-text">IT & Security Solutions</span> for Homes
+              Professional <span className="text-primary">IT & Security Solutions</span> for Homes
               and Businesses
             </h1>
             <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
