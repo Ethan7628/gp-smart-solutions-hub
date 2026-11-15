@@ -274,15 +274,22 @@ function HeroBackground() {
     };
     resumePlayback();
     video.addEventListener("canplay", resumePlayback);
-    document.addEventListener("touchend", resumePlayback, { passive: true });
-    document.addEventListener("click", resumePlayback);
+    // Any touch on the page (a tap or the start of a scroll) retries playback,
+    // because iPhone Safari only allows play() during some user gestures.
+    const gestureEvents = ["touchstart", "touchend", "pointerdown", "pointerup", "click"] as const;
+    gestureEvents.forEach((name) =>
+      document.addEventListener(name, resumePlayback, { passive: true, capture: true }),
+    );
+    window.addEventListener("scroll", resumePlayback, { passive: true });
     document.addEventListener("keydown", resumePlayback);
     document.addEventListener("visibilitychange", resumePlayback);
     window.addEventListener("pageshow", resumePlayback);
     return () => {
       video.removeEventListener("canplay", resumePlayback);
-      document.removeEventListener("touchend", resumePlayback);
-      document.removeEventListener("click", resumePlayback);
+      gestureEvents.forEach((name) =>
+        document.removeEventListener(name, resumePlayback, { capture: true }),
+      );
+      window.removeEventListener("scroll", resumePlayback);
       document.removeEventListener("keydown", resumePlayback);
       document.removeEventListener("visibilitychange", resumePlayback);
       window.removeEventListener("pageshow", resumePlayback);
