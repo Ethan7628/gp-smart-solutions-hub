@@ -16,6 +16,7 @@ import catNetworking from "@/assets/cat-networking.jpg";
 import catAccess from "@/assets/cat-access.jpg";
 import catTelephony from "@/assets/cat-telephony.jpg";
 import catInstall from "@/assets/cat-install.jpg";
+import itInfrastructure from "@/assets/it-infrastructure.jpg";
 import catStorage from "@/assets/cat-storage.jpg";
 import wifiInstall from "@/assets/wifi-install.jpg";
 import netFiber from "@/assets/eq/net-fiber.jpg";
@@ -727,8 +728,9 @@ export const primaryServices = [
     slug: "server-installation",
     icon: Server,
     title: "Business IT Infrastructure",
-    image: catInstall,
-    alt: "Server rack and office IT infrastructure installation",
+    image: itInfrastructure,
+    imagePosition: "center 30%",
+    alt: "Technician organising patch cables in a business server rack",
     desc: "Servers, office networks, PABX, computer systems and complete office IT setup.",
     points: ["Servers & racks", "PABX telephony", "Full office fit-out"],
   },
@@ -737,6 +739,7 @@ export const primaryServices = [
     icon: Headphones,
     title: "IT Support & Maintenance",
     image: itSupportStaff,
+    imagePosition: "center 22%",
     alt: "IT support technician assisting with office equipment",
     desc: "On-site support, remote support, troubleshooting, maintenance and IT consultancy.",
     points: ["On-site & remote support", "Scheduled maintenance", "IT consultancy"],
