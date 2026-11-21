@@ -49,7 +49,7 @@ import itEngineerOffice from "@/assets/it-engineer-office.jpg";
 import cctvMonitoring from "@/assets/cctv-monitoring.jpg";
 import wifiInstall from "@/assets/wifi-install.jpg";
 import teamAntenna from "@/assets/team-antenna.jpg";
-import instRack from "@/assets/eq/inst-rack.jpg";
+import instRack from "@/assets/server-rack-setup.jpg";
 import instCabling from "@/assets/eq/inst-cabling.jpg";
 import netSwitch from "@/assets/eq/net-switch.jpg";
 import netAp from "@/assets/eq/net-ap.jpg";
