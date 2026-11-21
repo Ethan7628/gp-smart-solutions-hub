@@ -350,6 +350,7 @@ function HeroBackground() {
 }
 
 function LandingPage() {
+  const [showAllServices, setShowAllServices] = useState(false);
   return (
     <SiteLayout>
       {/* HERO */}
@@ -607,7 +608,7 @@ function LandingPage() {
 
 
         <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {services.map((s, i) => (
+          {(showAllServices ? services : services.slice(0, 8)).map((s, i) => (
             <motion.div
               key={s.title}
               initial={{ opacity: 0, y: 20 }}
@@ -623,6 +624,16 @@ function LandingPage() {
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{s.desc}</p>
             </motion.div>
           ))}
+        </div>
+        <div className="mt-8 flex justify-center">
+          <Button
+            variant="outline"
+            onClick={() => setShowAllServices((v) => !v)}
+            aria-expanded={showAllServices}
+          >
+            {showAllServices ? "Show fewer services" : `View all ${services.length} services`}
+            <ArrowRight className={`ml-1 h-4 w-4 transition-transform ${showAllServices ? "-rotate-90" : "rotate-90"}`} />
+          </Button>
         </div>
       </section>
 
