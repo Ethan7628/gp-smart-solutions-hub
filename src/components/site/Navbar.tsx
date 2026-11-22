@@ -20,6 +20,8 @@ export function Navbar() {
   const menuRef = useRef<HTMLDivElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const { location } = useRouterState();
+  // The homepage hero is a dark video, so the bar sits on it in light text until scrolled.
+  const onDarkHero = location.pathname === "/" && !scrolled;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -82,8 +84,17 @@ export function Navbar() {
               <li key={n.to}>
                 <Link
                   to={n.to}
-                  className="px-4 py-2 text-sm font-medium text-foreground/80 hover:text-foreground rounded-lg hover:bg-accent transition-colors"
-                  activeProps={{ className: "text-foreground bg-accent" }}
+                  className={cn(
+                    "px-4 py-2 text-sm font-medium rounded-lg transition-colors",
+                    onDarkHero
+                      ? "text-dark-foreground/85 hover:text-dark-foreground hover:bg-primary-foreground/10"
+                      : "text-foreground/80 hover:text-foreground hover:bg-accent",
+                  )}
+                  activeProps={{
+                    className: onDarkHero
+                      ? "text-dark-foreground bg-primary-foreground/15"
+                      : "text-foreground bg-accent",
+                  }}
                   aria-current={isActive(n.to) ? "page" : undefined}
                 >
                   {n.label}
@@ -93,7 +104,14 @@ export function Navbar() {
           </ul>
 
           <div className="hidden lg:flex items-center gap-2">
-            <Button asChild variant="ghost" size="sm">
+            <Button
+              asChild
+              variant="ghost"
+              size="sm"
+              className={
+                onDarkHero ? "text-dark-foreground hover:bg-primary-foreground/10" : ""
+              }
+            >
               <Link to="/services">Explore Services</Link>
             </Button>
             <Button asChild size="sm" className="bg-brand-600 hover:opacity-95 shadow-elegant">
@@ -104,7 +122,12 @@ export function Navbar() {
           <button
             ref={toggleRef}
             type="button"
-            className="lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className={cn(
+              "lg:hidden inline-flex h-10 w-10 items-center justify-center rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+              onDarkHero
+                ? "text-dark-foreground hover:bg-primary-foreground/10"
+                : "hover:bg-accent",
+            )}
             onClick={() => setOpen((v) => !v)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}

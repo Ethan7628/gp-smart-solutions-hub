@@ -263,6 +263,7 @@ function HeroBackground() {
       video.pause();
       return;
     }
+    const markReady = () => setIsVideoReady(true);
     const resumePlayback = () => {
       if (document.visibilityState !== "visible" || !video.paused) return;
       video.muted = true;
@@ -272,7 +273,12 @@ function HeroBackground() {
         setIsVideoReady(false);
       });
     };
+    // Server-rendered HTML starts the autoplaying video before React hydrates, so
+    // the "playing" event can fire before its listener exists — catch up on mount.
+    if (!video.paused || video.currentTime > 0) markReady();
     resumePlayback();
+    video.addEventListener("playing", markReady);
+    video.addEventListener("timeupdate", markReady);
     video.addEventListener("canplay", resumePlayback);
     // Any touch on the page (a tap or the start of a scroll) retries playback,
     // because iPhone Safari only allows play() during some user gestures.
@@ -285,6 +291,8 @@ function HeroBackground() {
     document.addEventListener("visibilitychange", resumePlayback);
     window.addEventListener("pageshow", resumePlayback);
     return () => {
+      video.removeEventListener("playing", markReady);
+      video.removeEventListener("timeupdate", markReady);
       video.removeEventListener("canplay", resumePlayback);
       gestureEvents.forEach((name) =>
         document.removeEventListener(name, resumePlayback, { capture: true }),
@@ -305,7 +313,7 @@ function HeroBackground() {
         width={1920}
         height={1088}
         fetchPriority="high"
-        className="absolute inset-0 h-full w-full object-cover opacity-70"
+        className="absolute inset-0 h-full w-full object-cover"
       />
         <video
           ref={(video) => {
@@ -318,7 +326,7 @@ function HeroBackground() {
             }
           }}
           className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
-            isVideoReady ? "opacity-70" : "opacity-0"
+            isVideoReady ? "opacity-100" : "opacity-0"
           }`}
           poster={heroImg}
           src={isMobile ? heroMobileMp4 : heroDesktopMp4}
@@ -342,8 +350,8 @@ function HeroBackground() {
             setIsVideoReady(false);
           }}
         />
-      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-      <div className="absolute inset-0 bg-brand-50/70" />
+      <div className="absolute inset-0 bg-dark/45" />
+      <div className="absolute inset-0 bg-gradient-to-b from-dark/30 via-transparent to-background" />
     </div>
     </>
   );
@@ -359,15 +367,15 @@ function LandingPage() {
 
         <div className="container-app py-20 md:py-32 lg:py-40">
           <motion.div {...fade} className="max-w-4xl">
-            <span className="inline-flex items-center gap-2 rounded-full glass px-4 py-1.5 text-xs font-medium text-foreground/80">
+            <span className="inline-flex items-center gap-2 rounded-full glass-dark px-4 py-1.5 text-xs font-medium text-dark-foreground">
               <span className="h-1.5 w-1.5 rounded-full bg-success animate-pulse" />
               Trusted by 2,000+ homes and businesses across Uganda
             </span>
-            <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-              Professional <span className="text-brand-600">IT & Security Solutions</span> for Homes
-              and Businesses
+            <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight text-dark-foreground">
+              Professional <span className="text-brand-300">IT &amp; Security Solutions</span> for
+              Homes and Businesses
             </h1>
-            <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
+            <p className="mt-6 max-w-2xl text-lg md:text-xl text-dark-foreground/80 leading-relaxed">
               GP Smart Solutions delivers CCTV surveillance, networking, Wi-Fi solutions, structured
               cabling, smart access control, PABX systems, and complete office IT infrastructure with
               professional installation and reliable support.
@@ -393,7 +401,7 @@ function LandingPage() {
                   WhatsApp an IT Expert
                 </a>
               </Button>
-              <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-base">
+              <Button asChild size="lg" variant="ghost" className="h-12 px-6 text-base text-dark-foreground hover:bg-primary-foreground/10">
                 <Link to="/services">Explore Services</Link>
               </Button>
 
@@ -409,13 +417,13 @@ function LandingPage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: i * 0.08 }}
-                className="glass rounded-2xl p-5 shadow-soft"
+                className="glass-dark rounded-2xl p-5 shadow-soft"
               >
-                <s.icon className="h-5 w-5 text-brand" />
-                <div className="mt-3 text-3xl font-bold tracking-tight tabular-nums">
+                <s.icon className="h-5 w-5 text-brand-300" />
+                <div className="mt-3 text-3xl font-bold tracking-tight tabular-nums text-dark-foreground">
                   <Counter target={s.target} suffix={s.suffix} decimals={s.decimals} />
                 </div>
-                <div className="text-xs text-muted-foreground mt-1">{s.label}</div>
+                <div className="text-xs text-dark-foreground/70 mt-1">{s.label}</div>
               </motion.div>
             ))}
           </div>
