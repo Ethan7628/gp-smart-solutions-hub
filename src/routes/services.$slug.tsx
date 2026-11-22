@@ -121,6 +121,7 @@ function ServiceDetail() {
               <img
                 src={service.image}
                 alt={service.alt}
+                style={service.imagePosition ? { objectPosition: service.imagePosition } : undefined}
                 className="aspect-[4/3] w-full object-cover"
               />
             </div>

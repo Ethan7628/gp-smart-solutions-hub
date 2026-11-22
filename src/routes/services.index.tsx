@@ -69,6 +69,7 @@ function ServicesIndex() {
                     src={s.image}
                     alt={s.alt}
                     loading="lazy"
+                    style={s.imagePosition ? { objectPosition: s.imagePosition } : undefined}
                     className="h-full w-full object-cover transition duration-500 group-hover:scale-105"
                   />
                 </div>

@@ -37,6 +37,8 @@ export type ServicePage = {
   metaDescription: string;
   icon: LucideIcon;
   image: string;
+  /** Optional CSS object-position for portrait photos cropped into landscape cards */
+  imagePosition?: string;
   alt: string;
   intro: string;
   includes: string[];
@@ -610,6 +612,7 @@ export const servicePages: ServicePage[] = [
       "IT support and maintenance in Kampala and Uganda: on-site and remote support, troubleshooting, computer repairs, scheduled maintenance and IT consultancy.",
     icon: Headphones,
     image: itSupportStaff,
+    imagePosition: "center 24%",
     alt: "GP Smart Solutions IT support staff member working with office IT equipment",
     intro:
       "Day-to-day technical assistance for offices and homes — troubleshooting, repairs, maintenance visits and practical advice, delivered remotely where possible and on site when needed.",
