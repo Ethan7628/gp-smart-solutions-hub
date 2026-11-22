@@ -62,7 +62,7 @@ export function ITServicesPage() {
             className="h-full w-full object-cover opacity-30"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-background/70 via-background/85 to-background" />
-          <div className="absolute inset-0 bg-mesh" />
+          <div className="absolute inset-0 bg-brand-50/70" />
         </div>
         <div className="container-app py-20 md:py-28">
           {/* Breadcrumbs */}
@@ -86,14 +86,14 @@ export function ITServicesPage() {
               <Cpu className="h-3.5 w-3.5 text-brand" /> Hardware & Equipment
             </span>
             <h1 className="mt-6 text-4xl md:text-6xl font-bold tracking-tight max-w-4xl">
-              Hardware & <span className="gradient-text">Equipment Catalogue</span>
+              Hardware & <span className="text-brand-600">Equipment Catalogue</span>
             </h1>
             <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
               Cameras, recorders, network hardware, smart access and office telephony —
               find the right equipment for your premises, then ask us for a model-specific quotation.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+              <Button asChild size="lg" className="bg-brand-600 h-12 px-6 shadow-elegant">
                 <Link to="/contact">
                   Request a Quote <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>

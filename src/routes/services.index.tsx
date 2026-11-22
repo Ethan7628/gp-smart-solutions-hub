@@ -103,7 +103,7 @@ function ServicesIndex() {
             you a clear quotation.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Button asChild className="bg-gradient-brand shadow-elegant">
+            <Button asChild className="bg-brand-600 shadow-elegant">
               <Link to="/contact">Get a Free Quote</Link>
             </Button>
             <Button asChild variant="outline">

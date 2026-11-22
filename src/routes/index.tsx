@@ -343,7 +343,7 @@ function HeroBackground() {
           }}
         />
       <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/60 to-background" />
-      <div className="absolute inset-0 bg-mesh" />
+      <div className="absolute inset-0 bg-brand-50/70" />
     </div>
     </>
   );
@@ -364,7 +364,7 @@ function LandingPage() {
               Trusted by 2,000+ homes and businesses across Uganda
             </span>
             <h1 className="mt-6 text-4xl md:text-6xl lg:text-7xl font-bold leading-[1.05] tracking-tight">
-              Professional <span className="gradient-text">IT & Security Solutions</span> for Homes
+              Professional <span className="text-brand-600">IT & Security Solutions</span> for Homes
               and Businesses
             </h1>
             <p className="mt-6 max-w-2xl text-lg md:text-xl text-muted-foreground leading-relaxed">
@@ -376,7 +376,7 @@ function LandingPage() {
               <Button
                 asChild
                 size="lg"
-                className="bg-gradient-brand hover:opacity-95 shadow-elegant h-12 px-6 text-base"
+                className="bg-brand-600 hover:opacity-95 shadow-elegant h-12 px-6 text-base"
               >
                 <Link to="/contact" search={{ request: "survey" }}>
                   Book a Free Site Survey <ArrowRight className="ml-1 h-4 w-4" />
@@ -478,7 +478,7 @@ function LandingPage() {
               ))}
             </ul>
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+              <Button asChild size="lg" className="bg-brand-600 h-12 px-6 shadow-elegant">
                 <Link to="/about">
                   More About Us <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -493,7 +493,7 @@ function LandingPage() {
 
       {/* WHY CHOOSE US */}
       <section className="relative py-20 md:py-24 overflow-hidden">
-        <div className="absolute inset-0 -z-10 bg-mesh opacity-70" />
+        <div className="absolute inset-0 -z-10 bg-brand-50 opacity-70" />
         <div className="container-app">
           <motion.div {...fade} className="max-w-2xl">
             <p className="text-sm font-semibold uppercase tracking-wider text-brand">
@@ -517,7 +517,7 @@ function LandingPage() {
                 transition={{ duration: 0.4, delay: i * 0.05 }}
                 className="rounded-2xl border border-border bg-card p-7 shadow-soft hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
               >
-                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+                <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-primary-foreground shadow-soft">
                   <f.icon className="h-5 w-5" />
                 </div>
                 <h3 className="mt-5 font-semibold text-lg">{f.title}</h3>
@@ -567,7 +567,7 @@ function LandingPage() {
                   />
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+                  <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-primary-foreground shadow-soft">
                     <s.icon className="h-5 w-5" />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold">{s.title}</h3>
@@ -617,7 +617,7 @@ function LandingPage() {
               transition={{ duration: 0.4, delay: (i % 4) * 0.05 }}
               className="group relative rounded-2xl border border-border bg-card p-6 hover:shadow-elegant hover:-translate-y-1 transition-all duration-300"
             >
-              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+              <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-primary-foreground shadow-soft">
                 <s.icon className="h-5 w-5" />
               </div>
               <h3 className="mt-4 font-semibold text-lg">{s.title}</h3>
@@ -653,12 +653,12 @@ function LandingPage() {
               className="h-96 w-full object-cover transition-transform duration-700 group-hover:scale-105"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-dark via-dark/60 to-transparent" />
-            <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-white">
-              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-white/10 backdrop-blur px-3 py-1 text-xs font-medium">
+            <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end text-primary-foreground">
+              <span className="inline-flex w-fit items-center gap-2 rounded-full bg-primary-foreground/10 backdrop-blur px-3 py-1 text-xs font-medium">
                 <Cpu className="h-3.5 w-3.5" /> Equipment & Systems
               </span>
               <h3 className="mt-4 text-3xl md:text-4xl font-bold">Browse Our Equipment Catalogue</h3>
-              <p className="mt-2 text-white/80 max-w-xl">
+              <p className="mt-2 text-primary-foreground/80 max-w-xl">
                 CCTV, recording and storage, networking and fiber, smart access, telephony and
                 installation services — with the exact hardware we supply and support.
               </p>
@@ -822,16 +822,14 @@ function LandingPage() {
       <section className="container-app pb-16">
         <motion.div
           {...fade}
-          className="relative overflow-hidden rounded-3xl bg-gradient-brand p-10 md:p-16 shadow-elegant"
+          className="relative overflow-hidden rounded-3xl bg-brand-600 p-10 md:p-16 shadow-elegant"
         >
-          <div className="absolute -top-20 -right-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
-          <div className="absolute -bottom-20 -left-20 h-64 w-64 rounded-full bg-white/10 blur-3xl" />
           <div className="relative grid gap-8 md:grid-cols-2 md:items-center">
-            <div className="text-white">
+            <div className="text-primary-foreground">
               <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
                 Book a Free Site Survey
               </h2>
-              <p className="mt-3 text-white/85 text-lg max-w-md">
+              <p className="mt-3 text-primary-foreground/85 text-lg max-w-md">
                 Tell us about your site and we'll prepare a clear, itemised quotation — our team
                 responds within minutes on WhatsApp.
               </p>
@@ -840,7 +838,7 @@ function LandingPage() {
               <Button asChild size="lg" variant="secondary" className="h-12 px-6">
                 <Link to="/contact" search={{ request: "survey" }}>Request a Site Survey</Link>
               </Button>
-              <Button asChild size="lg" className="h-12 px-6 bg-white text-brand hover:bg-white/90">
+              <Button asChild size="lg" className="h-12 px-6 bg-primary-foreground text-brand-700 hover:bg-primary-foreground/90">
                 <a href="tel:+256789877929" aria-label="Call +256 789 877 929">
                   <Phone className="mr-2 h-4 w-4" /> +256 789 877 929
                 </a>

@@ -63,7 +63,7 @@ function AboutPage() {
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">About Us</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
-A trusted <span className="gradient-text">technology partner.</span> <br />
+A trusted <span className="text-brand-600">technology partner.</span> <br />
             Uncompromising quality.
           </h1>
           <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
@@ -102,7 +102,7 @@ A trusted <span className="gradient-text">technology partner.</span> <br />
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="rounded-3xl border border-border bg-card p-8 shadow-soft"
             >
-              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow">
+              <div className="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-brand-600 text-primary-foreground shadow-soft">
                 <c.icon className="h-5 w-5" />
               </div>
               <h3 className="mt-5 text-xl font-bold">{c.title}</h3>
@@ -167,7 +167,7 @@ Certified IT engineers, network technicians and field installers — united by a
       </section>
 
       <section className="container-app pb-24">
-        <div className="rounded-3xl bg-mesh border border-border p-10 md:p-14">
+        <div className="rounded-3xl bg-brand-50 border border-border p-10 md:p-14">
           <div className="grid gap-8 md:grid-cols-4">
             {[
               { icon: Trophy, value: "500+", label: "Projects Delivered" },
@@ -185,7 +185,7 @@ Certified IT engineers, network technicians and field installers — united by a
         </div>
 
         <div className="mt-12 flex flex-wrap gap-3">
-          <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+          <Button asChild size="lg" className="bg-brand-600 h-12 px-6 shadow-elegant">
             <Link to="/contact">
               Work With Us <ArrowRight className="ml-1 h-4 w-4" />
             </Link>

@@ -96,7 +96,7 @@ function ServiceDetail() {
               <p className="mt-3 text-lg text-primary font-medium">{service.tagline}</p>
               <p className="mt-4 text-muted-foreground">{service.intro}</p>
               <div className="mt-7 flex flex-wrap gap-3">
-                <Button asChild className="bg-gradient-brand shadow-elegant">
+                <Button asChild className="bg-brand-600 shadow-elegant">
                   <Link to="/contact">Get a Free Quote</Link>
                 </Button>
                 <Button asChild variant="outline">
@@ -210,9 +210,9 @@ function ServiceDetail() {
         </section>
 
         <section className="container-app pb-16">
-          <div className="rounded-2xl bg-gradient-brand p-8 text-center text-white md:p-12">
+          <div className="rounded-2xl bg-brand-600 p-8 text-center text-primary-foreground md:p-12">
             <h2 className="text-2xl md:text-3xl font-bold">{service.cta.heading}</h2>
-            <p className="mx-auto mt-3 max-w-2xl text-white/85">{service.cta.body}</p>
+            <p className="mx-auto mt-3 max-w-2xl text-primary-foreground/85">{service.cta.body}</p>
             <div className="mt-7 flex flex-wrap justify-center gap-3">
               <Button asChild variant="secondary">
                 <Link to="/contact">Get a Free Quote</Link>
@@ -220,7 +220,7 @@ function ServiceDetail() {
               <Button
                 asChild
                 variant="outline"
-                className="border-white/40 bg-transparent text-white hover:bg-white/10 hover:text-white"
+                className="border-primary-foreground/40 bg-transparent text-primary-foreground hover:bg-primary-foreground/10 hover:text-primary-foreground"
               >
                 <a
                   href={`https://wa.me/${BUSINESS_WHATSAPP}`}

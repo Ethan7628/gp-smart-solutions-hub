@@ -96,7 +96,7 @@ export function Navbar() {
             <Button asChild variant="ghost" size="sm">
               <Link to="/services">Explore Services</Link>
             </Button>
-            <Button asChild size="sm" className="bg-gradient-brand hover:opacity-95 shadow-elegant">
+            <Button asChild size="sm" className="bg-brand-600 hover:opacity-95 shadow-elegant">
               <Link to="/contact">Get Free Quote</Link>
             </Button>
           </div>
@@ -137,7 +137,7 @@ export function Navbar() {
                 <Button asChild variant="outline" onClick={() => setOpen(false)}>
                   <Link to="/services">Explore Services</Link>
                 </Button>
-                <Button asChild className="bg-gradient-brand" onClick={() => setOpen(false)}>
+                <Button asChild className="bg-brand-600" onClick={() => setOpen(false)}>
                   <Link to="/contact">Get Free Quote</Link>
                 </Button>
               </li>

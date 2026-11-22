@@ -138,7 +138,7 @@ function ContactPage() {
         >
           <p className="text-sm font-semibold uppercase tracking-wider text-brand">Contact</p>
           <h1 className="mt-3 text-5xl md:text-6xl font-bold tracking-tight">
-            {search.request === "survey" ? "Book a Free Site Survey" : search.request === "equipment" ? "Enquire About Equipment" : <>Let's <span className="gradient-text">build</span> something great.</>}
+            {search.request === "survey" ? "Book a Free Site Survey" : search.request === "equipment" ? "Enquire About Equipment" : <>Let's <span className="text-brand-600">build</span> something great.</>}
           </h1>
           <p className="mt-6 text-lg text-muted-foreground">
             Request a free consultation, get a quote for CCTV, Wi-Fi, cabling or IT support, or talk to
@@ -184,7 +184,7 @@ function ContactPage() {
                     : {})}
                   className="flex items-start gap-4 rounded-2xl border border-border bg-card p-5 shadow-soft hover:shadow-elegant transition-all"
                 >
-                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground shadow-glow shrink-0">
+                  <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-brand-600 text-primary-foreground shadow-soft shrink-0">
                     <c.icon className="h-5 w-5" />
                   </div>
                   <div>
@@ -371,7 +371,7 @@ function ContactPage() {
                 type="submit"
                 size="lg"
                 disabled={isSubmitting}
-                className="bg-gradient-brand h-12 px-6 shadow-elegant"
+                className="bg-brand-600 h-12 px-6 shadow-elegant"
               >
                 {isSubmitting ? (
                   "Sending…"

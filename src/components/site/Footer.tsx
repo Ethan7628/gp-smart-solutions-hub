@@ -51,15 +51,15 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="mt-24 border-t border-border/60 bg-dark text-white/80">
+    <footer className="mt-24 border-t border-border/60 bg-dark text-dark-foreground/80">
       <div className="container-app py-16">
         <div className="grid gap-12 lg:grid-cols-5">
           <div className="lg:col-span-2">
             <Link to="/" className="flex items-center gap-2">
               <img src={logo} alt="" className="h-10 w-18" />
-              <span className="text-white font-bold text-lg">GP Smart Solutions</span>
+              <span className="text-dark-foreground font-bold text-lg">GP Smart Solutions</span>
             </Link>
-            <p className="mt-4 text-sm text-white/60 max-w-sm">
+            <p className="mt-4 text-sm text-dark-foreground/60 max-w-sm">
               Professional IT & security solutions across Uganda — CCTV surveillance, networking,
               Wi-Fi, structured cabling, smart access control, PABX systems and office IT support.
             </p>
@@ -68,21 +68,21 @@ export function Footer() {
               <li>
                 <a
                   href={`tel:+${BUSINESS_WHATSAPP}`}
-                  className="flex items-center gap-3 hover:text-white transition"
+                  className="flex items-center gap-3 hover:text-dark-foreground transition"
                 >
-                  <Phone className="h-4 w-4 text-brand-glow" /> {BUSINESS_PHONE_DISPLAY}
+                  <Phone className="h-4 w-4 text-brand-300" /> {BUSINESS_PHONE_DISPLAY}
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${BUSINESS_EMAIL}`}
-                  className="flex items-center gap-3 hover:text-white transition"
+                  className="flex items-center gap-3 hover:text-dark-foreground transition"
                 >
-                  <Mail className="h-4 w-4 text-brand-glow" /> {BUSINESS_EMAIL}
+                  <Mail className="h-4 w-4 text-brand-300" /> {BUSINESS_EMAIL}
                 </a>
               </li>
               <li className="flex items-center gap-3">
-                <MapPin className="h-4 w-4 text-brand-glow" /> Kampala, Uganda
+                <MapPin className="h-4 w-4 text-brand-300" /> Kampala, Uganda
               </li>
             </ul>
 
@@ -94,7 +94,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={`Visit GP Smart Solutions on ${label}`}
-                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 transition"
+                  className="flex h-9 w-9 items-center justify-center rounded-lg bg-dark-foreground/5 hover:bg-dark-foreground/10 transition"
                 >
                   <Icon className="h-4 w-4" />
                 </a>
@@ -103,14 +103,14 @@ export function Footer() {
           </div>
 
           <nav aria-label="IT services navigation">
-            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">
+            <h3 className="text-dark-foreground font-semibold text-sm tracking-wide uppercase">
               IT Services
             </h3>
             <ul className="mt-4 space-y-2.5">
               <li>
                 <Link
                   to="/it-services"
-                  className="text-sm text-white/60 hover:text-white transition"
+                  className="text-sm text-dark-foreground/60 hover:text-dark-foreground transition"
                 >
                   Overview
                 </Link>
@@ -120,7 +120,7 @@ export function Footer() {
                   <Link
                     to="/it-services/$category"
                     params={{ category: c.slug }}
-                    className="text-sm text-white/60 hover:text-white transition"
+                    className="text-sm text-dark-foreground/60 hover:text-dark-foreground transition"
                   >
                     {c.title}
                   </Link>
@@ -130,14 +130,14 @@ export function Footer() {
           </nav>
 
           <nav aria-label="Solutions navigation">
-            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">Solutions</h3>
+            <h3 className="text-dark-foreground font-semibold text-sm tracking-wide uppercase">Solutions</h3>
             <ul className="mt-4 space-y-2.5">
               {solutionLinks.map((l) => (
                 <li key={l.label}>
                   <Link
                     to="/services/$slug"
                     params={{ slug: l.slug }}
-                    className="text-sm text-white/60 hover:text-white transition"
+                    className="text-sm text-dark-foreground/60 hover:text-dark-foreground transition"
                   >
                     {l.label}
                   </Link>
@@ -148,11 +148,11 @@ export function Footer() {
 
 
           <nav aria-label="Company navigation">
-            <h3 className="text-white font-semibold text-sm tracking-wide uppercase">Company</h3>
+            <h3 className="text-dark-foreground font-semibold text-sm tracking-wide uppercase">Company</h3>
             <ul className="mt-4 space-y-2.5">
               {companyLinks.map((l) => (
                 <li key={l.label}>
-                  <Link to={l.to} className="text-sm text-white/60 hover:text-white transition">
+                  <Link to={l.to} className="text-sm text-dark-foreground/60 hover:text-dark-foreground transition">
                     {l.label}
                   </Link>
                 </li>
@@ -161,7 +161,7 @@ export function Footer() {
           </nav>
         </div>
 
-        <div className="mt-14 pt-6 border-t border-white/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-white/50">
+        <div className="mt-14 pt-6 border-t border-dark-foreground/10 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-dark-foreground/50">
           <p>&copy; {year} GP Smart Solutions Limited. All rights reserved.</p>
           <p>Professional IT &amp; Security Solutions.</p>
         </div>

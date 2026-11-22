@@ -139,7 +139,7 @@ function CategoryPage() {
         <div className="absolute inset-0 -z-10">
           <img src={category.image} alt="" className="h-full w-full object-cover opacity-25" />
           <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/90 to-background" />
-          <div className="absolute inset-0 bg-mesh" />
+          <div className="absolute inset-0 bg-brand-50/70" />
         </div>
         <div className="container-app py-16 md:py-24">
           {/* Breadcrumbs */}
@@ -168,11 +168,11 @@ function CategoryPage() {
               <Icon className="h-3.5 w-3.5 text-brand" /> Hardware & Equipment
             </span>
             <h1 className="mt-6 text-4xl md:text-5xl font-bold tracking-tight">
-              <span className="gradient-text">{category.title}</span>
+              <span className="text-brand-600">{category.title}</span>
             </h1>
             <p className="mt-5 text-lg text-muted-foreground">{category.intro}</p>
             <div className="mt-7 flex flex-wrap gap-3">
-              <Button asChild size="lg" className="bg-gradient-brand h-12 px-6 shadow-elegant">
+              <Button asChild size="lg" className="bg-brand-600 h-12 px-6 shadow-elegant">
                 <Link to="/contact">
                   Request a Quote <ArrowRight className="ml-1 h-4 w-4" />
                 </Link>
@@ -207,7 +207,7 @@ function CategoryPage() {
               transition={{ duration: 0.4, delay: i * 0.05 }}
               className="flex items-start gap-3 rounded-2xl border border-border bg-card p-6 shadow-soft"
             >
-              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-brand text-primary-foreground">
+              <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand-600 text-primary-foreground">
                 <TrendingUp className="h-5 w-5" />
               </div>
               <p className="text-sm text-foreground/90 leading-relaxed pt-2">{benefit}</p>
@@ -237,7 +237,7 @@ function CategoryPage() {
               transition={{ duration: 0.4, delay: i * 0.08 }}
               className="relative rounded-3xl border border-border bg-card p-6 shadow-soft"
             >
-              <div className="text-4xl font-bold gradient-text">{p.step}</div>
+              <div className="text-4xl font-bold text-brand-600">{p.step}</div>
               <h3 className="mt-3 text-lg font-bold">{p.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
             </motion.div>
@@ -364,14 +364,14 @@ function CategoryPage() {
 
       {/* CTA */}
       <section className="container-app pb-8">
-        <div className="rounded-3xl bg-gradient-brand p-10 md:p-14 text-white shadow-elegant">
+        <div className="rounded-3xl bg-brand-600 p-10 md:p-14 text-primary-foreground shadow-elegant">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-medium">
+              <div className="inline-flex items-center gap-2 rounded-full bg-primary-foreground/10 px-3 py-1 text-xs font-medium">
                 <Rocket className="h-3.5 w-3.5" /> Ready to deploy?
               </div>
               <h2 className="mt-4 text-3xl md:text-4xl font-bold">Need something specific?</h2>
-              <p className="mt-3 text-white/85 max-w-md">
+              <p className="mt-3 text-primary-foreground/85 max-w-md">
                 Tell us your site, budget and timeline — we'll return a scoped quote with equipment
                 recommendations.
               </p>
@@ -380,7 +380,7 @@ function CategoryPage() {
               <Button asChild size="lg" variant="secondary" className="h-12 px-6">
                 <Link to="/contact">Get a Quote</Link>
               </Button>
-              <Button asChild size="lg" className="h-12 px-6 bg-white text-brand hover:bg-white/90">
+              <Button asChild size="lg" className="h-12 px-6 bg-primary-foreground text-brand-700 hover:bg-primary-foreground/90">
                 <a
                   href="https://wa.me/256789877929"
                   target="_blank"
