@@ -362,7 +362,7 @@ function LandingPage() {
   return (
     <SiteLayout>
       {/* HERO */}
-      <section className="relative overflow-hidden">
+      <section className="relative -mt-24 overflow-hidden pt-24">
         <HeroBackground />
 
         <div className="container-app py-20 md:py-32 lg:py-40">
